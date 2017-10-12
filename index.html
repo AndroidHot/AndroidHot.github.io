@@ -294,7 +294,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:01:05+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:20:16+08:00">
                 2017-10-12
               </time>
             
@@ -364,7 +364,8 @@
 <h2 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h2><blockquote>
 <p>牢记导数的意义：函数变量在某个点周围的极小区域内变化，而导数就是变量变化导致的函数在该方向上的变化率。换句话说，函数关于每个变量的导数指明了整个表达式对于该变量的敏感程度。</p>
 </blockquote>
-<h4 id="使用链式法则计算复合表达式"><a href="#使用链式法则计算复合表达式" class="headerlink" title="使用链式法则计算复合表达式"></a>使用链式法则计算复合表达式</h4><p><img src="https://ws1.sinaimg.cn/large/9db97af6gy1fkfh2qvxxjj21ak0q34aj.jpg" alt="simple backpropagation example"></p>
+<p><strong>使用链式法则计算复合表达式</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/9db97af6gy1fkfh2qvxxjj21ak0q34aj.jpg" alt="simple backpropagation example"></p>
 <p>图中所示的函数非常简单，不能和我们平时遇到的非常庞大的 cost function 相提并论，在这里仅仅是为了方便介绍反向传播算法。</p>
 <p>我们需要求的是函数关于 x、y、z 的导数，明眼人一眼就能看出来 x、y、z 的导数，但是我们要用反向传播的方法来计算。</p>
 <p>如图所示，从尾部开始。首先我们会先计算 f 对 f 的导数，自己对自己求导，导数当然为 1。紧接着，我们会计算 f 对 z 的导数，很简单，导数是 3。同理 f 对 q 的导数是 -4。</p>

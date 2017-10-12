@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fkfj8e61mrj20lx066mx7.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fkfj52hqt9j20go06amxp.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fkfj9b9yxej214v0mz797.jpg">
-<meta property="og:updated_time" content="2017-10-12T13:06:12.628Z">
+<meta property="og:updated_time" content="2017-10-12T13:22:50.610Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="反向传播算法">
 <meta name="twitter:description" content="为什么要使用反向传播在监督学习中，比如线性回归、逻辑回归等问题中，在训练模型的过程中有很重要的一步就是对输入的权重（theta，又叫 W）不断的更新，以降低 Cost function 的输出值。在之前，我们都是通过是手动计算的方式去计算权重参数的偏导数。 在神经网络中，由于神经元的数目比较多，导致权重参数（theta）也会非常的多，在这样的情况下，手动计算权重参数的偏导数的方式已经不太适用了，并">
@@ -298,7 +298,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:01:05+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:20:16+08:00">
                 2017-10-12
               </time>
             
@@ -366,7 +366,8 @@
 <h2 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h2><blockquote>
 <p>牢记导数的意义：函数变量在某个点周围的极小区域内变化，而导数就是变量变化导致的函数在该方向上的变化率。换句话说，函数关于每个变量的导数指明了整个表达式对于该变量的敏感程度。</p>
 </blockquote>
-<h4 id="使用链式法则计算复合表达式"><a href="#使用链式法则计算复合表达式" class="headerlink" title="使用链式法则计算复合表达式"></a>使用链式法则计算复合表达式</h4><p><img src="https://ws1.sinaimg.cn/large/9db97af6gy1fkfh2qvxxjj21ak0q34aj.jpg" alt="simple backpropagation example"></p>
+<p><strong>使用链式法则计算复合表达式</strong></p>
+<p><img src="https://ws1.sinaimg.cn/large/9db97af6gy1fkfh2qvxxjj21ak0q34aj.jpg" alt="simple backpropagation example"></p>
 <p>图中所示的函数非常简单，不能和我们平时遇到的非常庞大的 cost function 相提并论，在这里仅仅是为了方便介绍反向传播算法。</p>
 <p>我们需要求的是函数关于 x、y、z 的导数，明眼人一眼就能看出来 x、y、z 的导数，但是我们要用反向传播的方法来计算。</p>
 <p>如图所示，从尾部开始。首先我们会先计算 f 对 f 的导数，自己对自己求导，导数当然为 1。紧接着，我们会计算 f 对 z 的导数，很简单，导数是 3。同理 f 对 q 的导数是 -4。</p>
@@ -593,7 +594,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用反向传播"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用反向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详解"><span class="nav-number">3.</span> <span class="nav-text">详解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用链式法则计算复合表达式"><span class="nav-number">3.0.1.</span> <span class="nav-text">使用链式法则计算复合表达式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向传播的直观理解"><span class="nav-number">4.</span> <span class="nav-text">反向传播的直观理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number">5.</span> <span class="nav-text">扩展</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用反向传播"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用反向传播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">2.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#详解"><span class="nav-number">3.</span> <span class="nav-text">详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#反向传播的直观理解"><span class="nav-number">4.</span> <span class="nav-text">反向传播的直观理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number">5.</span> <span class="nav-text">扩展</span></a></li></ol></div>
             
 
           </div>
