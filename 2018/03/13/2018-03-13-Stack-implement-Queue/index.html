@@ -103,7 +103,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fpbc1tkxumj20av07tq2r.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fpbc3vszajj217q0tnabf.jpg">
-<meta property="og:updated_time" content="2018-03-13T14:22:15.000Z">
+<meta property="og:updated_time" content="2018-03-14T14:02:57.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两个栈实现一个队列">
 <meta name="twitter:description" content="之前面试的时候被面试官问到一道算法题：如何用两个栈实现一个队列。我的回答是，把所有元素：入第一个栈 -&amp;gt; 从第一个栈出栈并入第二个栈 -&amp;gt; 从第二个栈出栈。当时无知，以为自己的回答是正确的，但是面试官接下来的问题便把我给打回原形了：如果想要队列是可以同时入队列和出队列的呢。 最近在学习《算法导论》，学习到了栈和队列这一章，又想起了上面的问题，便重新思考和 Coding 了一番，顺便记录">
@@ -229,16 +229,6 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tweet">
-          <a href="/tweet.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-file-text"></i> <br />
-            
-            Tweet
           </a>
         </li>
       
@@ -391,7 +381,7 @@
 <p>下面是用 Python 中的 list 实现的一个 Queue，主要依靠 <em>self.head, self.tail</em> 这两个变量来定位的队列的队头（head），队尾（tail）以及判断是否 queue overflow, queue underflow。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">class Queue(object):</div><div class="line"></div><div class="line">    def __init__(self, length):</div><div class="line">        self.Q = [None for _ in range(length)]</div><div class="line">        self.head = 0</div><div class="line">        self.tail = 0</div><div class="line">        self.maxIndex = length - 1</div><div class="line"></div><div class="line">    def enqueue(self, element):</div><div class="line">        if self._isOverFlow():</div><div class="line">            raise IndexError(&apos;queue overflow.&apos;)</div><div class="line">        else:</div><div class="line">            self.Q[self.tail] = element</div><div class="line">            if self.tail == self.maxIndex:</div><div class="line">                self.tail = 0</div><div class="line">            else:</div><div class="line">                self.tail += 1</div><div class="line"></div><div class="line">    def dequeue(self):</div><div class="line">        if self._isUnderFlow():</div><div class="line">            raise IndexError(&apos;queue underflow.&apos;)</div><div class="line">        else:</div><div class="line">            result = self.Q[self.head]</div><div class="line">            self.Q[self.head] = None</div><div class="line">            if self.head == self.maxIndex:</div><div class="line">                self.head = 0</div><div class="line">            else:</div><div class="line">                self.head += 1</div><div class="line">            return result</div><div class="line"></div><div class="line">    def _isOverFlow(self):</div><div class="line">        return (self.head == self.tail) and self.Q[self.head]</div><div class="line"></div><div class="line">    def _isUnderFlow(self):</div><div class="line">        return (self.head == self.tail) and (not self.Q[self.head])</div><div class="line"></div><div class="line">    def onlyOneElement(self):</div><div class="line">        return (self.tail - self.head == 1) or (self.tail == 0 and self.head == self.maxIndex)</div></pre></td></tr></table></figure>
 <h3 id="利用两个栈实现一个队列"><a href="#利用两个栈实现一个队列" class="headerlink" title="利用两个栈实现一个队列"></a>利用两个栈实现一个队列</h3><p>介绍完基础知识终于可以开始进入主题了：如何利用两个栈实现一个队列？</p>
-<p>只要利用好上面提到的栈和队列的基本特点就可以很轻松的相处解决方案：</p>
+<p>只要利用好上面提到的栈和队列的基本特点就可以很轻松的想出解决方案：</p>
 <ul>
 <li><p><strong>队列的入队</strong>：直接利用第一个栈的入栈操作来实现队列的入队。</p>
 </li>
@@ -420,9 +410,9 @@
 <p>下面是利用两个 Queue （具体实现在上面的第二片代码中） 实现 Stack 的代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">from queue import Queue</div><div class="line"></div><div class="line">class Stack(object):</div><div class="line"></div><div class="line">    def __init__(self, length):</div><div class="line">        self.queue1 = Queue(length)</div><div class="line">        self.queue2 = Queue(length)</div><div class="line">        self.usingQueue1Push = True</div><div class="line"></div><div class="line">    def push(self, element):</div><div class="line">        try:</div><div class="line">            if self.usingQueue1Push:</div><div class="line">                self.queue1.enqueue(element)</div><div class="line">            else:</div><div class="line">                self.queue2.enqueue(element)</div><div class="line">        except IndexError:</div><div class="line">            raise IndexError(&apos;stack overflow.&apos;)</div><div class="line"></div><div class="line">    def pop(self):</div><div class="line">        try:</div><div class="line">            if self.usingQueue1Push:</div><div class="line">                while not self.queue1.onlyOneElement():</div><div class="line">                    self.queue2.enqueue(self.queue1.dequeue())</div><div class="line">                result = self.queue1.dequeue()</div><div class="line">            else:</div><div class="line">                while not self.queue2.onlyOneElement():</div><div class="line">                    self.queue1.enqueue(self.queue2.dequeue())</div><div class="line">                result = self.queue2.dequeue()</div><div class="line">        except IndexError:</div><div class="line">            raise IndexError(&apos;stack underflow.&apos;)</div><div class="line">        self.usingQueue1Push = not self.usingQueue1Push</div><div class="line">        return result</div></pre></td></tr></table></figure>
 <p>源码地址：<a href="https://github.com/AndroidHot/Introduction-to-Algorithms/blob/master/chapter10/section1/task_implements_queue.py" target="_blank" rel="external">Two stacks implement the queue.</a></p>
-<hr>
 <p><strong>全文完</strong></p>
 <p><strong>感谢阅读</strong></p>
+<hr>
 
       
     </div>

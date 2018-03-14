@@ -231,16 +231,6 @@
         </li>
       
         
-        <li class="menu-item menu-item-tweet">
-          <a href="/tweet.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-file-text"></i> <br />
-            
-            Tweet
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-about">
           <a href="/about/" rel="section">
             
@@ -393,7 +383,7 @@
 <p>下面是用 Python 中的 list 实现的一个 Queue，主要依靠 <em>self.head, self.tail</em> 这两个变量来定位的队列的队头（head），队尾（tail）以及判断是否 queue overflow, queue underflow。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">class Queue(object):</div><div class="line"></div><div class="line">    def __init__(self, length):</div><div class="line">        self.Q = [None for _ in range(length)]</div><div class="line">        self.head = 0</div><div class="line">        self.tail = 0</div><div class="line">        self.maxIndex = length - 1</div><div class="line"></div><div class="line">    def enqueue(self, element):</div><div class="line">        if self._isOverFlow():</div><div class="line">            raise IndexError(&apos;queue overflow.&apos;)</div><div class="line">        else:</div><div class="line">            self.Q[self.tail] = element</div><div class="line">            if self.tail == self.maxIndex:</div><div class="line">                self.tail = 0</div><div class="line">            else:</div><div class="line">                self.tail += 1</div><div class="line"></div><div class="line">    def dequeue(self):</div><div class="line">        if self._isUnderFlow():</div><div class="line">            raise IndexError(&apos;queue underflow.&apos;)</div><div class="line">        else:</div><div class="line">            result = self.Q[self.head]</div><div class="line">            self.Q[self.head] = None</div><div class="line">            if self.head == self.maxIndex:</div><div class="line">                self.head = 0</div><div class="line">            else:</div><div class="line">                self.head += 1</div><div class="line">            return result</div><div class="line"></div><div class="line">    def _isOverFlow(self):</div><div class="line">        return (self.head == self.tail) and self.Q[self.head]</div><div class="line"></div><div class="line">    def _isUnderFlow(self):</div><div class="line">        return (self.head == self.tail) and (not self.Q[self.head])</div><div class="line"></div><div class="line">    def onlyOneElement(self):</div><div class="line">        return (self.tail - self.head == 1) or (self.tail == 0 and self.head == self.maxIndex)</div></pre></td></tr></table></figure>
 <h3 id="利用两个栈实现一个队列"><a href="#利用两个栈实现一个队列" class="headerlink" title="利用两个栈实现一个队列"></a>利用两个栈实现一个队列</h3><p>介绍完基础知识终于可以开始进入主题了：如何利用两个栈实现一个队列？</p>
-<p>只要利用好上面提到的栈和队列的基本特点就可以很轻松的相处解决方案：</p>
+<p>只要利用好上面提到的栈和队列的基本特点就可以很轻松的想出解决方案：</p>
 <ul>
 <li><p><strong>队列的入队</strong>：直接利用第一个栈的入栈操作来实现队列的入队。</p>
 </li>
@@ -422,9 +412,9 @@
 <p>下面是利用两个 Queue （具体实现在上面的第二片代码中） 实现 Stack 的代码：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">from queue import Queue</div><div class="line"></div><div class="line">class Stack(object):</div><div class="line"></div><div class="line">    def __init__(self, length):</div><div class="line">        self.queue1 = Queue(length)</div><div class="line">        self.queue2 = Queue(length)</div><div class="line">        self.usingQueue1Push = True</div><div class="line"></div><div class="line">    def push(self, element):</div><div class="line">        try:</div><div class="line">            if self.usingQueue1Push:</div><div class="line">                self.queue1.enqueue(element)</div><div class="line">            else:</div><div class="line">                self.queue2.enqueue(element)</div><div class="line">        except IndexError:</div><div class="line">            raise IndexError(&apos;stack overflow.&apos;)</div><div class="line"></div><div class="line">    def pop(self):</div><div class="line">        try:</div><div class="line">            if self.usingQueue1Push:</div><div class="line">                while not self.queue1.onlyOneElement():</div><div class="line">                    self.queue2.enqueue(self.queue1.dequeue())</div><div class="line">                result = self.queue1.dequeue()</div><div class="line">            else:</div><div class="line">                while not self.queue2.onlyOneElement():</div><div class="line">                    self.queue1.enqueue(self.queue2.dequeue())</div><div class="line">                result = self.queue2.dequeue()</div><div class="line">        except IndexError:</div><div class="line">            raise IndexError(&apos;stack underflow.&apos;)</div><div class="line">        self.usingQueue1Push = not self.usingQueue1Push</div><div class="line">        return result</div></pre></td></tr></table></figure>
 <p>源码地址：<a href="https://github.com/AndroidHot/Introduction-to-Algorithms/blob/master/chapter10/section1/task_implements_queue.py" target="_blank" rel="external">Two stacks implement the queue.</a></p>
-<hr>
 <p><strong>全文完</strong></p>
 <p><strong>感谢阅读</strong></p>
+<hr>
 
           
         
@@ -607,9 +597,9 @@
 <li>吴恩达教授机器学习课程中神经网络的例子</li>
 </ul>
 <p><img src="https://ws1.sinaimg.cn/large/9db97af6gy1fkfj9b9yxej214v0mz797.jpg" alt="image"></p>
-<hr>
 <p><strong>全文完</strong></p>
 <p><strong>感谢阅读</strong></p>
+<hr>
 
           
         
@@ -759,9 +749,9 @@
 <h3 id="Front-End"><a href="#Front-End" class="headerlink" title="Front-End"></a>Front-End</h3><p>去年暑假在学校考驾校的那段时间，学习过前端的一些基础：HTML、CSS、JavaScript。因为 React Native 等一些原因，那时候前端特别火。后来因为我比较怕写 UI 代码，主要是网页是个很大的东西，不像写 Android UI，就那么大个屏幕。就把前端给冷落了，直到现在，公司接了个 Firefox OS 的手机项目，就又把前端的技术捡了起来，这次和上次感觉很不一样，还是蛮有意思的，应该不会再把她打入冷宫了。毕竟学好了，后面还能用前端的技术写写 iOS 啥的，哈哈。</p>
 <h3 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h3><p>机器学习时下是个很火的话题，当然跑不掉，目前在学吴教授的<a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="external">机器学习课程</a>，这套课程非常棒，吴教程讲的也非常好，力荐。过段时间应该就会开始并行学习 Tensorflow 的官方文档，实现一些小 demo，顺便把 Python 用起来。</p>
 <p>最后，前两天刚开了个页面，有时候有些话想要说，会放在里面： <a href="https://androidhot.github.io/tweet">Tweet</a> 。</p>
-<hr>
 <p><strong>全文完</strong></p>
 <p><strong>感谢阅读</strong></p>
+<hr>
 
           
         
@@ -921,9 +911,9 @@
 <h2 id="Future"><a href="#Future" class="headerlink" title="Future"></a>Future</h2><p>这个月上完班，就请假开始毕业休假了。</p>
 <p>和女朋友去我出生的地方<strong>三亚</strong>玩一个星期，因为从重庆飞，所以会先在重庆玩两天，可以欣赏一下传说中媲美香港的夜景哈哈哈。</p>
 <p>然后回学校写论文和答辩，享受下最后的大学生活，以后就是上班族了。( 手动笑抽 )</p>
-<hr>
 <p><strong>全文完</strong></p>
 <p><strong>感谢阅读</strong></p>
+<hr>
 
           
         
