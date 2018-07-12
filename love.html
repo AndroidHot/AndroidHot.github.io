@@ -75,7 +75,6 @@
 		highSchoolStartTime.setMinutes(12);
 		highSchoolStartTime.setSeconds(12);
 		highSchoolStartTime.setMilliseconds(12);
-
 		if (!document.createElement('canvas').getContext) {
 			var msg = document.createElement("div");
 			msg.id = "errorMsg";
@@ -89,14 +88,12 @@
 			setTimeout(function () {
 				startHeartAnimation();
 			}, 5000);
-
 			timeElapse(highSchoolStartTime, "#knownElapseClock");
 			timeElapse(together, "#elapseClock");
 			setInterval(function () {
 				timeElapse(highSchoolStartTime, "#knownElapseClock");
 				timeElapse(together, "#elapseClock");
 			}, 500);
-
 			adjustCodePosition();
 			$("#code").typewriter();
 		}
