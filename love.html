@@ -33,7 +33,7 @@
 				i.miss(u);<br /><br />
 				<span class="comments">// In a blink of an eye, six years have passed.</span><br />
 				var time = new Date();<br />
-				time.setFullYear(2017, 02, 27);<br /><br />
+				time.setFullYear(2017, 02, 27);<br />
 				<span class="comments">// March 27, 2017, I told you again that I love you.</span><br />
 				i.love(u);<br /><br />
 				<span class="comments">// Luckily, you accepted and became my girlfriend eversince.</span><br />
@@ -44,12 +44,8 @@
 			<div id="loveHeart">
 				<canvas id="garden"></canvas>
 				<div id="words">
-					<div id="knownMessage">
-						Since high school, I have fallen in love with you for
-						<div id="knownElapseClock"></div>
-					</div>
 					<div id="messages">
-						Dear, We fell in love for
+						Dear, We have been fallen in love for
 						<div id="elapseClock"></div>
 					</div>
 					<div id="loveu">
@@ -88,10 +84,8 @@
 			setTimeout(function () {
 				startHeartAnimation();
 			}, 5000);
-			timeElapse(highSchoolStartTime, "#knownElapseClock");
 			timeElapse(together, "#elapseClock");
 			setInterval(function () {
-				timeElapse(highSchoolStartTime, "#knownElapseClock");
 				timeElapse(together, "#elapseClock");
 			}, 500);
 			adjustCodePosition();
