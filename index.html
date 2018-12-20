@@ -273,6 +273,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://androidhot.github.io/2018/12/20/2018-12-20-Get-Bitmap-from-SurfaceView/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhiwei Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/17120655?v=4&u=d17931ce5e11210e09e2caf8140a7cba9fe60a71&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="假装在香港">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/20/2018-12-20-Get-Bitmap-from-SurfaceView/" itemprop="url">从 SurfaceView 获取 Bitmap</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-20T19:13:29+08:00">
+                2018-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在做三摄算法集成项目的时候，因为手机有三个摄像头，所以存在两种不同的双摄人像模式，分别是 1 倍人像模式（以下简称 1x）和 2 倍光变人像模式（以下简称 2x）。我们没有在 App 层面使用同时打开两个 camera id 的方式来打开双摄，因为这样逻辑会稍微复杂，所以我们是在底层做了这件事，在上层我们只需要打开新增的 camera id，就可以同时打开两个摄像头。</p>
+<p>由于项目需要，我在高通的 SnapdragonCamera App 的 Preview 中添加了 1x 和 2x 的切换按钮，效果类似 iPhone（双摄） 中 1x 和 2x 的切换。查看 SnapdragonCamera 的代码后，找到了一个简单的切换 Camera 的方式，就是直接修改 SharedPreferences 中的一个关于当前 Camera id 配置。</p>
+<p>这么做之后，功能确实实现了，但是在切换的过程中，因为会释放资源再重新构建，所以预览会消失，在 UI 上看到的情况就是黑了一下。这种体验不怎么好，需要优化一下。经过和 PM 沟通后，最后决定的优化方案是在切换的过程中，在 UI 上展示上一次预览的最后一帧，并且加一个模糊效果。</p>
+<p>在高通的 SnapdragonCamera 中使用的是 <a href="https://developer.android.com/reference/android/view/SurfaceView" target="_blank" rel="external">SurfaceView</a> 进行 Preview，因为 SurfaceView 不像 <a href="https://developer.android.com/reference/android/view/TextureView" target="_blank" rel="external">TextureView</a> 一样有 getBitmap() 方法，所以获取最后一帧这一点得想想怎么做。</p>
+<p>一开我想的是在 Preview 的时候再加一个 ImageReader 或者 TextureView，但是这样会把问题搞的比较复杂，并且也不是很好的解决方案。所以还是想在现有的 SurfaceView 上做点文章。</p>
+<p>通过上网查阅资料（这里再次吐槽一下百度，不管是使用中文还是英文，查资料都不太好使。推荐使用 Google 用英文关键字查询），发现了 <a href="https://developer.android.com/reference/android/view/PixelCopy" target="_blank" rel="external">PixelCopy</a> 这个好东西。</p>
+<p>PixelCopy 是在 API level 24（Android 7.0 Nougat）中添加的，由于我们这个项目使用的是最新的 Android 9 Pie，所以使用这个 API 是没有问题的。下面是官网对它的介绍：</p>
+<blockquote>
+<p>Provides a mechanisms to issue pixel copy requests to allow for copy operations from Surface to Bitmap</p>
+</blockquote>
+<p>PixelCopy 提供了一种发出像素复制请求的机制，允许从 Surface 到 Bitmap 的复制操作。Perfect，我们要的就是这样的一种功能。</p>
+<p>下面是使用 PixelCopy 从 SurfaceView 获取 Bitmap 的示例代码。</p>
+<p>Java:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Bitmap <span class="title">getBitmap</span><span class="params">(SurfaceView surfaceView)</span> </span>&#123;</div><div class="line">    Bitmap bitmap = Bitmap.createBitmap(surfaceView.getWidth(), surfaceView.getHeight(), Bitmap.Config.ARGB_8888);</div><div class="line">    </div><div class="line">    PixelCopy.request(surfaceView, bitmap, <span class="keyword">new</span> PixelCopy.OnPixelCopyFinishedListener() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPixelCopyFinished</span><span class="params">(<span class="keyword">int</span> copyResult)</span></span>&#123;</div><div class="line">            <span class="keyword">if</span> (PixelCopy.SUCCESS == copyResult) &#123;</div><div class="line">                <span class="comment">// onSuccessCallback(bitmap)</span></div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="comment">// onErrorCallback()</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;, surfaceView.getHandler());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Kotlin：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getBitmap</span><span class="params">(surfaceView: <span class="type">SurfaceView</span>)</span></span> = Single.create&lt;Bitmap&gt; &#123;</div><div class="line">    <span class="keyword">val</span> bitmap = Bitmap.createBitmap(surfaceView.width, surfaceView.height, Bitmap.Config.ARGB_8888)</div><div class="line"></div><div class="line">    <span class="keyword">val</span> listener = PixelCopy.OnPixelCopyFinishedListener &#123; copyResult -&gt;</div><div class="line">        <span class="keyword">when</span> (copyResult) &#123;</div><div class="line">            PixelCopy.SUCCESS -&gt; &#123;</div><div class="line">                <span class="comment">// onSuccessCallback(bitmap)</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> -&gt; &#123;</div><div class="line">                <span class="comment">// onErrorCallback()</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    PixelCopy.request(surfaceView, bitmap, listener, surfaceView.handler)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在 onPixelCopyFinished 回调中，我们的 Bitmap 已经从 SurfaceView 获取到了 Bitmap。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://androidhot.github.io/2018/04/03/2018-04-03-ThreadPoolExecutor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1177,7 +1335,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
