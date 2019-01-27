@@ -102,7 +102,7 @@
 <meta property="og:description" content="「阿里巴巴 Android 开发手册」中第 5.3 节对新建线程做了如下强制性要求：  新建线程时，必须通过线程池提供（AsyncTask 或者 ThreadPoolExecutor 或者其他形式自定义的线程池），不允许在应用中自行显式创建线程。  并对此做了如下的说明：  使用线程池的好处是减少在创建和销毁线程上所花的时间以及系统资源的开销，解决资源不足的问题。如果不使用线程池，有可能造成系统创">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fpzp3le1nmj20m80dwtf8.jpg">
-<meta property="og:updated_time" content="2018-04-25T14:05:57.976Z">
+<meta property="og:updated_time" content="2019-01-27T14:14:54.774Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Android 中使用 ThreadPoolExecutor">
 <meta name="twitter:description" content="「阿里巴巴 Android 开发手册」中第 5.3 节对新建线程做了如下强制性要求：  新建线程时，必须通过线程池提供（AsyncTask 或者 ThreadPoolExecutor 或者其他形式自定义的线程池），不允许在应用中自行显式创建线程。  并对此做了如下的说明：  使用线程池的好处是减少在创建和销毁线程上所花的时间以及系统资源的开销，解决资源不足的问题。如果不使用线程池，有可能造成系统创">
@@ -403,7 +403,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 通过将任务 submitting 到线程池中来得到 future</span></div><div class="line">Future future = DefaultExecutorSupplier.getInstance().forBackgroundTasks()</div><div class="line">    .submit(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="comment">// do some background work here.</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 取消这个 task</span></div><div class="line">future.cancel(<span class="keyword">true</span>);</div></pre></td></tr></table></figure>
 <p><strong>全文完</strong></p>
 <p><strong>感谢阅读</strong></p>
-<hr>
 
       
     </div>
@@ -517,7 +516,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -623,7 +622,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
