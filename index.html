@@ -283,6 +283,231 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://androidhot.github.io/2019/03/19/2019-03-19_Transitions_Everywhere/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhiwei Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/17120655?v=4&u=d17931ce5e11210e09e2caf8140a7cba9fe60a71&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="假装在香港">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/19/2019-03-19_Transitions_Everywhere/" itemprop="url">Transitions Everywhere</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T21:24:22+08:00">
+                2019-03-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文是 <a href="https://developer.android.com/training/transitions/overview.html" target="_blank" rel="external">Android Transition Framework</a> 的学习笔记，先来看一下官网的简介：</p>
+<blockquote>
+<p>Android’s transition framework allows you to animate all kinds of motion in your UI by simply providing the starting layout and the ending layout. You can select what type of animation you want (such to fade the views in/out or change the view sizes) and the transition framework figures out how to animate from the starting layout to the ending layout.</p>
+</blockquote>
+<p>Android Transition Framework 主要用来做下面这三件事情：</p>
+<ol>
+<li>从一个 Activity 跳转到另一个 Activity 的时候添加一个过渡动画。</li>
+<li>不同 Activity 间的分享元素过渡动画。</li>
+<li>给 Activity 内的 View 添加动画。</li>
+</ol>
+<p>下面会从这三个方面来介绍 Transition。</p>
+<h2 id="1-简单的-Activity-过渡动画"><a href="#1-简单的-Activity-过渡动画" class="headerlink" title="1. 简单的 Activity 过渡动画"></a>1. 简单的 Activity 过渡动画</h2><p>第一种使用场景是：在 Activity 跳转时，给 Activity 内的 View 添加动画。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g186gdpj0gj20mc0d3aa3.jpg" alt="transition A to B"></p>
+<p>Activity 间的过渡动画有三种，分别是：Explode，Slide，Fade。先来看下效果：</p>
+<p>Explode:</p>
+<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g18735vnf7g20a80i6nio.gif" alt="Explode"></p>
+<p>Slide:</p>
+<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g18746lwt1g20a80i6h7f.gif" alt="Slide"></p>
+<p>Fade:</p>
+<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g1874mylq2g20a80i64kl.gif" alt="Fade"></p>
+<p><strong>使用方式：</strong></p>
+<p>1.创建你想要使用的 Transition 效果并进行一些设置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Slide slideTransition=<span class="keyword">new</span> Slide();</div><div class="line">slideTransition.setSlideEdge(Gravity.LEFT);</div><div class="line">slideTransition.setDuration(getResources().getInteger(R.integer.anim_duration_long));</div></pre></td></tr></table></figure>
+<p>2.设置使用动画的时机。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">getWindow().setEnterTransition(slideTransition); <span class="comment">// 设置进入动画</span></div><div class="line">getWindow().setExitTransition(slideTransition); <span class="comment">// 设置退出动画</span></div><div class="line">getWindow().setReturnTransition(slideTransition); <span class="comment">// 设置返回的动画</span></div><div class="line">getWindow().setReenterTransition(slideTransition); <span class="comment">// 设置重新进入的动画</span></div></pre></td></tr></table></figure>
+<ul>
+<li>当没有设置 <code>ReturnTransition</code> 时，此时退出当前的 Activity B 返回之前的 Activity A，当前的 Activity B 会使用 <code>EnterTransition</code> 来作为退出的过渡动画。</li>
+<li>当没有设置 <code>ReenterTransition</code> 时，此时重新进入之前的 Activity A 时，Activity A 会使用 <code>ExitTransition</code> 来作为进入的过渡动画。</li>
+</ul>
+<p>除了直接在 Java / Kotlin 代码中创建 Transition 外，还可以使用定义在 XML 中的 Transition：</p>
+<blockquote>
+<p>res/transition/activity_fade.xml</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">slide</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:duration</span>=<span class="string">"1000"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>然后，在代码中使用 <code>TransitionInflater</code> 来加载 XML 中定义的 Transition：</p>
+<blockquote>
+<p>MainActivity.java</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_transition);</div><div class="line">    setupWindowAnimations();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setupWindowAnimations</span><span class="params">()</span> </span>&#123;</div><div class="line">    Slide slide = TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.activity_slide);</div><div class="line">    getWindow().setExitTransition(slide);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-分享元素的过渡动画"><a href="#2-分享元素的过渡动画" class="headerlink" title="2. 分享元素的过渡动画"></a>2. 分享元素的过渡动画</h2><p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g1886gxvzgj20mc0d30t0.jpg" alt="shared element"></p>
+<p>第二种使用场景是：在两个 Activity 间有两个不同的 View，我们通过过渡动画来将两个 View 联系起来，从而可以告诉用户应用完成了从一个页面到另一个页面的跳转。Transition Framework 会执行任何必要的任何动画。视觉效果还是非常棒的：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g188bhmv2eg20a80i6h79.gif" alt="share element anim"></p>
+<p>当然，这只是一个动画，View 并没有从前一个 Layout 移动到后一个 Layout，他们是两个不同的 View。</p>
+<p>使用方式：</p>
+<p>1.启用 Window Content Transition</p>
+<p>在 <code>styles.xml</code> 中设置 <code>android:windowContentTransitions</code> 为 <code>ture</code>。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"BaseTheme"</span> <span class="attr">parent</span>=<span class="string">"@style/Theme.AppCompat.Light.NoActionBar"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    ...</span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowContentTransitions"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span></span></span></div><div class="line"><span class="undefined">    ...</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>顺带一提，如果你愿意的话，可以在这里设置整个 App 默认的 enter, exit 和 shared element transitions 。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"BaseTheme"</span> <span class="attr">parent</span>=<span class="string">"@style/Theme.AppCompat.Light.NoActionBar"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    ...</span></div><div class="line"><span class="xml">    <span class="comment">&lt;!-- specify enter and exit transitions --&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowEnterTransition"</span>&gt;</span>@transition/explode<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowExitTransition"</span>&gt;</span>@transition/explode<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="xml">    <span class="comment">&lt;!-- specify shared element transitions --&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowSharedElementEnterTransition"</span>&gt;</span>@transition/changebounds<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowSharedElementExitTransition"</span>&gt;</span>@transition/changebounds<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></div><div class="line"><span class="undefined">    ...</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>2.在两个 View 的布局属性中使用相同的 <code>android:transitionName</code>。</p>
+<blockquote>
+<p>layout/activity_a.xml</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/small_blue_icon"</span></span></div><div class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"@style/MaterialAnimations.Icon.Small"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">"@drawable/circle"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:transitionName</span>=<span class="string">"@string/blue_name"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>layout/activity_b.xml</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/big_blue_icon"</span></span></div><div class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"@style/MaterialAnimations.Icon.Big"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">"@drawable/circle"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:transitionName</span>=<span class="string">"@string/blue_name"</span> /&gt;</span></div></pre></td></tr></table></figure>
+<p>3.使用 shared element 启动另一个 Activity</p>
+<p>使用 <code>ActivityOptions.makeSceneTransitionAnimation()</code> 并传入 origin view 以及步骤二中定义的 transition name。</p>
+<blockquote>
+<p>MainActivity.java</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">blueIconImageView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Intent i = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SharedElementActivity.class);</div><div class="line"></div><div class="line">        View sharedView = blueIconImageView;</div><div class="line">        String transitionName = getString(R.string.blue_name);</div><div class="line"></div><div class="line">        ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.<span class="keyword">this</span>, sharedView, transitionName);</div><div class="line">        startActivity(i, transitionActivityOptions.toBundle());</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>正如我们在前面所看到的动画，Transition Framework 会执行必要的动画，给人一种 View 从 Activity A 移动到了 Activity B 的错觉。</p>
+<p>4.在 Fragment 间使用 shared element</p>
+<p>只需要在 <code>FragmentTransaction</code> 切换 Fragment 时调用 <code>addSharedElement</code> 并将 origin view 和 transition name 传进去。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">FragmentB fragmentB = FragmentB.newInstance(sample);</div><div class="line"></div><div class="line"><span class="comment">// Defines enter transition for all fragment views</span></div><div class="line">Slide slideTransition = <span class="keyword">new</span> Slide(Gravity.RIGHT);</div><div class="line">slideTransition.setDuration(<span class="number">1000</span>);</div><div class="line">sharedElementFragment2.setEnterTransition(slideTransition);</div><div class="line"></div><div class="line"><span class="comment">// Defines enter transition only for shared element</span></div><div class="line">ChangeBounds changeBoundsTransition = TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.change_bounds);</div><div class="line">fragmentB.setSharedElementEnterTransition(changeBoundsTransition);</div><div class="line"></div><div class="line">getFragmentManager().beginTransaction()</div><div class="line">        .replace(R.id.content, fragmentB)</div><div class="line">        .addSharedElement(blueView, getString(R.string.blue_name))</div><div class="line">        .commit();</div></pre></td></tr></table></figure>
+<h2 id="3-通过-Transition-实现-View-动画"><a href="#3-通过-Transition-实现-View-动画" class="headerlink" title="3. 通过 Transition 实现 View 动画"></a>3. 通过 Transition 实现 View 动画</h2><p>使用 Transition 给 View 添加动画有两种方式：一种是改变 Scene，另一种是改变 View 的布局。</p>
+<p>下面依次介绍</p>
+<h3 id="Scenes"><a href="#Scenes" class="headerlink" title="Scenes"></a>Scenes</h3><p>Transition 可以发生在不同的 Scene 间，一个 Scene 只是一个静态的布局。当你从一个 Scene 切换到另一个 Scene 时，Transition Framework 会根据你传入的 transition 在 View 间执行必要的动画。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一些不用的 Scene</span></div><div class="line">scene1 = Scene.getSceneForLayout(sceneRoot, R.layout.activity_animations_scene1, <span class="keyword">this</span>);</div><div class="line">scene2 = Scene.getSceneForLayout(sceneRoot, R.layout.activity_animations_scene2, <span class="keyword">this</span>);</div><div class="line">scene3 = Scene.getSceneForLayout(sceneRoot, R.layout.activity_animations_scene3, <span class="keyword">this</span>);</div><div class="line">scene4 = Scene.getSceneForLayout(sceneRoot, R.layout.activity_animations_scene4, <span class="keyword">this</span>);</div><div class="line"></div><div class="line">(...)</div><div class="line"></div><div class="line"><span class="comment">// 从一个 Scene transition 到另一个 Scene</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (v.getId()) &#123;</div><div class="line">        <span class="keyword">case</span> R.id.button1:</div><div class="line">            TransitionManager.go(scene1, <span class="keyword">new</span> ChangeBounds());</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> R.id.button2:</div><div class="line">            TransitionManager.go(scene2, TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.slide_and_changebounds));</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> R.id.button3:</div><div class="line">            TransitionManager.go(scene3, TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.slide_and_changebounds_sequential));</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> R.id.button4:</div><div class="line">            TransitionManager.go(scene4, TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.slide_and_changebounds_sequential_with_interpolators));</div><div class="line">            <span class="keyword">break</span>;  </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Transition Framework 将获取当前 Scene 中的所有可见视图，并计算和执行下一个 Scene 排列这些视图所需的任何必要动画。效果如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g18c5o0i4rg20a80i67k5.gif" alt="scenes anim"></p>
+<h3 id="Layout-changes"><a href="#Layout-changes" class="headerlink" title="Layout changes"></a>Layout changes</h3><p>除了运用在  Scene 间外，Transition Framework 还可以为 View 的布局属性更改设置动画。我们只需要对 View 的布局属性进行更改，它就会执行必要的动画。步骤如下：</p>
+<p>1.通知 Transition Framework</p>
+<p>只需要这一行代码，Transition Framework 就会知道我们将要对 <code>sceneRoot</code> 中的 View  布局属性进行修改，当我们修改后，它会执行相应的动画。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TransitionManager.beginDelayedTransition(sceneRoot);</div></pre></td></tr></table></figure>
+<p>2.修改 View 的布局属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ViewGroup.LayoutParams params = greenIconView.getLayoutParams();</div><div class="line">params.width = <span class="number">200</span>;</div><div class="line">greenIconView.setLayoutParams(params);</div></pre></td></tr></table></figure>
+<p>在这一步我们修改了 <code>greenIconView</code> 的布局属性，这将会触发 <code>layoutMeasure</code>。Transition Framework 将会执行一个动画，让布局从初始状态转变到我们修改后的状态。效果如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g18cj4r10qg20a80i6gvp.gif" alt="view layout anim"></p>
+<p><strong>全文完</strong></p>
+<p><strong>感谢阅读</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://androidhot.github.io/2019/02/03/2019-02-03-2018_read_books/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1709,7 +1934,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
