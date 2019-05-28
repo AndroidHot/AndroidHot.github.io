@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="条款18：让接口容易被正确使用，不易被误用欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。 1. 明智而审慎地导入新类型对预防“接口被误用”有神奇疗效 每一个接口的参数传递必须被准确限制，不易被误用。例如： 1Date(int month, int day, int year); 可以改写为： 1Date(const Month&amp;amp; month, co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Effective C++》 第四章「设计与声明」学习笔记">
+<meta property="og:url" content="https://androidhot.github.io/2019/05/28/2019-05-28_Effective_C++_chapter4/index.html">
+<meta property="og:site_name" content="假装在香港">
+<meta property="og:description" content="条款18：让接口容易被正确使用，不易被误用欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。 1. 明智而审慎地导入新类型对预防“接口被误用”有神奇疗效 每一个接口的参数传递必须被准确限制，不易被误用。例如： 1Date(int month, int day, int year); 可以改写为： 1Date(const Month&amp;amp; month, co">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-05-28T12:10:50.125Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《Effective C++》 第四章「设计与声明」学习笔记">
+<meta name="twitter:description" content="条款18：让接口容易被正确使用，不易被误用欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。 1. 明智而审慎地导入新类型对预防“接口被误用”有神奇疗效 每一个接口的参数传递必须被准确限制，不易被误用。例如： 1Date(int month, int day, int year); 可以改写为： 1Date(const Month&amp;amp; month, co">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://androidhot.github.io/2019/05/28/2019-05-28_Effective_C++_chapter4/"/>
+
+
+
+
+
+  <title>《Effective C++》 第四章「设计与声明」学习笔记 | 假装在香港</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">假装在香港</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-book">
+          <a href="/book/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            书单
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://androidhot.github.io/2019/05/28/2019-05-28_Effective_C++_chapter4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhiwei Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/17120655?v=4&u=d17931ce5e11210e09e2caf8140a7cba9fe60a71&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="假装在香港">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Effective C++》 第四章「设计与声明」学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-28T20:20:20+08:00">
+                2019-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="条款18：让接口容易被正确使用，不易被误用"><a href="#条款18：让接口容易被正确使用，不易被误用" class="headerlink" title="条款18：让接口容易被正确使用，不易被误用"></a>条款18：让接口容易被正确使用，不易被误用</h3><p>欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。</p>
+<p><strong>1. 明智而审慎地导入新类型对预防“接口被误用”有神奇疗效</strong></p>
+<p>每一个接口的参数传递必须被准确限制，不易被误用。例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Date(<span class="keyword">int</span> month, <span class="keyword">int</span> day, <span class="keyword">int</span> year);</div></pre></td></tr></table></figure>
+<p>可以改写为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Date(<span class="keyword">const</span> Month&amp; month, <span class="keyword">const</span> Day&amp; day, <span class="keyword">const</span> Year&amp; year);</div></pre></td></tr></table></figure>
+<p>其中 class 或者 struct 的 Month 等抽象数据类型的构造函数必须是 explicit，阻止其进行隐式转换。</p>
+<p>这样修改后客户不需要去记住构造函数中年月日的顺序，并且如果参数传递错误，在编译期就会报错。</p>
+<p>再例如 Month，它的值只能从 1 到 12。我们可以将它的构造函数私有化，然后提供十二个月份的静态函数，函数内构造并返回当前月份的对象。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Month</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">  <span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">static</span> Month <span class="title">Jan</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Month(<span class="number">1</span>); &#125;</div><div class="line">    <span class="function"><span class="keyword">static</span> Month <span class="title">Feb</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Month(<span class="number">2</span>); &#125;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    <span class="function"><span class="keyword">static</span> Month <span class="title">Dec</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Month(<span class="number">12</span>); &#125;</div><div class="line"></div><div class="line">  <span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Month</span><span class="params">(<span class="keyword">int</span> m)</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>这样可以限制客户传递错误的月份。</p>
+<p><strong>2. 预防客户错误的另一个办法是，限制类型内什么事可以做，什么事不能做。常见的限制是加上 const 关键字。</strong></p>
+<p>以 const 修饰 operator * 的返回类型，可阻止客户在使用自定义类型时犯错。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (a * b = c)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>考虑上面的 <code>if</code> 判断，如果我们以 <code>const</code> 修饰了该变量类型乘法操作符的返回值，那么上述语句在编译器就会报错，因为 <code>const</code> 常量不允许被赋值。如果没有使用 <code>const</code> 修饰，你可以想象的到会发生什么样的 bug。</p>
+<p><strong>3. 除非有好理由，否则应该尽量令你的 type 行为与内置 types 一致。</strong></p>
+<ul>
+<li>就像前面提到的，如果我们编写自己的数值类，那么它的行为应该和 int 等内置类型一样。如果像 <code>if (a * b = c)</code> 这样使用数值类型，在编译期就应该报错。</li>
+<li>每个 STL 容器都有 <code>size()</code> 函数，返回容器的大小。当我们自己的类型提供类似功能时也应该使用 <code>size()</code> 函数命名。</li>
+</ul>
+<p><strong>4. 任何接口如果要求客户必须记得做某些事，就是有着不正确使用的倾向。</strong></p>
+<p>因为客户可能会忘记做那件事情。考虑下面的这个函数，它返回一个指针。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">Investment* <span class="title">createInvestment</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
+<p>该函数将释放资源的任务交给了接口的使用者，这可能会导致 bug，因为接口使用者可能会忘记释放资源。更好的做法是使用智能指针，将释放资源的任务交给智能智能，这样不仅可以预防使用接口的人犯错，也是比较良好的 API 设计。并且 <code>shared_ptr</code> 还有支持定制删除器等优点。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;Investment&gt; createInvestment();</div></pre></td></tr></table></figure>
+<h3 id="条款19：设计-class-犹如设计-type"><a href="#条款19：设计-class-犹如设计-type" class="headerlink" title="条款19：设计 class 犹如设计 type"></a>条款19：设计 class 犹如设计 type</h3><p>该条款主要是列举了一些我们在设计 class 时需要考虑的问题：</p>
+<p><strong>1. 新 type 的对象应该如何被创建与销毁？</strong></p>
+<p>这会影响到 class 的构造、析构、内存分配和释放等函数。</p>
+<p><strong>2. 对象的初始化和对象的赋值该有什么样的差别？</strong></p>
+<p>关键点是构造函数与赋值操作符的实现，初始化与赋值的区别。</p>
+<p><strong>3. 新 type 的对象如果被 pass-by-value，意味着什么？</strong></p>
+<p>拷贝构造函数用来定义一个 type 的 pass-by-value 实现。 </p>
+<p><strong>4. 什么是新 type 的合法值？</strong></p>
+<p>需要在构造函数、赋值操作符和 setter 函数中注意使用。</p>
+<p><strong>5. 你的新 type 需要配合某个继承体系吗？</strong></p>
+<p>需要注意基类函数的 virtual 或 non-virtual 函数。以及若自己是多态基类，需要令析构函数是 virtual。</p>
+<p><strong>6. 你的新 type 需要什么样的转换？</strong></p>
+<p>你是否需要支持或提供隐式、显式转换。</p>
+<p><strong>7. 什么样的操作符和函数对此新 type 而言是合理的？</strong></p>
+<p>你应该实现哪些操作符，其中哪些应该是 member，哪些是 non-member。</p>
+<p><strong>8. 什么样的标准函数应该被驳回？</strong></p>
+<p>不需要的自动生成函数应该禁用。</p>
+<p><strong>9. 谁该取用新 type 成员？</strong></p>
+<p>这关系到成员的 public、private、protected 属性以及 friend 函数的设置。</p>
+<p><strong>10. 什么是新 type 的未声明接口？</strong></p>
+<p><strong>11. 你的新 type 有多么一般化？</strong></p>
+<p>是否需要从 class 到 class template 的转变。</p>
+<p><strong>12. 你真的需要一个新 type 吗？</strong></p>
+<p>有时候其实仅仅是需要一个扩展功能的函数而已。</p>
+<p>当我们需要新增一个类型时，我们应该先考虑一下这些问题，当考虑清楚后，然后再着手编码。</p>
+<h3 id="条款20：宁以-pass-by-reference-to-const-替换-pass-by-value"><a href="#条款20：宁以-pass-by-reference-to-const-替换-pass-by-value" class="headerlink" title="条款20：宁以 pass-by-reference-to-const 替换 pass-by-value"></a>条款20：宁以 pass-by-reference-to-const 替换 pass-by-value</h3><p>C++ 默认的情况下是使用 pass-by-value，这种方式有一些缺点：</p>
+<ol>
+<li><p>开销大，可能涉及多个对象的构造和析构。</p>
+</li>
+<li><p>对象切割问题。</p>
+</li>
+</ol>
+<p>考虑到如上这两个问题，在大部分时候我们应该优先考虑是否能够以传引用的方式替换传值。传递引用效率很高，因为它不存在任何开销。同时也能避免对象切割问题。加上 const 关键字可以向函数调用者保证函数内不会修改该引用对象。</p>
+<p>当然，优先考虑传递引用并不代表着我们不再使用值传递。对什么类型选用 pass-by-value 比较好：</p>
+<ol>
+<li><p>内置类型</p>
+</li>
+<li><p>STL的迭代器与函数对象</p>
+</li>
+</ol>
+<p>最后，自定义的 type 不适宜 pass-by-value，原因如下：</p>
+<ol>
+<li><p>对象小并不意味其 copy 构造函数不昂贵，特别是涉及深拷贝的时候。</p>
+</li>
+<li><p>某些编译器对待内置类型和自定义类型的态度截然不同，即便两者的底层表述一致。如 double 和只有一个 double 成员的 class 是有区别的。</p>
+</li>
+<li><p>作为一个用户自定义的类型，它的大小很容易变化。</p>
+</li>
+</ol>
+<h3 id="条款21：必须返回对象时，别妄想返回其-reference"><a href="#条款21：必须返回对象时，别妄想返回其-reference" class="headerlink" title="条款21：必须返回对象时，别妄想返回其 reference"></a>条款21：必须返回对象时，别妄想返回其 reference</h3><p>上一个条款说了我们应该优先使用引用。在函数内若想返回引用，对象必须先存在，而该对象也应该在函数中声明出来，这样可能会陷入下面列举的问题中：</p>
+<p><strong>错误1：返回 reference 指向一个 local stack 对象。</strong></p>
+<p>函数返回在栈上声明的对象，当退出函数的时候该对象会被 delete。这导致了函数返回的引用指向一个不存在的对象。</p>
+<p><strong>错误2：返回 reference 指向一个 heap-allocated 对象</strong></p>
+<p>函数返回在堆上声明的对象，这样又将释放资源的责任交给了客户，客户可能会忘记做这件事。即使对变量进行了 delete，有时候还是会出现内存泄漏。考虑如下代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Retional w, x, y, z;</div><div class="line">w = x * y * z;</div></pre></td></tr></table></figure>
+<p>Retional 的乘法操作符的结果返回指向堆上分配的对象。在上面的这个例子中，即使 delete 了 w， x * y 分配的内存却没有办法 delete 掉。</p>
+<p><strong>错误3：返回 reference 指向一个 local static 对象</strong></p>
+<p>函数返回 local static 对象，存在两个问题。第一个是多线程安全问题，第二个是多次调用都是对同一个内存上的值作修改。当客户写下如下代码时，条件判断将会 always true。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Retional a, b, c, d;</div><div class="line"><span class="keyword">if</span> ((a * b) == (c * d))</div><div class="line">&#123;</div><div class="line">    <span class="comment">// always true</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">&#123;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>综上所述，一个必须返回新对象的函数的正确写法是：就让那个函数返回一个新对象。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="keyword">const</span> Retional <span class="keyword">operator</span> * (<span class="keyword">const</span> Retional &amp;lhs, <span class="keyword">const</span> Retional &amp;rhs)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> Retional(lhs.n * rhs.n, lhs.d * rhs.d);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>总结：</p>
+<ul>
+<li><p>绝对不要返回 pointer 或 reference 指向一个 local stack 对象</p>
+</li>
+<li><p>绝对不要返回 reference 指向一个 heap-allocated 对象</p>
+</li>
+<li><p>绝对不要返回 pointer 或 reference 指向一个 local static 对象而有可能同时需要多个这样的对象。</p>
+</li>
+<li><p>一个必须返回新对象的函数的正确写法是：就让那个函数返回一个新对象。</p>
+</li>
+</ul>
+<h3 id="条款22：将成员变量声明为-private"><a href="#条款22：将成员变量声明为-private" class="headerlink" title="条款22：将成员变量声明为 private"></a>条款22：将成员变量声明为 private</h3><p>将成员变量声明为 private 的好处有：</p>
+<ol>
+<li><p>public 的接口全是函数，调用的时候都得在后面加()，可以保持接口的一致性。</p>
+</li>
+<li><p>使用函数才能对变量修改，这样可以让你对成员变量的处理有更加精确的控制。可以定义变量为只读、只写、可读可写或不可读写。</p>
+</li>
+<li><p>保护类的封装性。方便日后修改其实现，或者针对不同客户提供不同的实现。</p>
+</li>
+</ol>
+<p>另外：</p>
+<ul>
+<li>逻辑的可变性与封装性成正比，不封装意味着不可改变。</li>
+<li>public 与 protected 的封装性都是很差的，或者说根本不提供封装。因为在这两种情况下，如果成员变量被改变，都会有不可预知的大量代码受到破坏。</li>
+</ul>
+<h3 id="条款23：宁以-non-member、non-friend-替换-member"><a href="#条款23：宁以-non-member、non-friend-替换-member" class="headerlink" title="条款23：宁以 non-member、non-friend 替换 member"></a>条款23：宁以 non-member、non-friend 替换 member</h3><p>越多成员 / 友元函数可以访问类的数据，数据的封装性就越低。<br>因此非成员、非友元更能保护类的封装性。</p>
+<p>上面的论述有两点需要注意：<br><strong>1. 这个论述只适应于非成员且非友元的函数，友元函数和成员函数一样对类的封装性有同样的冲击力。</strong></p>
+<p><strong>2. 因为在意封装性而让某函数成为 class 的非成员函数并不意味着不能使其成为别的 class 的成员函数</strong></p>
+<p>在 C++ 中，比较自然的做法是让一个扩展类功能的便利函数成为非成员非友元函数并且位于类所在的同一个 namespace 内。而且多个便利函数还可以分离编译（根据功能放在不同头文件里，但都位于同一个命名空间），扩大类的机能扩充性。</p>
+<h3 id="条款24：若所有参数皆需类型转换，请为此采用-non-member-函数"><a href="#条款24：若所有参数皆需类型转换，请为此采用-non-member-函数" class="headerlink" title="条款24：若所有参数皆需类型转换，请为此采用 non-member 函数"></a>条款24：若所有参数皆需类型转换，请为此采用 non-member 函数</h3><p>虽然构造函数支持隐式类型转换不是好的主意，但有时候会有例外，最常见的是建立数据类型的时候，往往需要隐式转换。 </p>
+<p>例如存在一个有理数类，通常会让它支持隐式转换：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">  <span class="keyword">public</span>:    </div><div class="line">    Rational(<span class="keyword">int</span> numerator = <span class="number">0</span>, <span class="keyword">int</span> denominator = <span class="number">1</span>);</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numerator</span><span class="params">()</span> <span class="keyword">const</span></span>;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">denominator</span><span class="params">()</span> <span class="keyword">const</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>当需要两有理数相乘的时候，可以将其实现为成员函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">  <span class="keyword">public</span>:</div><div class="line">    <span class="keyword">const</span> Rational <span class="keyword">operator</span>* (<span class="keyword">const</span> Rational&amp; rhs) <span class="keyword">const</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这个函数大部分时候都能正常工作，不过它不能支持下面这样的语法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rational result = <span class="number">2</span> * oneself</div></pre></td></tr></table></figure>
+<p>因为对 int 型来说，没有 * 操作符可以与 Rational 类型相乘，并且在作用域内，也找不到合适的函数来让 int 型和 Rational 类型相乘。</p>
+<p>在这种情况下，我们可以使用非成员函数来替换成员函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">const</span> Rational <span class="keyword">operator</span>* (<span class="keyword">const</span> Rational&amp; lhs, <span class="keyword">const</span> Rational&amp; rhs)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样前面提到的 <code>2 * oneself</code> 就能正常编译通过且以符合我们期望的方式运行。因为编译器能查找到适用于上述形式的乘法函数。</p>
+<p>综上所述，如果某个函数的所有参数都需要进行类型转换，那么这个函数应该是个非成员函数。特别适用于数值类型的运算符函数。</p>
+<h3 id="条款25：考虑写出一个不抛异常的-swap-函数"><a href="#条款25：考虑写出一个不抛异常的-swap-函数" class="headerlink" title="条款25：考虑写出一个不抛异常的 swap 函数"></a>条款25：考虑写出一个不抛异常的 swap 函数</h3><p>虽然该条款的名字是考虑写出一个不抛异常的 swap 函数，但内容其实主要讲的是如何编写和使用 swap 函数。</p>
+<p><strong>1. 缺省情况下 swap 动作可由标准程序库提供的 swap 函数完成。</strong></p>
+<p><strong>2. 何时应该编写自己的 swap 函数？</strong></p>
+<p>如果 swap 的缺省实现可以满足你的需求和效率，你不需要做任何事。<br>否则：</p>
+<ol>
+<li><p>为你的类型提供一个 public swap 函数，让它高效的置换类型的两个对象的值。</p>
+</li>
+<li><p>在你的 class 或 template 所在的命名空间内提供一个非成员 swap 函数，并让它调用上述 swap 成员函数。</p>
+</li>
+<li><p>如果你正编写一个 class，为你的 class 特化 std::swap。并令它调用你的 swap 成员函数。（防止用户直接调用 std::swap）</p>
+</li>
+</ol>
+<p><strong>3. 如果你调用 swap 函数，请确定包含一个 using std::swap 的声明。然后不加任何修饰符，赤裸裸的调用 swap 函数。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(T &amp;a, T &amp;b)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::swap; <span class="comment">// 令 std::swap 在此函数内可用</span></div><div class="line">    swap(a, b); <span class="comment">// 为 T 类型对象调用最佳的 swap 版本</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当调用 swap 函数时，swap 函数的查找优先级如下：</p>
+<ol>
+<li>global 作用域或类型 T 的命令空间内</li>
+<li>std::swap 针对 T 的特化版本</li>
+<li>std::swap 一般版本</li>
+</ol>
+<p>使用 swap 函数的错误方式：<code>std::swap(obj1, obj2)</code>;</p>
+<p>总结：</p>
+<ul>
+<li><p>当 std::swap 对你的类型效率不高时，提供一个 swap 成员函数，并确定这个函数不抛出异常。</p>
+</li>
+<li><p>如果你提供一个成员 swap 函数，也应该提供一个非成员 swap 函数用来调用前者。对于 class，也请特化 std::swap。</p>
+</li>
+<li><p>调用 swap 时应对 std::swap 使用 using 声明。</p>
+</li>
+<li><p>为自定义类型进行 std template 全特化是好事，但千万不要尝试在 std 内加入某些对 std 而言全新的东西。</p>
+</li>
+</ul>
+<p><strong>全文完</strong></p>
+<p><strong>感谢阅读</strong></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/19/2019-03-19_Transitions_Everywhere/" rel="next" title="Transitions Everywhere">
+                <i class="fa fa-chevron-left"></i> Transitions Everywhere
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars3.githubusercontent.com/u/17120655?v=4&u=d17931ce5e11210e09e2caf8140a7cba9fe60a71&s=400"
+               alt="Zhiwei Li" />
+          <p class="site-author-name" itemprop="name">Zhiwei Li</p>
+           
+              <p class="site-description motion-element" itemprop="description">Stay hungry, Stay foolish.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/AndroidHot" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/506456423" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:zhiwei.dev@gmail.com" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#条款18：让接口容易被正确使用，不易被误用"><span class="nav-number">1.</span> <span class="nav-text">条款18：让接口容易被正确使用，不易被误用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款19：设计-class-犹如设计-type"><span class="nav-number">2.</span> <span class="nav-text">条款19：设计 class 犹如设计 type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款20：宁以-pass-by-reference-to-const-替换-pass-by-value"><span class="nav-number">3.</span> <span class="nav-text">条款20：宁以 pass-by-reference-to-const 替换 pass-by-value</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款21：必须返回对象时，别妄想返回其-reference"><span class="nav-number">4.</span> <span class="nav-text">条款21：必须返回对象时，别妄想返回其 reference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款22：将成员变量声明为-private"><span class="nav-number">5.</span> <span class="nav-text">条款22：将成员变量声明为 private</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款23：宁以-non-member、non-friend-替换-member"><span class="nav-number">6.</span> <span class="nav-text">条款23：宁以 non-member、non-friend 替换 member</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款24：若所有参数皆需类型转换，请为此采用-non-member-函数"><span class="nav-number">7.</span> <span class="nav-text">条款24：若所有参数皆需类型转换，请为此采用 non-member 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#条款25：考虑写出一个不抛异常的-swap-函数"><span class="nav-number">8.</span> <span class="nav-text">条款25：考虑写出一个不抛异常的 swap 函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhiwei Li</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
