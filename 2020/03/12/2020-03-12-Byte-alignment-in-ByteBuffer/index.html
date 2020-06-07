@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="先说结论当在 Java 代码中使用 ByteBuffer.allocateDirect 分配内存，并在 JNI 中使用 GetDirectBufferAddress 来获取内存做一些操作后。最后在 Java 代码中操作 byte[] 数据的时候，不要使用 ByteBuffer.array() 来获取数据，而应该使用 ByteBuffer.get() 函数。 12345678910111213141">
+<meta name="description" content="先说结论当在 Java 代码中使用 ByteBuffer.allocateDirect 分配内存，并在 JNI 中使用 GetDirectBufferAddress 来获取内存做一些操作后。最后在 Java 代码中操作 byte[] 数据的时候，不要使用 ByteBuffer.array() 来获取数据，而应该使用 ByteBuffer.get() 函数。">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ByteBuffer 中的字节对齐">
 <meta property="og:url" content="https://androidhot.github.io/2020/03/12/2020-03-12-Byte-alignment-in-ByteBuffer/index.html">
 <meta property="og:site_name" content="假装在香港">
-<meta property="og:description" content="先说结论当在 Java 代码中使用 ByteBuffer.allocateDirect 分配内存，并在 JNI 中使用 GetDirectBufferAddress 来获取内存做一些操作后。最后在 Java 代码中操作 byte[] 数据的时候，不要使用 ByteBuffer.array() 来获取数据，而应该使用 ByteBuffer.get() 函数。 12345678910111213141">
+<meta property="og:description" content="先说结论当在 Java 代码中使用 ByteBuffer.allocateDirect 分配内存，并在 JNI 中使用 GetDirectBufferAddress 来获取内存做一些操作后。最后在 Java 代码中操作 byte[] 数据的时候，不要使用 ByteBuffer.array() 来获取数据，而应该使用 ByteBuffer.get() 函数。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-06T01:57:20.593Z">
+<meta property="og:updated_time" content="2020-06-07T13:23:46.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ByteBuffer 中的字节对齐">
-<meta name="twitter:description" content="先说结论当在 Java 代码中使用 ByteBuffer.allocateDirect 分配内存，并在 JNI 中使用 GetDirectBufferAddress 来获取内存做一些操作后。最后在 Java 代码中操作 byte[] 数据的时候，不要使用 ByteBuffer.array() 来获取数据，而应该使用 ByteBuffer.get() 函数。 12345678910111213141">
+<meta name="twitter:description" content="先说结论当在 Java 代码中使用 ByteBuffer.allocateDirect 分配内存，并在 JNI 中使用 GetDirectBufferAddress 来获取内存做一些操作后。最后在 Java 代码中操作 byte[] 数据的时候，不要使用 ByteBuffer.array() 来获取数据，而应该使用 ByteBuffer.get() 函数。">
 
 
 
@@ -112,7 +113,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -210,18 +211,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -230,22 +221,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-book">
-          <a href="/book/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            书单
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
+            标签
           </a>
         </li>
       
@@ -372,6 +353,7 @@
 
       
         <h5 id="先说结论"><a href="#先说结论" class="headerlink" title="先说结论"></a>先说结论</h5><p>当在 Java 代码中使用 <code>ByteBuffer.allocateDirect</code> 分配内存，并在 JNI 中使用 <code>GetDirectBufferAddress</code> 来获取内存做一些操作后。最后在 Java 代码中操作 byte[] 数据的时候，不要使用 <code>ByteBuffer.array()</code> 来获取数据，而应该使用 <code>ByteBuffer.get()</code> 函数。</p>
+<a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// step1: 在 Java 分配内存</span></div><div class="line">ByteBuffer output = ByteBuffer.allocateDirect(OUT_PUT_SIZE);</div><div class="line"></div><div class="line"><span class="comment">// step2: 在 JNI 获取内存地址，并对此内存写入数据</span></div><div class="line">auto outPixels = (unsigned <span class="keyword">char</span> *) env-&gt;GetDirectBufferAddress(output);</div><div class="line"></div><div class="line"><span class="comment">// error step3: java code</span></div><div class="line">saveYuv(output.array()); <span class="comment">// error!</span></div><div class="line"></div><div class="line"><span class="comment">// step3: 在 Java 保存数据</span></div><div class="line"><span class="comment">// method 1：没验证过，但从下面的分析来看是可行的</span></div><div class="line"><span class="keyword">byte</span>[] totalData = output.array();</div><div class="line"><span class="keyword">int</span> offset = output.arrayOffset();</div><div class="line">saveYuv(totalData[offset], totalData[OUT_PUT_SIZE + offset - <span class="number">1</span>]); <span class="comment">// 伪代码</span></div><div class="line"><span class="comment">// method 2：经过验证是可行的</span></div><div class="line"><span class="keyword">byte</span>[] realData = <span class="keyword">new</span> <span class="keyword">byte</span>[OUT_PUT_SIZE];</div><div class="line">output.get(realData);</div><div class="line">saveYuv(realData);</div></pre></td></tr></table></figure>
 <h5 id="遇到的-bug"><a href="#遇到的-bug" class="headerlink" title="遇到的 bug"></a>遇到的 bug</h5><p>有个项目我们在调试效果的过程中，发现客户反馈的 JPG 和我们 SDK dump 出来的输出图，算法效果是一致的，但是客户的图像有一点点偏移，两张图没办法完全重叠在一起。通过使用 YUVView 来查看具体的像素发现是 SDK 原图最右边四列的像素被移到了客户图的最左边。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">00 00 00 00 9F 9D 9D 9B</div></pre></td></tr></table></figure>
@@ -437,6 +419,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
       
 
       
@@ -535,8 +523,8 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -553,6 +541,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -657,7 +654,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -736,6 +733,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

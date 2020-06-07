@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="在做三摄算法集成项目的时候，因为手机有三个摄像头，所以存在两种不同的双摄人像模式，分别是 1 倍人像模式（以下简称 1x）和 2 倍光变人像模式（以下简称 2x）。我们没有在 App 层面使用同时打开两个 camera id 的方式来打开双摄，因为这样逻辑会稍微复杂，所以我们是在底层做了这件事，在上层我们只需要打开新增的 camera id，就可以同时打开两个摄像头。 由于项目需要，我在高通的 S">
+<meta name="description" content="在做三摄算法集成项目的时候，因为手机有三个摄像头，所以存在两种不同的双摄人像模式，分别是 1 倍人像模式（以下简称 1x）和 2 倍光变人像模式（以下简称 2x）。我们没有在 App 层面使用同时打开两个 camera id 的方式来打开双摄，因为这样逻辑会稍微复杂，所以我们是在底层做了这件事，在上层我们只需要打开新增的 camera id，就可以同时打开两个摄像头。">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从 SurfaceView 获取 Bitmap">
 <meta property="og:url" content="https://androidhot.github.io/2018/12/20/2018-12-20-Get-Bitmap-from-SurfaceView/index.html">
 <meta property="og:site_name" content="假装在香港">
-<meta property="og:description" content="在做三摄算法集成项目的时候，因为手机有三个摄像头，所以存在两种不同的双摄人像模式，分别是 1 倍人像模式（以下简称 1x）和 2 倍光变人像模式（以下简称 2x）。我们没有在 App 层面使用同时打开两个 camera id 的方式来打开双摄，因为这样逻辑会稍微复杂，所以我们是在底层做了这件事，在上层我们只需要打开新增的 camera id，就可以同时打开两个摄像头。 由于项目需要，我在高通的 S">
+<meta property="og:description" content="在做三摄算法集成项目的时候，因为手机有三个摄像头，所以存在两种不同的双摄人像模式，分别是 1 倍人像模式（以下简称 1x）和 2 倍光变人像模式（以下简称 2x）。我们没有在 App 层面使用同时打开两个 camera id 的方式来打开双摄，因为这样逻辑会稍微复杂，所以我们是在底层做了这件事，在上层我们只需要打开新增的 camera id，就可以同时打开两个摄像头。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-27T14:14:50.125Z">
+<meta property="og:updated_time" content="2020-06-07T13:24:15.634Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从 SurfaceView 获取 Bitmap">
-<meta name="twitter:description" content="在做三摄算法集成项目的时候，因为手机有三个摄像头，所以存在两种不同的双摄人像模式，分别是 1 倍人像模式（以下简称 1x）和 2 倍光变人像模式（以下简称 2x）。我们没有在 App 层面使用同时打开两个 camera id 的方式来打开双摄，因为这样逻辑会稍微复杂，所以我们是在底层做了这件事，在上层我们只需要打开新增的 camera id，就可以同时打开两个摄像头。 由于项目需要，我在高通的 S">
+<meta name="twitter:description" content="在做三摄算法集成项目的时候，因为手机有三个摄像头，所以存在两种不同的双摄人像模式，分别是 1 倍人像模式（以下简称 1x）和 2 倍光变人像模式（以下简称 2x）。我们没有在 App 层面使用同时打开两个 camera id 的方式来打开双摄，因为这样逻辑会稍微复杂，所以我们是在底层做了这件事，在上层我们只需要打开新增的 camera id，就可以同时打开两个摄像头。">
 
 
 
@@ -112,7 +113,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -210,18 +211,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -230,22 +221,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-book">
-          <a href="/book/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            书单
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
+            标签
           </a>
         </li>
       
@@ -372,6 +353,7 @@
 
       
         <p>在做三摄算法集成项目的时候，因为手机有三个摄像头，所以存在两种不同的双摄人像模式，分别是 1 倍人像模式（以下简称 1x）和 2 倍光变人像模式（以下简称 2x）。我们没有在 App 层面使用同时打开两个 camera id 的方式来打开双摄，因为这样逻辑会稍微复杂，所以我们是在底层做了这件事，在上层我们只需要打开新增的 camera id，就可以同时打开两个摄像头。</p>
+<a id="more"></a>
 <p>由于项目需要，我在高通的 SnapdragonCamera App 的 Preview 中添加了 1x 和 2x 的切换按钮，效果类似 iPhone（双摄） 中 1x 和 2x 的切换。查看 SnapdragonCamera 的代码后，找到了一个简单的切换 Camera 的方式，就是直接修改 SharedPreferences 中的一个关于当前 Camera id 配置。</p>
 <p>这么做之后，功能确实实现了，但是在切换的过程中，因为会释放资源再重新构建，所以预览会消失，在 UI 上看到的情况就是黑了一下。这种体验不怎么好，需要优化一下。经过和 PM 沟通后，最后决定的优化方案是在切换的过程中，在 UI 上展示上一次预览的最后一帧，并且加一个模糊效果。</p>
 <p>在高通的 SnapdragonCamera 中使用的是 <a href="https://developer.android.com/reference/android/view/SurfaceView" target="_blank" rel="external">SurfaceView</a> 进行 Preview，因为 SurfaceView 不像 <a href="https://developer.android.com/reference/android/view/TextureView" target="_blank" rel="external">TextureView</a> 一样有 getBitmap() 方法，所以获取最后一帧这一点得想想怎么做。</p>
@@ -404,6 +386,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
       
 
       
@@ -493,8 +481,8 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -511,6 +499,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -599,7 +596,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -678,6 +675,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Algorithms," />
 
 
 
@@ -95,6 +95,7 @@
 
 
 <meta name="description" content="之前面试的时候被面试官问到一道算法题：如何用两个栈实现一个队列。我的回答是，把所有元素：入第一个栈 -&amp;gt; 从第一个栈出栈并入第二个栈 -&amp;gt; 从第二个栈出栈。当时无知，以为自己的回答是正确的，但是面试官接下来的问题便把我给打回原形了：如果想要队列是可以同时入队列和出队列的呢。 最近在学习《算法导论》，学习到了栈和队列这一章，又想起了上面的问题，便重新思考和 Coding 了一番，顺便记录">
+<meta name="keywords" content="Algorithms">
 <meta property="og:type" content="article">
 <meta property="og:title" content="两个栈实现一个队列">
 <meta property="og:url" content="https://androidhot.github.io/2018/03/13/2018-03-13-Stack-implement-Queue/index.html">
@@ -103,7 +104,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fpbc1tkxumj20av07tq2r.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fpbc3vszajj217q0tnabf.jpg">
-<meta property="og:updated_time" content="2019-01-27T14:14:56.573Z">
+<meta property="og:updated_time" content="2020-06-07T13:19:55.281Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="两个栈实现一个队列">
 <meta name="twitter:description" content="之前面试的时候被面试官问到一道算法题：如何用两个栈实现一个队列。我的回答是，把所有元素：入第一个栈 -&amp;gt; 从第一个栈出栈并入第二个栈 -&amp;gt; 从第二个栈出栈。当时无知，以为自己的回答是正确的，但是面试官接下来的问题便把我给打回原形了：如果想要队列是可以同时入队列和出队列的呢。 最近在学习《算法导论》，学习到了栈和队列这一章，又想起了上面的问题，便重新思考和 Coding 了一番，顺便记录">
@@ -115,7 +116,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -213,18 +214,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -233,22 +224,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-book">
-          <a href="/book/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            书单
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
+            标签
           </a>
         </li>
       
@@ -376,6 +357,7 @@
       
         <p>之前面试的时候被面试官问到一道算法题：如何用两个栈实现一个队列。我的回答是，把所有元素：入第一个栈 -&gt; 从第一个栈出栈并入第二个栈 -&gt; 从第二个栈出栈。当时无知，以为自己的回答是正确的，但是面试官接下来的问题便把我给打回原形了：如果想要队列是可以同时入队列和出队列的呢。</p>
 <p>最近在学习《算法导论》，学习到了栈和队列这一章，又想起了上面的问题，便重新思考和 Coding 了一番，顺便记录一下。</p>
+<a id="more"></a>
 <h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><blockquote>
 <p>栈（stack）又名堆栈，它是一种运算受限的线性表。其限制是仅允许在表的一端进行插入和删除运算。这一端被称为栈顶，相对地，把另一端称为栈底。向一个栈插入新元素又称作进栈、入栈或压栈，它是把新元素放到栈顶元素的上面，使之成为新的栈顶元素；从一个栈删除元素又称作出栈或退栈，它是把栈顶元素删除掉，使其相邻的元素成为新的栈顶元素。</p>
 </blockquote>
@@ -436,6 +418,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithms/" rel="tag"># Algorithms</a>
+          
+        </div>
       
 
       
@@ -534,8 +522,8 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -552,6 +540,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -656,7 +653,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -735,6 +732,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

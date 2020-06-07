@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C++," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="条款18：让接口容易被正确使用，不易被误用欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。 1. 明智而审慎地导入新类型对预防“接口被误用”有神奇疗效 每一个接口的参数传递必须被准确限制，不易被误用。例如： 1Date(int month, int day, int year); 可以改写为： 1Date(const Month&amp;amp; month, co">
+<meta name="description" content="条款18：让接口容易被正确使用，不易被误用欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。">
+<meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《Effective C++》 第四章「设计与声明」学习笔记">
 <meta property="og:url" content="https://androidhot.github.io/2019/05/28/2019-05-28_Effective_C++_chapter4/index.html">
 <meta property="og:site_name" content="假装在香港">
-<meta property="og:description" content="条款18：让接口容易被正确使用，不易被误用欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。 1. 明智而审慎地导入新类型对预防“接口被误用”有神奇疗效 每一个接口的参数传递必须被准确限制，不易被误用。例如： 1Date(int month, int day, int year); 可以改写为： 1Date(const Month&amp;amp; month, co">
+<meta property="og:description" content="条款18：让接口容易被正确使用，不易被误用欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-28T12:10:50.125Z">
+<meta property="og:updated_time" content="2020-06-07T13:23:57.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Effective C++》 第四章「设计与声明」学习笔记">
-<meta name="twitter:description" content="条款18：让接口容易被正确使用，不易被误用欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。 1. 明智而审慎地导入新类型对预防“接口被误用”有神奇疗效 每一个接口的参数传递必须被准确限制，不易被误用。例如： 1Date(int month, int day, int year); 可以改写为： 1Date(const Month&amp;amp; month, co">
+<meta name="twitter:description" content="条款18：让接口容易被正确使用，不易被误用欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。">
 
 
 
@@ -112,7 +113,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -210,18 +211,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -230,22 +221,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-book">
-          <a href="/book/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            书单
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
+            标签
           </a>
         </li>
       
@@ -372,6 +353,7 @@
 
       
         <h3 id="条款18：让接口容易被正确使用，不易被误用"><a href="#条款18：让接口容易被正确使用，不易被误用" class="headerlink" title="条款18：让接口容易被正确使用，不易被误用"></a>条款18：让接口容易被正确使用，不易被误用</h3><p>欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。</p>
+<a id="more"></a>
 <p><strong>1. 明智而审慎地导入新类型对预防“接口被误用”有神奇疗效</strong></p>
 <p>每一个接口的参数传递必须被准确限制，不易被误用。例如：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Date(<span class="keyword">int</span> month, <span class="keyword">int</span> day, <span class="keyword">int</span> year);</div></pre></td></tr></table></figure>
@@ -546,6 +528,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+        </div>
+      
 
       
       
@@ -555,8 +543,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/19/2019-03-19_Transitions_Everywhere/" rel="next" title="Transitions Everywhere">
-                <i class="fa fa-chevron-left"></i> Transitions Everywhere
+              <a href="/2019/02/03/2019-02-03-2018_read_books/" rel="next" title="我们这群人有种心病，只有金子能医">
+                <i class="fa fa-chevron-left"></i> 我们这群人有种心病，只有金子能医
               </a>
             
           </div>
@@ -643,8 +631,8 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -661,6 +649,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -765,7 +762,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -844,6 +841,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

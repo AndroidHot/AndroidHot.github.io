@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -111,7 +111,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -211,18 +211,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -231,22 +221,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-book">
-          <a href="/book/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            书单
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
+            标签
           </a>
         </li>
       
@@ -375,50 +355,14 @@
 
       
         
-          
-            <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>客户反馈了一个 SDK 的 crash log，跑 monkey testing 报出来的问题。trace 信息如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   : signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x7740a1d000</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x0  0000007740a1d000  x1  0000007791aa9d40  x2  0000000000f30000  x3  0000007740a1d000</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x4  00000077929d9d40  x5  000000774194d000  x6  0707070808080808  x7  0808080808080707</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x8  0000000000f30000  x9  0000000000000000  x10 0000000042ffc000  x11 0000000000f30000</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x12 0909090909090909  x13 0807080708070809  x14 0000000000000d80  x15 0000000000001200</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x16 000000785d698418  x17 00000078f2ad4380  x18 0000000000000076  x19 0000007853f80878</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x20 0000007853f804d0  x21 0000007740a1d000  x22 0000007791aa9d40  x23 0000000000001200</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x24 0000007853f8d020  x25 00000078156b0f80  x26 0000007853f80878  x27 000000780e20d1f0</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x28 0000000026deaf4d  x29 0000007853f807d0</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     sp  0000007853f801f0  lr  000000785ce7b90c  pc  00000078f2ad4308</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   : </div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   : backtrace:</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #00 pc 000000000007f308  /apex/com.android.runtime/lib64/bionic/libc.so (__memcpy+248) (BuildId: bf43d263cea44574bf5be4629e4f0a8f)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #01 pc 000000000007b908  /vendor/lib64/libanc_nightshot.so (BuildId: eefc88116d665da17ed0d5d62b2403d72474a995)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #02 pc 0000000000004e80  /vendor/lib64/camera/components/com.anc.node.nightshot.so (NightShotNodeProcRequest(ChiNodeProcessRequestInfo*)+1992) (BuildId: a999c7381a9344a26858c43375292779)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #03 pc 00000000006d4020  /vendor/lib64/hw/camera.qcom.so (CamX::ChiNodeWrapper::ExecuteProcessRequest(CamX::ExecuteProcessRequestData*)+2640) (BuildId: cfa7472586f48d4f52f2b5d0d8629b60)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #04 pc 000000000073d730  /vendor/lib64/hw/camera.qcom.so (CamX::Node::ProcessRequest(CamX::NodeProcessRequestData*, unsigned long)+9832) (BuildId: cfa7472586f48d4f52f2b5d0d8629b60)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #05 pc 00000000006def80  /vendor/lib64/hw/camera.qcom.so (CamX::DeferredRequestQueue::DeferredWorkerWrapper(void*)+368) (BuildId: cfa7472586f48d4f52f2b5d0d8629b60)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #06 pc 0000000000636a18  /vendor/lib64/hw/camera.qcom.so (CamX::ThreadCore::WorkerThreadBody(void*)+1992) (BuildId: cfa7472586f48d4f52f2b5d0d8629b60)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #07 pc 00000000000e6b60  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+36) (BuildId: bf43d263cea44574bf5be4629e4f0a8f)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #08 pc 0000000000084b6c  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+64) (BuildId: bf43d263cea44574bf5be4629e4f0a8f)</div></pre></td></tr></table></figure></p>
-<p>精简一下，我们需要关注内容如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   : signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x7740a1d000</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x0  0000007740a1d000  x1  0000007791aa9d40  x2  0000000000f30000  x3  0000007740a1d000</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x4  00000077929d9d40  x5  000000774194d000  x6  0707070808080808  x7  0808080808080707</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x8  0000000000f30000  x9  0000000000000000  x10 0000000042ffc000  x11 0000000000f30000</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x12 0909090909090909  x13 0807080708070809  x14 0000000000000d80  x15 0000000000001200</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x16 000000785d698418  x17 00000078f2ad4380  x18 0000000000000076  x19 0000007853f80878</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x20 0000007853f804d0  x21 0000007740a1d000  x22 0000007791aa9d40  x23 0000000000001200</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x24 0000007853f8d020  x25 00000078156b0f80  x26 0000007853f80878  x27 000000780e20d1f0</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x28 0000000026deaf4d  x29 0000007853f807d0</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     sp  0000007853f801f0  lr  000000785ce7b90c  pc  00000078f2ad4308</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   : </div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   : backtrace:</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #00 pc 000000000007f308  /apex/com.android.runtime/lib64/bionic/libc.so (__memcpy+248) (BuildId: bf43d263cea44574bf5be4629e4f0a8f)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #01 pc 000000000007b908  /vendor/lib64/libanc_nightshot.so (BuildId: eefc88116d665da17ed0d5d62b2403d72474a995)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #02 pc 0000000000004e80  /vendor/lib64/camera/components/com.anc.node.nightshot.so (NightShotNodeProcRequest(ChiNodeProcessRequestInfo*)+1992) (BuildId: a999c7381a9344a26858c43375292779)</div></pre></td></tr></table></figure>
-<p>和 SDK 相关的只有 <code>#01 pc 000000000007b908  /vendor/lib64/libanc_nightshot.so</code> 这一行。使用 addr2line 定位到地址 7b908 这行代码是使用 <strong>memcpy</strong> 将 yuv 数据拷贝到客户设置的输出图的 buffer 里面。也和 trace 中紧接着 SDK 的 <code>#00 pc 000000000007f308  /apex/com.android.runtime/lib64/bionic/libc.so (__memcpy+248)</code> 对应了起来。</p>
-<p>以前遇到的 crash 问题 trace 里会有多个 SDK 的地址信息，且一般都是 SDK 内部的问题。</p>
-<p>但此时只有一行地址信息，而且是挂在 c++ 库函数 memcpy 里。</p>
-<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>既然咱们的库没有办法进行分析了，就在想能不能从 <code>libc.so</code> 下手，看一下导致 crash 的 <code>libc.so</code> 的地址 <code>7f308</code> 和 <code>fault addr 0x7740a1d000</code>处到底发生了什么。</p>
-<p>1.根据上面 trace 中的路径将客户手机中的 <code>libc.so</code> pull 出来，使用 objdump 将 libc.so 的汇编代码反汇编出来：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">arm-linux-androideabi-objdump -dS libc.so &gt; libc.dump</div></pre></td></tr></table></figure>
-<p>2.利用 trace 中的地址 <code>7f308</code> 来在 libc.dump 中定位导致 crash 的汇编代码，地址 <code>7f308</code> 处的汇编代码为：<br><figure class="highlight basic"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">7</span>f308:	a900340c 	stp	x12, x13, [x0]</div></pre></td></tr></table></figure></p>
-<p>如何 double check 这一行汇编代码就是真正导致 crash 代码呢？有个办法可以简单验证下，这个是 trace 中关于 memcpy 的那一行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#00 pc 000000000007f308  /apex/com.android.runtime/lib64/bionic/libc.so (__memcpy+248)</div></pre></td></tr></table></figure>
-<p>根据上面开头的地址，和结尾的偏移量。可以计算出 __memcpy 函数的起始地址是 7f210。（十六进制的 0x7f308 减去 十进制的 248 等于 十六进制的 7f210）</p>
-<p>下面是反汇编出来的<code>__memcpy</code> 函数完整的汇编代码（Too long; Don’t read），可以看到 7f210 就是 __memcpy 的起始地址：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line"><span class="number">000000000007f</span>210 &lt;__memcpy&gt;:</div><div class="line">   <span class="number">7f</span>210:	f9800020 	prfm	pldl1keep, [x1]</div><div class="line">   <span class="number">7f</span>214:	<span class="number">8b</span>020024 	add	x4, x1, x2</div><div class="line">   <span class="number">7f</span>218:	<span class="number">8b</span>020005 	add	x5, x0, x2</div><div class="line">   <span class="number">7f</span>21c:	f100405f 	cmp	x2, #<span class="number">0x10</span></div><div class="line">   <span class="number">7f</span>220:	<span class="number">54000209</span> 	b.ls	<span class="number">7f</span>260 &lt;__memcpy+<span class="number">0x50</span>&gt;</div><div class="line">   <span class="number">7f</span>224:	f101805f 	cmp	x2, #<span class="number">0x60</span></div><div class="line">   <span class="number">7f</span>228:	<span class="number">54000648</span> 	b.hi	<span class="number">7f</span>2f0 &lt;__memcpy+<span class="number">0xe0</span>&gt;</div><div class="line">   <span class="number">7f</span>22c:	d1000449 	sub	x9, x2, #<span class="number">0x1</span></div><div class="line">   <span class="number">7f</span>230:	a9401c26 	ldp	x6, x7, [x1]</div><div class="line">   <span class="number">7f</span>234:	<span class="number">37300469</span> 	tbnz	w9, #<span class="number">6</span>, <span class="number">7f</span>2c0 &lt;__memcpy+<span class="number">0xb0</span>&gt;</div><div class="line">   <span class="number">7f</span>238:	a97f348c 	ldp	x12, x13, [x4,#<span class="number">-16</span>]</div><div class="line">   <span class="number">7f</span>23c:	<span class="number">362800</span>a9 	tbz	w9, #<span class="number">5</span>, <span class="number">7f</span>250 &lt;__memcpy+<span class="number">0x40</span>&gt;</div><div class="line">   <span class="number">7f</span>240:	a9412428 	ldp	x8, x9, [x1,#<span class="number">16</span>]</div><div class="line">   <span class="number">7f</span>244:	a97e2c8a 	ldp	x10, x11, [x4,#<span class="number">-32</span>]</div><div class="line">   <span class="number">7f</span>248:	a9012408 	stp	x8, x9, [x0,#<span class="number">16</span>]</div><div class="line">   <span class="number">7f</span>24c:	a93e2caa 	stp	x10, x11, [x5,#<span class="number">-32</span>]</div><div class="line">   <span class="number">7f</span>250:	a9001c06 	stp	x6, x7, [x0]</div><div class="line">   <span class="number">7f</span>254:	a93f34ac 	stp	x12, x13, [x5,#<span class="number">-16</span>]</div><div class="line">   <span class="number">7f</span>258:	d65f03c0 	ret</div><div class="line">   <span class="number">7f</span>25c:	d503201f 	nop</div><div class="line">   <span class="number">7f</span>260:	f100205f 	cmp	x2, #<span class="number">0x8</span></div><div class="line">   <span class="number">7f</span>264:	<span class="number">540000e3</span> 	b.cc	<span class="number">7f</span>280 &lt;__memcpy+<span class="number">0x70</span>&gt;</div><div class="line">   <span class="number">7f</span>268:	f9400026 	ldr	x6, [x1]</div><div class="line">   <span class="number">7f</span>26c:	f85f8087 	ldur	x7, [x4,#<span class="number">-8</span>]</div><div class="line">   <span class="number">7f</span>270:	f9000006 	str	x6, [x0]</div><div class="line">   <span class="number">7f</span>274:	f81f80a7 	stur	x7, [x5,#<span class="number">-8</span>]</div><div class="line">   <span class="number">7f</span>278:	d65f03c0 	ret</div><div class="line">   <span class="number">7f</span>27c:	d503201f 	nop</div><div class="line">   <span class="number">7f</span>280:	<span class="number">361000</span>c2 	tbz	w2, #<span class="number">2</span>, <span class="number">7f</span>298 &lt;__memcpy+<span class="number">0x88</span>&gt;</div><div class="line">   <span class="number">7f</span>284:	b9400026 	ldr	w6, [x1]</div><div class="line">   <span class="number">7f</span>288:	b85fc087 	ldur	w7, [x4,#<span class="number">-4</span>]</div><div class="line">   <span class="number">7f</span>28c:	b9000006 	str	w6, [x0]</div><div class="line">   <span class="number">7f</span>290:	b81fc0a7 	stur	w7, [x5,#<span class="number">-4</span>]</div><div class="line">   <span class="number">7f</span>294:	d65f03c0 	ret</div><div class="line">   <span class="number">7f</span>298:	b4000102 	cbz	x2, <span class="number">7f</span>2b8 &lt;__memcpy+<span class="number">0xa8</span>&gt;</div><div class="line">   <span class="number">7f</span>29c:	d341fc49 	lsr	x9, x2, #<span class="number">1</span></div><div class="line">   <span class="number">7f</span>2a0:	<span class="number">39400026</span> 	ldrb	w6, [x1]</div><div class="line">   <span class="number">7f</span>2a4:	<span class="number">385f</span>f087 	ldurb	w7, [x4,#<span class="number">-1</span>]</div><div class="line">   <span class="number">7f</span>2a8:	<span class="number">38696828</span> 	ldrb	w8, [x1,x9]</div><div class="line">   <span class="number">7f</span>2ac:	<span class="number">39000006</span> 	strb	w6, [x0]</div><div class="line">   <span class="number">7f</span>2b0:	<span class="number">38296808</span> 	strb	w8, [x0,x9]</div><div class="line">   <span class="number">7f</span>2b4:	<span class="number">381f</span>f0a7 	sturb	w7, [x5,#<span class="number">-1</span>]</div><div class="line">   <span class="number">7f</span>2b8:	d65f03c0 	ret</div><div class="line">   <span class="number">7f</span>2bc:	d503201f 	nop</div><div class="line">   <span class="number">7f</span>2c0:	a9412428 	ldp	x8, x9, [x1,#<span class="number">16</span>]</div><div class="line">   <span class="number">7f</span>2c4:	a9422c2a 	ldp	x10, x11, [x1,#<span class="number">32</span>]</div><div class="line">   <span class="number">7f</span>2c8:	a943342c 	ldp	x12, x13, [x1,#<span class="number">48</span>]</div><div class="line">   <span class="number">7f</span>2cc:	a97e0881 	ldp	x1, x2, [x4,#<span class="number">-32</span>]</div><div class="line">   <span class="number">7f</span>2d0:	a97f0c84 	ldp	x4, x3, [x4,#<span class="number">-16</span>]</div><div class="line">   <span class="number">7f</span>2d4:	a9001c06 	stp	x6, x7, [x0]</div><div class="line">   <span class="number">7f</span>2d8:	a9012408 	stp	x8, x9, [x0,#<span class="number">16</span>]</div><div class="line">   <span class="number">7f</span>2dc:	a9022c0a 	stp	x10, x11, [x0,#<span class="number">32</span>]</div><div class="line">   <span class="number">7f</span>2e0:	a903340c 	stp	x12, x13, [x0,#<span class="number">48</span>]</div><div class="line">   <span class="number">7f</span>2e4:	a93e08a1 	stp	x1, x2, [x5,#<span class="number">-32</span>]</div><div class="line">   <span class="number">7f</span>2e8:	a93f0ca4 	stp	x4, x3, [x5,#<span class="number">-16</span>]</div><div class="line">   <span class="number">7f</span>2ec:	d65f03c0 	ret</div><div class="line">   <span class="number">7f</span>2f0:	<span class="number">92400</span>c09 	<span class="keyword">and</span>	x9, x0, #<span class="number">0xf</span></div><div class="line">   <span class="number">7f</span>2f4:	<span class="number">927</span>cec03 	<span class="keyword">and</span>	x3, x0, #<span class="number">0xfffffffffffffff0</span></div><div class="line">   <span class="number">7f</span>2f8:	a940342c 	ldp	x12, x13, [x1]</div><div class="line">   <span class="number">7f</span>2fc:	cb090021 	sub	x1, x1, x9</div><div class="line">   <span class="number">7f</span>300:	<span class="number">8b</span>090042 	add	x2, x2, x9</div><div class="line">   <span class="number">7f</span>304:	a9411c26 	ldp	x6, x7, [x1,#<span class="number">16</span>]</div><div class="line">   <span class="number">7f</span>308:	a900340c 	stp	x12, x13, [x0]</div><div class="line">   <span class="number">7f</span>30c:	a9422428 	ldp	x8, x9, [x1,#<span class="number">32</span>]</div><div class="line">   <span class="number">7f</span>310:	a9432c2a 	ldp	x10, x11, [x1,#<span class="number">48</span>]</div><div class="line">   <span class="number">7f</span>314:	a9c4342c 	ldp	x12, x13, [x1,#<span class="number">64</span>]!</div><div class="line">   <span class="number">7f</span>318:	f1024042 	subs	x2, x2, #<span class="number">0x90</span></div><div class="line">   <span class="number">7f</span>31c:	<span class="number">54000169</span> 	b.ls	<span class="number">7f</span>348 &lt;__memcpy+<span class="number">0x138</span>&gt;</div><div class="line">   <span class="number">7f</span>320:	a9011c66 	stp	x6, x7, [x3,#<span class="number">16</span>]</div><div class="line">   <span class="number">7f</span>324:	a9411c26 	ldp	x6, x7, [x1,#<span class="number">16</span>]</div><div class="line">   <span class="number">7f</span>328:	a9022468 	stp	x8, x9, [x3,#<span class="number">32</span>]</div><div class="line">   <span class="number">7f</span>32c:	a9422428 	ldp	x8, x9, [x1,#<span class="number">32</span>]</div><div class="line">   <span class="number">7f</span>330:	a9032c6a 	stp	x10, x11, [x3,#<span class="number">48</span>]</div><div class="line">   <span class="number">7f</span>334:	a9432c2a 	ldp	x10, x11, [x1,#<span class="number">48</span>]</div><div class="line">   <span class="number">7f</span>338:	a984346c 	stp	x12, x13, [x3,#<span class="number">64</span>]!</div><div class="line">   <span class="number">7f</span>33c:	a9c4342c 	ldp	x12, x13, [x1,#<span class="number">64</span>]!</div><div class="line">   <span class="number">7f</span>340:	f1010042 	subs	x2, x2, #<span class="number">0x40</span></div><div class="line">   <span class="number">7f</span>344:	<span class="number">54f</span>ffee8 	b.hi	<span class="number">7f</span>320 &lt;__memcpy+<span class="number">0x110</span>&gt;</div><div class="line">   <span class="number">7f</span>348:	a97c0881 	ldp	x1, x2, [x4,#<span class="number">-64</span>]</div><div class="line">   <span class="number">7f</span>34c:	a9011c66 	stp	x6, x7, [x3,#<span class="number">16</span>]</div><div class="line">   <span class="number">7f</span>350:	a97d1c86 	ldp	x6, x7, [x4,#<span class="number">-48</span>]</div><div class="line">   <span class="number">7f</span>354:	a9022468 	stp	x8, x9, [x3,#<span class="number">32</span>]</div><div class="line">   <span class="number">7f</span>358:	a97e2488 	ldp	x8, x9, [x4,#<span class="number">-32</span>]</div><div class="line">   <span class="number">7f</span>35c:	a9032c6a 	stp	x10, x11, [x3,#<span class="number">48</span>]</div><div class="line">   <span class="number">7f</span>360:	a97f2c8a 	ldp	x10, x11, [x4,#<span class="number">-16</span>]</div><div class="line">   <span class="number">7f</span>364:	a904346c 	stp	x12, x13, [x3,#<span class="number">64</span>]</div><div class="line">   <span class="number">7f</span>368:	a93c08a1 	stp	x1, x2, [x5,#<span class="number">-64</span>]</div><div class="line">   <span class="number">7f</span>36c:	a93d1ca6 	stp	x6, x7, [x5,#<span class="number">-48</span>]</div><div class="line">   <span class="number">7f</span>370:	a93e24a8 	stp	x8, x9, [x5,#<span class="number">-32</span>]</div><div class="line">   <span class="number">7f</span>374:	a93f2caa 	stp	x10, x11, [x5,#<span class="number">-16</span>]</div><div class="line">   <span class="number">7f</span>378:	d65f03c0 	ret</div><div class="line">   <span class="number">7f</span>37c:	<span class="number">00000000</span> 	.inst	<span class="number">0x00000000</span> ; undefined</div></pre></td></tr></table></figure>
-<p>3.搞清楚导致 crash 的汇编代码 <code>7f308:    a900340c     stp    x12, x13, [x0]</code> 的含义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   : signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x7740a1d000</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x0  0000007740a1d000  x1  0000007791aa9d40  x2  0000000000f30000  x3  0000007740a1d000</div></pre></td></tr></table></figure>
-<p>从这两行 trace 中的 <code>x0  0000007740a1d000</code> 和 <code>fault addr 0x7740a1d000</code>，可以发现导致 crash 的就是上面这行汇编代码中的 <code>[x0]</code></p>
-<p><strong>下一步就是要搞明白 <code>stp    x12, x13, [x0]</code>在执行什么操作</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">stp：入栈指令（`str` 的变种指令，可以同时操作两个寄存器），如：</div><div class="line"></div><div class="line">stp x29, x30, [sp, #0x10]</div><div class="line"></div><div class="line">将 x29, x30 的值存入 sp 偏移 16 个字节的位置</div></pre></td></tr></table></figure>
-<p>在网上查了一下 <code>stp</code> 指令，根据上面的描述大概可以猜出 <code>stp    x12, x13, [x0]</code>是将 x12 和 x13 的值写入到 x0 处，但<strong>真正意图还是很模糊</strong>。</p>
-<p>4.结合 memcpy 的汇编源代码进行分析</p>
-<p>在 Android 源码中找到的 <a href="http://androidxref.com/9.0.0_r3/xref/bionic/libc/arch-arm64/generic/bionic/memcpy_base.S" target="_blank" rel="external">memcpy 的汇编语言源程序</a></p>
-<p>下面是反汇编出来的汇编代码和 Android 源码中的汇编源代码的开始部分：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="number">7f</span>210:	f9800020 	prfm	pldl1keep, [x1]</div><div class="line"><span class="number">7f</span>214:	<span class="number">8b</span>020024 	add	x4, x1, x2</div><div class="line"><span class="number">7f</span>218:	<span class="number">8b</span>020005 	add	x5, x0, x2</div><div class="line"><span class="number">7f</span>21c:	f100405f 	cmp	x2, #<span class="number">0x10</span></div><div class="line"><span class="number">7f</span>220:	<span class="number">54000209</span> 	b.ls	<span class="number">7f</span>260 &lt;__memcpy+<span class="number">0x50</span>&gt;</div><div class="line"><span class="number">7f</span>224:	f101805f 	cmp	x2, #<span class="number">0x60</span></div><div class="line"><span class="number">7f</span>228:	<span class="number">54000648</span> 	b.hi	<span class="number">7f</span>2f0 &lt;__memcpy+<span class="number">0xe0</span>&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">prfm    PLDL1KEEP, [src]</div><div class="line">add	srcend, src, count</div><div class="line">add	dstend, dstin, count</div><div class="line">        cmp     count, <span class="number">16</span></div><div class="line">        b.<span class="function">ls    <span class="title">L</span><span class="params">(copy16)</span></span></div><div class="line">cmp	count, 96</div><div class="line">b.<span class="function">hi	<span class="title">L</span><span class="params">(copy_long)</span></span></div></pre></td></tr></table></figure>
-<p>对比下上面使用 objdump 出来的汇编代码和 Android 源码中的汇编源代码开始部分，代码是可以对应起来的。两份代码开头这里都是对 memcpy 的第三个参数 count 进行判断，SDK 中调用 memcpy 的地方拷贝长度远大于了 96，所以会走到 <code>copy_long</code> 里去，也就是 <code>7f2f0 &lt;__memcpy+0xe0&gt;</code>，接着没多久就会走到导致 crash 的 <code>7f308:    a900340c     stp    x12, x13, [x0]</code> 处，对应到汇编源代码中就是 <code>stp    D_l, D_h, [dstin]</code> 这一行：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="number">7f</span>2f0:	<span class="number">92400</span>c09 	<span class="keyword">and</span>	x9, x0, #<span class="number">0xf</span></div><div class="line"><span class="number">7f</span>2f4:	<span class="number">927</span>cec03 	<span class="keyword">and</span>	x3, x0, #<span class="number">0xfffffffffffffff0</span></div><div class="line"><span class="number">7f</span>2f8:	a940342c 	ldp	x12, x13, [x1]</div><div class="line"><span class="number">7f</span>2fc:	cb090021 	sub	x1, x1, x9</div><div class="line"><span class="number">7f</span>300:	<span class="number">8b</span>090042 	add	x2, x2, x9</div><div class="line"><span class="number">7f</span>304:	a9411c26 	ldp	x6, x7, [x1,#<span class="number">16</span>]</div><div class="line"><span class="number">7f</span>308:	a900340c 	stp	x12, x13, [x0]</div><div class="line"><span class="number">7f</span>30c:	a9422428 	ldp	x8, x9, [x1,#<span class="number">32</span>]</div><div class="line"><span class="number">7f</span>310:	a9432c2a 	ldp	x10, x11, [x1,#<span class="number">48</span>]</div><div class="line"><span class="number">7f</span>314:	a9c4342c 	ldp	x12, x13, [x1,#<span class="number">64</span>]!</div><div class="line"><span class="number">7f</span>318:	f1024042 	subs	x2, x2, #<span class="number">0x90</span></div><div class="line"><span class="number">7f</span>31c:	<span class="number">54000169</span> 	b.ls	<span class="number">7f</span>348 &lt;__memcpy+<span class="number">0x138</span>&gt;</div></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">L(copy_long):</div><div class="line"><span class="keyword">and</span>	tmp1, dstin, <span class="number">15</span></div><div class="line">bic	dst, dstin, <span class="number">15</span></div><div class="line">ldp	D_l, D_h, [src]</div><div class="line">sub	src, src, tmp1</div><div class="line">add	count, count, tmp1	<span class="comment">/* Count is now 16 too large.  */</span></div><div class="line">ldp	A_l, A_h, [src, <span class="number">16</span>]</div><div class="line">stp	D_l, D_h, [dstin]</div><div class="line">ldp	B_l, B_h, [src, <span class="number">32</span>]</div><div class="line">ldp	C_l, C_h, [src, <span class="number">48</span>]</div><div class="line">ldp	D_l, D_h, [src, <span class="number">64</span>]!</div><div class="line">subs	count, count, <span class="number">128</span> + <span class="number">16</span>	<span class="comment">/* Test and readjust count.  */</span></div><div class="line">b.ls	<span class="number">2f</span></div></pre></td></tr></table></figure>
-<p>所以就是 <code>stp    D_l, D_h, [dstin]</code> 这一行导致了 crash，从汇编源代码前面的宏定义可以看到 <code>#define dstin    x0</code>，所以 dstin 就是 x0，而且 x0 就是导致 crash 的 <code>fault addr 0x7740a1d000</code> ，从 trace 中可以看到这两点。</p>
-<p>接着从以下三条线索可以得知导致 crash 的 dstin 是 memcpy 要写入的目的地址。</p>
-<ol>
-<li>结合 Android 源码中 memcpy 的汇编源代码逻辑和 dstin 的命名可以得知 dstin 就是要将 src 写入到的目的地址。</li>
-<li>dstin 和 memcpy 函数定义中的目标地址命名一致：<code>void *memcpy(void *destin, void *source, unsigned n)</code></li>
-<li>stp 指令要做的事情就是将值<strong>写入到目标地址</strong>中。而前几行的 ldp 指令做的事情就是从 src 中将值读出。</li>
-</ol>
-<p>5.接下来要做的事情就是确认 SDK 内调用 memcpy 传入的目标地址是什么情况。经检查，目标地址不是 SDK 内部进行分配和管理的，而是由客户传进来的。</p>
-<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>所以 crash 的原因是外部分配的地址在 monkey testing 中出现了问题，导致 SDK 在进行 memcpy 将输出拷贝给客户时出现了 crash。</p>
-<h4 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h4><p>将上面的分析结果发给客户后，客户进行了验证，注释掉在 com.anc.node.nightshot.so 中调用 SDK 接口导致 crash 的代码，直接使用 memcpy，也复现了该问题。证明了该 crash 和 SDK 无关，确实是 memcpy 要写入的目标地址出了问题，最终也解决了此问题。</p>
-<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>完整的 Android 源码中的 <code>__memcpy</code> 汇编源代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;private/bionic_asm.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> dstin	x0</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> src	x1</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> count	x2</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> dst	x3</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> srcend	x4</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> dstend	x5</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A_l	x6</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A_lw	w6</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A_h	x7</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> A_hw	w7</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> B_l	x8</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> B_lw   w8</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> B_h	x9</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> C_l	x10</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> C_h	x11</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> D_l	x12</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> D_h	x13</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> E_l	src</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> E_h	count</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> F_l	srcend</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> F_h	dst</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> tmp1	x9</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> L(l) .L ## l</span></div><div class="line"></div><div class="line"><span class="comment">/* Copies are split into 3 main cases: small copies of up to 16 bytes,</span></div><div class="line"><span class="comment">    medium copies of 17..96 bytes which are fully unrolled. Large copies</span></div><div class="line"><span class="comment">    of more than 96 bytes align the destination and use an unrolled loop</span></div><div class="line"><span class="comment">    processing 64 bytes per iteration.</span></div><div class="line"><span class="comment">    Small and medium copies read all data before writing, allowing any</span></div><div class="line"><span class="comment">    kind of overlap, and memmove tailcalls memcpy for these cases as</span></div><div class="line"><span class="comment">    well as non-overlapping copies.</span></div><div class="line"><span class="comment">*/</span></div><div class="line"></div><div class="line">prfm    PLDL1KEEP, [src]</div><div class="line">add	srcend, src, count</div><div class="line">add	dstend, dstin, count</div><div class="line">        cmp     count, <span class="number">16</span></div><div class="line">        b.<span class="function">ls    <span class="title">L</span><span class="params">(copy16)</span></span></div><div class="line">cmp	count, 96</div><div class="line">b.<span class="function">hi	<span class="title">L</span><span class="params">(copy_long)</span></span></div><div class="line"><span class="function"></span></div><div class="line"><span class="function"><span class="comment">/* Medium copies: 17..96 bytes.  */</span></span></div><div class="line">sub	tmp1, count, 1</div><div class="line">ldp	A_l, A_h, [src]</div><div class="line">tbnz	tmp1, <span class="number">6</span>, L(copy96)</div><div class="line">ldp	D_l, D_h, [srcend, <span class="number">-16</span>]</div><div class="line">tbz	tmp1, <span class="number">5</span>, <span class="number">1f</span></div><div class="line">ldp	B_l, B_h, [src, <span class="number">16</span>]</div><div class="line">ldp	C_l, C_h, [srcend, <span class="number">-32</span>]</div><div class="line">stp	B_l, B_h, [dstin, <span class="number">16</span>]</div><div class="line">stp	C_l, C_h, [dstend, <span class="number">-32</span>]</div><div class="line"><span class="number">1</span>:</div><div class="line">stp	A_l, A_h, [dstin]</div><div class="line">stp	D_l, D_h, [dstend, <span class="number">-16</span>]</div><div class="line">ret</div><div class="line"></div><div class="line">.p2align <span class="number">4</span></div><div class="line"></div><div class="line"><span class="comment">/* Small copies: 0..16 bytes.  */</span></div><div class="line">L(copy16):</div><div class="line">cmp	count, <span class="number">8</span></div><div class="line">b.lo	<span class="number">1f</span></div><div class="line">ldr	A_l, [src]</div><div class="line">ldr	A_h, [srcend, <span class="number">-8</span>]</div><div class="line">str	A_l, [dstin]</div><div class="line">str	A_h, [dstend, <span class="number">-8</span>]</div><div class="line">ret</div><div class="line">.p2align <span class="number">4</span></div><div class="line"><span class="number">1</span>:</div><div class="line">tbz	count, <span class="number">2</span>, <span class="number">1f</span></div><div class="line">ldr	A_lw, [src]</div><div class="line">ldr	A_hw, [srcend, <span class="number">-4</span>]</div><div class="line">str	A_lw, [dstin]</div><div class="line">str	A_hw, [dstend, <span class="number">-4</span>]</div><div class="line">ret</div><div class="line"></div><div class="line"><span class="comment">/* Copy 0..3 bytes.  Use a branchless sequence that copies the same</span></div><div class="line"><span class="comment">    byte 3 times if count==1, or the 2nd byte twice if count==2.  */</span></div><div class="line"><span class="number">1</span>:</div><div class="line">cbz	count, <span class="number">2f</span></div><div class="line">lsr	tmp1, count, <span class="number">1</span></div><div class="line">ldrb	A_lw, [src]</div><div class="line">ldrb	A_hw, [srcend, <span class="number">-1</span>]</div><div class="line">ldrb	B_lw, [src, tmp1]</div><div class="line">strb	A_lw, [dstin]</div><div class="line">strb	B_lw, [dstin, tmp1]</div><div class="line">strb	A_hw, [dstend, <span class="number">-1</span>]</div><div class="line"><span class="number">2</span>:	ret</div><div class="line"></div><div class="line">.p2align <span class="number">4</span></div><div class="line"><span class="comment">/* Copy 64..96 bytes.  Copy 64 bytes from the start and</span></div><div class="line"><span class="comment">    32 bytes from the end.  */</span></div><div class="line">L(copy96):</div><div class="line">ldp	B_l, B_h, [src, <span class="number">16</span>]</div><div class="line">ldp	C_l, C_h, [src, <span class="number">32</span>]</div><div class="line">ldp	D_l, D_h, [src, <span class="number">48</span>]</div><div class="line">ldp	E_l, E_h, [srcend, <span class="number">-32</span>]</div><div class="line">ldp	F_l, F_h, [srcend, <span class="number">-16</span>]</div><div class="line">stp	A_l, A_h, [dstin]</div><div class="line">stp	B_l, B_h, [dstin, <span class="number">16</span>]</div><div class="line">stp	C_l, C_h, [dstin, <span class="number">32</span>]</div><div class="line">stp	D_l, D_h, [dstin, <span class="number">48</span>]</div><div class="line">stp	E_l, E_h, [dstend, <span class="number">-32</span>]</div><div class="line">stp	F_l, F_h, [dstend, <span class="number">-16</span>]</div><div class="line">ret</div><div class="line"></div><div class="line"><span class="comment">/* Align DST to 16 byte alignment so that we don't cross cache line</span></div><div class="line"><span class="comment">    boundaries on both loads and stores.	 There are at least 96 bytes</span></div><div class="line"><span class="comment">    to copy, so copy 16 bytes unaligned and then align.	The loop</span></div><div class="line"><span class="comment">    copies 64 bytes per iteration and prefetches one iteration ahead.  */</span></div><div class="line"></div><div class="line">.p2align <span class="number">4</span></div><div class="line">L(copy_long):</div><div class="line"><span class="keyword">and</span>	tmp1, dstin, <span class="number">15</span></div><div class="line">bic	dst, dstin, <span class="number">15</span></div><div class="line">ldp	D_l, D_h, [src]</div><div class="line">sub	src, src, tmp1</div><div class="line">add	count, count, tmp1	<span class="comment">/* Count is now 16 too large.  */</span></div><div class="line">ldp	A_l, A_h, [src, <span class="number">16</span>]</div><div class="line">stp	D_l, D_h, [dstin]</div><div class="line">ldp	B_l, B_h, [src, <span class="number">32</span>]</div><div class="line">ldp	C_l, C_h, [src, <span class="number">48</span>]</div><div class="line">ldp	D_l, D_h, [src, <span class="number">64</span>]!</div><div class="line">subs	count, count, <span class="number">128</span> + <span class="number">16</span>	<span class="comment">/* Test and readjust count.  */</span></div><div class="line">b.ls	<span class="number">2f</span></div><div class="line"><span class="number">1</span>:</div><div class="line">stp	A_l, A_h, [dst, <span class="number">16</span>]</div><div class="line">ldp	A_l, A_h, [src, <span class="number">16</span>]</div><div class="line">stp	B_l, B_h, [dst, <span class="number">32</span>]</div><div class="line">ldp	B_l, B_h, [src, <span class="number">32</span>]</div><div class="line">stp	C_l, C_h, [dst, <span class="number">48</span>]</div><div class="line">ldp	C_l, C_h, [src, <span class="number">48</span>]</div><div class="line">stp	D_l, D_h, [dst, <span class="number">64</span>]!</div><div class="line">ldp	D_l, D_h, [src, <span class="number">64</span>]!</div><div class="line">subs	count, count, <span class="number">64</span></div><div class="line">b.hi	<span class="number">1b</span></div><div class="line"></div><div class="line"><span class="comment">/* Write the last full set of 64 bytes.	 The remainder is at most 64</span></div><div class="line"><span class="comment">    bytes, so it is safe to always copy 64 bytes from the end even if</span></div><div class="line"><span class="comment">    there is just 1 byte left.  */</span></div><div class="line"><span class="number">2</span>:</div><div class="line">ldp	E_l, E_h, [srcend, <span class="number">-64</span>]</div><div class="line">stp	A_l, A_h, [dst, <span class="number">16</span>]</div><div class="line">ldp	A_l, A_h, [srcend, <span class="number">-48</span>]</div><div class="line">stp	B_l, B_h, [dst, <span class="number">32</span>]</div><div class="line">ldp	B_l, B_h, [srcend, <span class="number">-32</span>]</div><div class="line">stp	C_l, C_h, [dst, <span class="number">48</span>]</div><div class="line">ldp	C_l, C_h, [srcend, <span class="number">-16</span>]</div><div class="line">stp	D_l, D_h, [dst, <span class="number">64</span>]</div><div class="line">stp	E_l, E_h, [dstend, <span class="number">-64</span>]</div><div class="line">stp	A_l, A_h, [dstend, <span class="number">-48</span>]</div><div class="line">stp	B_l, B_h, [dstend, <span class="number">-32</span>]</div><div class="line">stp	C_l, C_h, [dstend, <span class="number">-16</span>]</div><div class="line">ret</div></pre></td></tr></table></figure>
-
-          
+          <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>客户反馈了一个 SDK 的 crash log，跑 monkey testing 报出来的问题。trace 信息如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   : signal 11 (SIGSEGV), code 1 (SEGV_MAPERR), fault addr 0x7740a1d000</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x0  0000007740a1d000  x1  0000007791aa9d40  x2  0000000000f30000  x3  0000007740a1d000</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x4  00000077929d9d40  x5  000000774194d000  x6  0707070808080808  x7  0808080808080707</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x8  0000000000f30000  x9  0000000000000000  x10 0000000042ffc000  x11 0000000000f30000</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x12 0909090909090909  x13 0807080708070809  x14 0000000000000d80  x15 0000000000001200</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x16 000000785d698418  x17 00000078f2ad4380  x18 0000000000000076  x19 0000007853f80878</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x20 0000007853f804d0  x21 0000007740a1d000  x22 0000007791aa9d40  x23 0000000000001200</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x24 0000007853f8d020  x25 00000078156b0f80  x26 0000007853f80878  x27 000000780e20d1f0</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     x28 0000000026deaf4d  x29 0000007853f807d0</div><div class="line">04-16 23:58:41.861 18741 18741 F DEBUG   :     sp  0000007853f801f0  lr  000000785ce7b90c  pc  00000078f2ad4308</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   : </div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   : backtrace:</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #00 pc 000000000007f308  /apex/com.android.runtime/lib64/bionic/libc.so (__memcpy+248) (BuildId: bf43d263cea44574bf5be4629e4f0a8f)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #01 pc 000000000007b908  /vendor/lib64/libanc_nightshot.so (BuildId: eefc88116d665da17ed0d5d62b2403d72474a995)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #02 pc 0000000000004e80  /vendor/lib64/camera/components/com.anc.node.nightshot.so (NightShotNodeProcRequest(ChiNodeProcessRequestInfo*)+1992) (BuildId: a999c7381a9344a26858c43375292779)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #03 pc 00000000006d4020  /vendor/lib64/hw/camera.qcom.so (CamX::ChiNodeWrapper::ExecuteProcessRequest(CamX::ExecuteProcessRequestData*)+2640) (BuildId: cfa7472586f48d4f52f2b5d0d8629b60)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #04 pc 000000000073d730  /vendor/lib64/hw/camera.qcom.so (CamX::Node::ProcessRequest(CamX::NodeProcessRequestData*, unsigned long)+9832) (BuildId: cfa7472586f48d4f52f2b5d0d8629b60)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #05 pc 00000000006def80  /vendor/lib64/hw/camera.qcom.so (CamX::DeferredRequestQueue::DeferredWorkerWrapper(void*)+368) (BuildId: cfa7472586f48d4f52f2b5d0d8629b60)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #06 pc 0000000000636a18  /vendor/lib64/hw/camera.qcom.so (CamX::ThreadCore::WorkerThreadBody(void*)+1992) (BuildId: cfa7472586f48d4f52f2b5d0d8629b60)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #07 pc 00000000000e6b60  /apex/com.android.runtime/lib64/bionic/libc.so (__pthread_start(void*)+36) (BuildId: bf43d263cea44574bf5be4629e4f0a8f)</div><div class="line">04-16 23:58:41.884 18741 18741 F DEBUG   :       #08 pc 0000000000084b6c  /apex/com.android.runtime/lib64/bionic/libc.so (__start_thread+64) (BuildId: bf43d263cea44574bf5be4629e4f0a8f)</div></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/22/2020-04-22-Disassemble-libc-to-analyze-the-crash-caused-by-memcpy/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -557,61 +501,14 @@
 
       
         
-          
-            <h5 id="先说结论"><a href="#先说结论" class="headerlink" title="先说结论"></a>先说结论</h5><p>当在 Java 代码中使用 <code>ByteBuffer.allocateDirect</code> 分配内存，并在 JNI 中使用 <code>GetDirectBufferAddress</code> 来获取内存做一些操作后。最后在 Java 代码中操作 byte[] 数据的时候，不要使用 <code>ByteBuffer.array()</code> 来获取数据，而应该使用 <code>ByteBuffer.get()</code> 函数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// step1: 在 Java 分配内存</span></div><div class="line">ByteBuffer output = ByteBuffer.allocateDirect(OUT_PUT_SIZE);</div><div class="line"></div><div class="line"><span class="comment">// step2: 在 JNI 获取内存地址，并对此内存写入数据</span></div><div class="line">auto outPixels = (unsigned <span class="keyword">char</span> *) env-&gt;GetDirectBufferAddress(output);</div><div class="line"></div><div class="line"><span class="comment">// error step3: java code</span></div><div class="line">saveYuv(output.array()); <span class="comment">// error!</span></div><div class="line"></div><div class="line"><span class="comment">// step3: 在 Java 保存数据</span></div><div class="line"><span class="comment">// method 1：没验证过，但从下面的分析来看是可行的</span></div><div class="line"><span class="keyword">byte</span>[] totalData = output.array();</div><div class="line"><span class="keyword">int</span> offset = output.arrayOffset();</div><div class="line">saveYuv(totalData[offset], totalData[OUT_PUT_SIZE + offset - <span class="number">1</span>]); <span class="comment">// 伪代码</span></div><div class="line"><span class="comment">// method 2：经过验证是可行的</span></div><div class="line"><span class="keyword">byte</span>[] realData = <span class="keyword">new</span> <span class="keyword">byte</span>[OUT_PUT_SIZE];</div><div class="line">output.get(realData);</div><div class="line">saveYuv(realData);</div></pre></td></tr></table></figure>
-<h5 id="遇到的-bug"><a href="#遇到的-bug" class="headerlink" title="遇到的 bug"></a>遇到的 bug</h5><p>有个项目我们在调试效果的过程中，发现客户反馈的 JPG 和我们 SDK dump 出来的输出图，算法效果是一致的，但是客户的图像有一点点偏移，两张图没办法完全重叠在一起。通过使用 YUVView 来查看具体的像素发现是 SDK 原图最右边四列的像素被移到了客户图的最左边。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">00 00 00 00 9F 9D 9D 9B</div></pre></td></tr></table></figure>
-<p>如上，通过查看客户保存的 YUV 的原始数据，发现在一开始的地方多了四个字节的空数据。</p>
-<p>做了个简单的验证，把多出来的 4 个字节删掉，并在 YUV 数据的结尾处添加 4 个字节的数据。然后再查看 YUV，发现此时正常了。</p>
-<p>所以问题的原因在这多出来的四个字节的数据。</p>
-<h5 id="使用-ByteBuffer-在-Java-代码中分配-native-内存"><a href="#使用-ByteBuffer-在-Java-代码中分配-native-内存" class="headerlink" title="使用 ByteBuffer 在 Java 代码中分配 native 内存"></a>使用 ByteBuffer 在 Java 代码中分配 native 内存</h5><p>先来看一个数据：</p>
-<p>1 亿像素的输出图尺寸：<code>11672*8756</code>，YUV 数据内存需要 153 M。</p>
-<p>2.5 亿像素的输出图尺寸：<code>18432*13824</code>，YUV 数据内存高达 382 M。</p>
-<p>所以我们需要在 APP 中使用 native 内存。再来看下使用 ByteBuffer.allocateDirect 分配的内存的回收机制：</p>
-<blockquote>
-<p>Direct Memory 的回收机制：Direct Memory 是受 GC 控制的，例如 ByteBuffer bb = ByteBuffer.allocateDirect(1024)，这段代码的执行会在堆外占用 1kb 的内存，Java 堆内只会占用一个 bb 对象的指针引用的大小，堆外的这 1k 的空间只有当 bb 对象被回收时，才会被回收。</p>
-</blockquote>
-<p>很完美，适合我们想要在 APP 中分配大容量内存的需求。</p>
-<p>用法很简单，我们在 Java 代码中使用 ByteBuffer.allocateDirect 来分配输出图的内存，然后将 ByteBuffer 对象传递到 JNI， 在 JNI 代码中使用 env-&gt;GetDirectBufferAddress 函数来获取 buffer 的地址。后续将这个 buffer 传给 SDK 即可，SDK 会将输出图的 YUV 数据放在这段 buffer 中。算法运行完后，客户在 Java 代码中使用 output.array() 来获取 YUV 数据。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// step1: java code</span></div><div class="line">ByteBuffer output = ByteBuffer.allocateDirect(OUT_PUT_SIZE);</div><div class="line"></div><div class="line"><span class="comment">// step2: jni code</span></div><div class="line">auto outPixels = (unsigned <span class="keyword">char</span> *) env-&gt;GetDirectBufferAddress(output);</div><div class="line"></div><div class="line"><span class="comment">// step3: java code</span></div><div class="line">saveYuv(output.array());</div></pre></td></tr></table></figure>
-<p>一切看起来都很正常。</p>
-<h5 id="空数据从哪里来的？"><a href="#空数据从哪里来的？" class="headerlink" title="空数据从哪里来的？"></a>空数据从哪里来的？</h5><p>一切看起来都很正常，只剩一个问题。空数据是怎么多出来的？</p>
-<p>先看一下 Android Q 上 <a href="http://aospxref.com/android-10.0.0_r2/xref/libcore/ojluni/src/main/java/java/nio/ByteBuffer.java#255" target="_blank" rel="external">ByteBuffer.allocateDirect</a> 的实现代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ByteBuffer <span class="title">allocateDirect</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">    <span class="comment">// Android-changed: Android's DirectByteBuffers carry a MemoryRef.</span></div><div class="line">    <span class="comment">// return new DirectByteBuffer(capacity);</span></div><div class="line">    DirectByteBuffer.MemoryRef memoryRef = <span class="keyword">new</span> DirectByteBuffer.MemoryRef(capacity);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> DirectByteBuffer(capacity, memoryRef);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>次方法会返回一个 ByteBuffer 的子类 DirectByteBuffer，且从注释中可以看到在 Android 上 Google 做了一些改动，使用了 MemoryRef 。</p>
-<p>接着看一下上面调用的<a href="http://aospxref.com/android-10.0.0_r2/xref/libcore/ojluni/src/main/java/java/nio/DirectByteBuffer.java#68" target="_blank" rel="external"> MemoryRef 的构造函数</a> 和<a href="http://aospxref.com/android-10.0.0_r2/xref/libcore/ojluni/src/main/java/java/nio/DirectByteBuffer.java#98" target="_blank" rel="external"> DirectByteBuffer 的构造函数</a>：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">MemoryRef(<span class="keyword">int</span> capacity) &#123;</div><div class="line">    VMRuntime runtime = VMRuntime.getRuntime();</div><div class="line">    buffer = (<span class="keyword">byte</span>[]) runtime.newNonMovableArray(<span class="keyword">byte</span>.class, capacity + <span class="number">7</span>);</div><div class="line">    allocatedAddress = runtime.addressOf(buffer);</div><div class="line">    <span class="comment">// Offset is set to handle the alignment: http://b/16449607</span></div><div class="line">    offset = (<span class="keyword">int</span>) (((allocatedAddress + <span class="number">7</span>) &amp; ~(<span class="keyword">long</span>) <span class="number">7</span>) - allocatedAddress);</div><div class="line">    isAccessible = <span class="keyword">true</span>;</div><div class="line">    isFreed = <span class="keyword">false</span>;</div><div class="line">    originalBufferObject = <span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line">DirectByteBuffer(<span class="keyword">int</span> capacity, MemoryRef memoryRef) &#123;</div><div class="line">    <span class="keyword">super</span>(-<span class="number">1</span>, <span class="number">0</span>, capacity, capacity, memoryRef.buffer, memoryRef.offset);</div><div class="line">     <span class="comment">// Only have references to java objects, no need for a cleaner since the GC will do all the work.</span></div><div class="line">     <span class="keyword">this</span>.memoryRef = memoryRef;</div><div class="line">     <span class="keyword">this</span>.address = memoryRef.allocatedAddress + memoryRef.offset;</div><div class="line">     cleaner = <span class="keyword">null</span>;</div><div class="line">     <span class="keyword">this</span>.isReadOnly = <span class="keyword">false</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>主要关注三个变量</p>
-<ol>
-<li>allocatedAddress：这字面意思来看，这是分配内存的起始地址。并且可以看到并非只分配了 <code>capacity</code> 字节的内存，而且分配了 <code>capacity  + 7</code> 个字节的内存。至于为什么要多分配 7 个字节，接着往下看。</li>
-<li>offset：从注释可以看出，代码会对起始地址做一个对齐。从 <code>(int) (((allocatedAddress + 7) &amp; ~(long) 7) - allocatedAddress);</code> 这行代码来看是对做了 8 字节的对齐，计算结果为对齐后的地址相对分配的起始地址的偏移量，存在 offset 中。关于这行代码为什么是计算的 8 字节对齐后的偏移量，可以自己写一些地址值带入公式做位运算计算一下，也可以直接写 Java 代码验证一下，结尾会给一个验证结果。由于是对地址做 8 字节对齐，所以可能的偏移量为 0 ~ 7，所以在分配内存的时候，只需要多分配 7 个字节，就可以满足所有情况。（大部分情况下还有点浪费，哈哈。）</li>
-<li>address：真正使用的起始地址，从代码可以看出，它是由分配的起始地址 + 偏移量计算得出的，所以这个地址是 8 字节对齐了的。</li>
-</ol>
-<p>看到这三个变量的时候，我们心里应该已经有了一个初步的猜测结论了：我们使用 arrry() 函数拿到的 byte[] 数据是从 <code>allocatedAddress</code> 处开始的，而 JNI 代码中通过 <code>GetDirectBufferAddress</code> 拿到的以及后续操作的指针地址是从 <code>address</code> 开始的。所以客户最后保存的 YUV 多出来的数据，其实就是 offset 的这几个字节。</p>
-<p>继续看源码来验证猜测。</p>
-<p><code>ByteBuffer</code> 的 array() 函数，返回了 hb：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] array() &#123;</div><div class="line">    <span class="keyword">if</span> (hb == <span class="keyword">null</span>)</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</div><div class="line">    <span class="keyword">if</span> (isReadOnly)</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> ReadOnlyBufferException();</div><div class="line">    <span class="keyword">return</span> hb;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>hb 是在哪里赋值的呢？在 <code>ByteBuffer</code> 的构造函数中会对 <code>hb</code> 赋值，这个函数会在什么时候调用呢？前面贴出来的 <code>DirectByteBuffer</code> 的构造函数代码，它会通过调用<code>super(-1, 0, capacity, capacity, memoryRef.buffer, memoryRef.offset);</code> 调用到 <code>ByteBuffer</code> 的构造函数，证实了 hb 就是从 <code>allocatedAddress</code> 处开始的数组，且数组开始处包含 offset 个无用数据，结尾处包含 7 - offset 个无用数据，整个数组的长度为我们指定的大小 + 7。证明了文章开始结论中提到的方法 1 是可行的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ByteBuffer(<span class="keyword">int</span> mark, <span class="keyword">int</span> pos, <span class="keyword">int</span> lim, <span class="keyword">int</span> cap, <span class="keyword">byte</span>[] hb, <span class="keyword">int</span> offset)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">super</span>(mark, pos, lim, cap, <span class="number">0</span> <span class="comment">/* elementSizeShift */</span>);</div><div class="line">    <span class="keyword">this</span>.hb = hb;</div><div class="line">    <span class="keyword">this</span>.offset = offset;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>为什么 JNI 获取到的地址是对齐后的地址 address 呢？</p>
-<ol>
-<li>首先我在 <code>DirectByteBuffer</code> 代码中发现了如下函数，返回的是对齐后的地址 address。</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">long</span> <span class="title">address</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> address;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li><code>allocatedAddress</code> 是 <code>DirectByteBuffer</code> 内部类 <code>MemoryRef</code> 的成员，不像 <code>address</code> 是 <code>ByteBuffer</code> 的成员。并且没有看到任何接口可以获取 <code>allocatedAddress</code> 。</li>
-</ol>
-<h5 id="为什么要对地址做-8-字节对齐？"><a href="#为什么要对地址做-8-字节对齐？" class="headerlink" title="为什么要对地址做 8 字节对齐？"></a>为什么要对地址做 8 字节对齐？</h5><ol>
-<li>为什么要对地址做 8 字节对齐？</li>
-</ol>
-<p>对齐可以提高内存系统的性能，可以阅读《深入理解计算机系统第三版》3.9.3 数据对齐 这一节。</p>
-<ol>
-<li>验证 <code>DirectByteBuffer</code> 的内部类 <code>MemoryRef</code> 对地址做 8 字节对齐的测试程序和验证结果：</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calOffset</span><span class="params">(<span class="keyword">long</span> address)</span> </span>&#123;</div><div class="line">	    <span class="keyword">int</span> offset = (<span class="keyword">int</span>)(((address + <span class="number">7</span>) &amp;~ (<span class="keyword">long</span>) <span class="number">7</span>) - address);</div><div class="line">	    <span class="keyword">return</span> offset;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String []args)</span> </span>&#123;</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000000: "</span> + calOffset(<span class="number">0x00000000</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000001: "</span> + calOffset(<span class="number">0x00000001</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000002: "</span> + calOffset(<span class="number">0x00000002</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000003: "</span> + calOffset(<span class="number">0x00000003</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000004: "</span> + calOffset(<span class="number">0x00000004</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000005: "</span> + calOffset(<span class="number">0x00000005</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000006: "</span> + calOffset(<span class="number">0x00000006</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000007: "</span> + calOffset(<span class="number">0x00000007</span>));</div><div class="line">       System.out.println(<span class="string">"------------"</span>);</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000008: "</span> + calOffset(<span class="number">0x00000008</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000009: "</span> + calOffset(<span class="number">0x00000009</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x0000000a: "</span> + calOffset(<span class="number">0x0000000a</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x0000000b: "</span> + calOffset(<span class="number">0x0000000b</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x0000000c: "</span> + calOffset(<span class="number">0x0000000c</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x0000000d: "</span> + calOffset(<span class="number">0x0000000d</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x0000000e: "</span> + calOffset(<span class="number">0x0000000e</span>));</div><div class="line">       System.out.println(<span class="string">"offset off 0x0000000f: "</span> + calOffset(<span class="number">0x0000000f</span>));</div><div class="line">       System.out.println(<span class="string">"------------"</span>);</div><div class="line">       System.out.println(<span class="string">"offset off 0x00000010: "</span> + calOffset(<span class="number">0x00000010</span>));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// output:</div><div class="line">offset off 0x00000000: 0</div><div class="line">offset off 0x00000001: 7</div><div class="line">offset off 0x00000002: 6</div><div class="line">offset off 0x00000003: 5</div><div class="line">offset off 0x00000004: 4</div><div class="line">offset off 0x00000005: 3</div><div class="line">offset off 0x00000006: 2</div><div class="line">offset off 0x00000007: 1</div><div class="line">------------</div><div class="line">offset off 0x00000008: 0</div><div class="line">offset off 0x00000009: 7</div><div class="line">offset off 0x0000000a: 6</div><div class="line">offset off 0x0000000b: 5</div><div class="line">offset off 0x0000000c: 4</div><div class="line">offset off 0x0000000d: 3</div><div class="line">offset off 0x0000000e: 2</div><div class="line">offset off 0x0000000f: 1</div><div class="line">------------</div><div class="line">offset off 0x00000010: 0</div></pre></td></tr></table></figure>
-          
+          <h5 id="先说结论"><a href="#先说结论" class="headerlink" title="先说结论"></a>先说结论</h5><p>当在 Java 代码中使用 <code>ByteBuffer.allocateDirect</code> 分配内存，并在 JNI 中使用 <code>GetDirectBufferAddress</code> 来获取内存做一些操作后。最后在 Java 代码中操作 byte[] 数据的时候，不要使用 <code>ByteBuffer.array()</code> 来获取数据，而应该使用 <code>ByteBuffer.get()</code> 函数。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/03/12/2020-03-12-Byte-alignment-in-ByteBuffer/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -750,43 +647,14 @@
 
       
         
-          
-            <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>YUV 夜景这类 HDR 效果的 SDK，需要不同 EV （Exposure Value）的输入。</p>
-<h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>之前经验不够，获取不同 EV 是通过设置 iso 和 曝光时间来做的。ev0 的 iso 和曝光时间直接从预览拿到，然后在此基础上计算出 ev+ 和 ev- 的 iso 和曝光时间。计算方式是将 iso 和曝光时间乘以（或除以） 2。代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> List&lt;CaptureRequest&gt; <span class="title">getCaptureRequestBuilder</span><span class="params">(String id, Surface surface)</span> </span>&#123;</div><div class="line">    List&lt;CaptureRequest&gt; requests = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    CaptureRequest.Builder stillBuilder = createBuilder(id, CameraDevice.TEMPLATE_STILL_CAPTURE, surface);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> != stillBuilder) &#123;</div><div class="line">        stillBuilder.set(CaptureRequest.CONTROL_CAPTURE_INTENT, CaptureRequest.CONTROL_CAPTURE_INTENT_STILL_CAPTURE);</div><div class="line">        stillBuilder.set(CaptureRequest.CONTROL_AE_MODE, CameraMetadata.CONTROL_AE_MODE_OFF);</div><div class="line">        stillBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.FLASH_MODE_OFF);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> ev0CaptureIso = mBaseIso;</div><div class="line">    <span class="keyword">long</span> ev0CaptureExposureTime = mBaseExpoTime;</div><div class="line">    <span class="keyword">int</span> evP1CaptureIso = ev0CaptureIso * <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> evP1CaptureExposureTime = ev0CaptureExposureTime * <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> evN1CaptureIso = ev0CaptureIso / <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> evN1CaptureExposureTime = ev0CaptureExposureTime / <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> evN2CaptureIso = evN1CaptureIso / <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> evN2CaptureExposureTime = evN1CaptureExposureTime / <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> evN3CaptureIso = evN2CaptureIso / <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> evN3CaptureExposureTime = evN2CaptureExposureTime / <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> evN4CaptureIso = evN3CaptureIso / <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> evN4CaptureExposureTime = evN3CaptureExposureTime / <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (stillBuilder != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EVP1_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, evP1CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, evP1CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EV0_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, ev0CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, ev0CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EVN1_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, evN1CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, evN1CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EVN2_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, evN2CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, evN2CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EVN3_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, evN3CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, evN3CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EVN4_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, evN4CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, evN4CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> requests;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种方式的缺点：</p>
-<ul>
-<li>App 上拿到的 ev0 的 iso 可能不是最终拍照时使用的 iso，经过平台代码处理后，可能还会乘以 sensor gain 值。这会导致我们计算出来的所有 ev 值都不准确。</li>
-<li>不知道手机支持的 ev 范围。</li>
-<li>直接设置 iso 和曝光时间来获取不同 ev 的输入也不是推荐的做法。</li>
-<li>代码很难看。</li>
-</ul>
-<h2 id="更优雅的方式"><a href="#更优雅的方式" class="headerlink" title="更优雅的方式"></a>更优雅的方式</h2><p>更好的方式是直接使用设置 ev 的方式来获取不同 ev 的输入，而且可以通过相关接口来得知当前手机 APP 层支持的 ev 范围。（这个范围不是死的，客户可以扩展。）</p>
-<h4 id="当前-ROM-支持的-ev-范围"><a href="#当前-ROM-支持的-ev-范围" class="headerlink" title="当前 ROM 支持的 ev 范围"></a>当前 ROM 支持的 ev 范围</h4><p>手机支持的 ev 范围可以通过下面这两个接口计算出：</p>
-<p><a href="https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics#CONTROL_AE_COMPENSATION_RANGE" target="_blank" rel="external">CameraCharacteristics#CONTROL_AE_COMPENSATION_RANGE</a></p>
-<p><a href="https://developer.android.com/reference/android/hardware/camera2/CameraCharacteristics#CONTROL_AE_COMPENSATION_STEP" target="_blank" rel="external">CameraCharacteristics#CONTROL_AE_COMPENSATION_STEP</a></p>
-<p>上面两个接口的含义可以直接看下官方文档的解释，解释的很清楚。简单来说手机支持的 ev 范围就是 CONTROL_AE_COMPENSATION_RANGE 给出的范围乘以 CONTROL_AE_COMPENSATION_STEP。</p>
-<p>比如 RANGE 是 [-18, 18]，STEP 是 1/6，那当前支持的 ev 范围是 [-3, 3]。</p>
-<p>PS：如果最暗帧（比如上面例子中的 ev-3）还是不满足算法要求，比如高光细节不够等，就可以请客户协助扩展 RANGE，也就是扩展支持的 ev。</p>
-<h4 id="设置-ev"><a href="#设置-ev" class="headerlink" title="设置 ev"></a>设置 ev</h4><p>设置 ev 是通过设置 <a href="https://developer.android.com/reference/android/hardware/camera2/CaptureRequest#CONTROL_AE_EXPOSURE_COMPENSATION" target="_blank" rel="external">CaptureRequest#CONTROL_AE_EXPOSURE_COMPENSATION</a> 的值，需要注意的是，我们设置的不是手机支持的 ev 值，而是上面 CONTROL_AE_COMPENSATION_RANGE 给出的范围里面的值。还是上面的例子，如果我们要拍 ev+1，那么我们设置的值就应该是 1/(1/6) = 6，以此类推 ev+2 就是设置 12，所以当你发现 ev+1 不够亮而 ev+2 又太亮时，其实还可以把 ev 设置为 6 ~ 12 间的任意值，都是支持的。</p>
-<p>来看下代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> List&lt;CaptureRequest&gt; <span class="title">getCaptureRequestBuilder</span><span class="params">()</span> <span class="keyword">throws</span> CameraAccessException </span>&#123;</div><div class="line">    CaptureRequest.Builder captureBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_STILL_CAPTURE);</div><div class="line">    captureBuilder.setTag(getCameraId());</div><div class="line">    captureBuilder.addTarget(mImageReader.getSurface());</div><div class="line">    captureBuilder.set(CaptureRequest.CONTROL_CAPTURE_INTENT, CaptureRequest.CONTROL_CAPTURE_INTENT_STILL_CAPTURE);</div><div class="line">    captureBuilder.set(CaptureRequest.CONTROL_AE_MODE, CameraMetadata.CONTROL_AE_MODE_ON);</div><div class="line">    captureBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.FLASH_MODE_OFF);</div><div class="line"></div><div class="line">    List&lt;CaptureRequest&gt; requests = <span class="keyword">new</span> ArrayList&lt;&gt;(EV_REQUIRED_SIZE);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= EV_REQUIRED_SIZE; ++i) &#123;</div><div class="line">        <span class="keyword">if</span> (EXCLUDE_INDEX.contains(i)) &#123;</div><div class="line">            <span class="keyword">int</span> realEvValue = calculateAECompensation(EV_INPUT_PARAMS[i-<span class="number">1</span>]);</div><div class="line">            captureBuilder.set(CaptureRequest.CONTROL_AE_EXPOSURE_COMPENSATION, realEvValue);</div><div class="line">        &#125;</div><div class="line">        requests.add(captureBuilder.build());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> requests;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">calculateAECompensation</span><span class="params">(<span class="keyword">int</span> evValue)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</div><div class="line">    CameraCharacteristics characteristics = getManager().getCharacteristics(getCameraId());</div><div class="line"></div><div class="line">    Range&lt;Integer&gt; range = characteristics.get(CameraCharacteristics.CONTROL_AE_COMPENSATION_RANGE);</div><div class="line">    <span class="keyword">if</span> (range == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> max = range.getUpper();</div><div class="line">    <span class="keyword">int</span> min = range.getLower();</div><div class="line">    Log.d(<span class="string">"TAG"</span>, <span class="string">"CONTROL_AE_COMPENSATION_RANGE Lower: "</span> + min + <span class="string">", Upper: "</span> + max); <span class="comment">// eg: -18 ~ 18</span></div><div class="line">    <span class="keyword">if</span> (min == <span class="number">0</span> || max == <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    Rational rational = characteristics.get(CameraCharacteristics.CONTROL_AE_COMPENSATION_STEP);</div><div class="line">    <span class="keyword">if</span> (rational == <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">return</span> result;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">double</span> step = rational.doubleValue();</div><div class="line">    Log.d(<span class="string">"TAG"</span>, <span class="string">"CONTROL_AE_COMPENSATION_STEP: "</span> + step); <span class="comment">// eg: 1/6</span></div><div class="line"></div><div class="line">    <span class="keyword">double</span> aeCompensation = evValue / step;</div><div class="line">    result = range.clamp((<span class="keyword">int</span>) Math.rint(aeCompensation));</div><div class="line">    Log.d(<span class="string">"TAG"</span>, <span class="string">"calculateAECompensation required ev: "</span> + evValue + <span class="string">", result: "</span> + result);</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利用 <code>calculateAECompensation</code> 函数我们将平时我们说的 ev+1，ev0，ev-1 转换成对应需要设置的值：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> realEvValue = calculateAECompensation(EV_INPUT_PARAMS[i-<span class="number">1</span>]);</div><div class="line">captureBuilder.set(CaptureRequest.CONTROL_AE_EXPOSURE_COMPENSATION, realEvValue);</div></pre></td></tr></table></figure>
-<h4 id="隔帧取"><a href="#隔帧取" class="headerlink" title="隔帧取"></a>隔帧取</h4><p>在我们设置了 ev 之后，并不是立马就会生效的，它有一个收敛过程，所以我们需要隔帧取。</p>
-<p>比如我们需要 3 张 ev+1，3 张 ev0，3 张 ev-2， 3 张 ev-4 共 12 张。我们不能只下发 12 个 request（这样的话我们拿到的输入图 ev 可能不对），而是需要下发 16 个 request。具体做法是每个 ev 档位我们都多拍一张，图片来的时候，又丢弃掉每个 ev 档位的第一张。在这个例子也就是下发 4 张 ev+1，4 张 ev0，4 张 ev-2， 4 张 ev-4 共 16 张。然后当图片到来时，丢弃掉第 1 张 ev+1，第 1 张 ev0，第 1 张 ev-1，第 1 张 ev-2。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(!EXCLUDE_INDEX.contains(mImageIndex)) &#123;</div><div class="line">    <span class="keyword">byte</span>[] nv21 = getNV21DataFromImage(capImage);</div><div class="line">    mBurstImages.add(nv21);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="高通-camx-和非-camx-架构的设置-ev-值的差异"><a href="#高通-camx-和非-camx-架构的设置-ev-值的差异" class="headerlink" title="高通 camx 和非 camx 架构的设置 ev 值的差异"></a>高通 camx 和非 camx 架构的设置 ev 值的差异</h4><p>另外在 camx 和非 camx 架构上设置 ev 时也有一个差异。</p>
-<p>细心的同学可能已经发现了，上面的代码中有一个 if 判断：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">List&lt;CaptureRequest&gt; requests = <span class="keyword">new</span> ArrayList&lt;&gt;(EV_REQUIRED_SIZE);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= EV_REQUIRED_SIZE; ++i) &#123;</div><div class="line">        <span class="keyword">if</span> (EXCLUDE_INDEX.contains(i)) &#123;</div><div class="line">            <span class="keyword">int</span> realEvValue = calculateAECompensation(EV_INPUT_PARAMS[i-<span class="number">1</span>]);</div><div class="line">            captureBuilder.set(CaptureRequest.CONTROL_AE_EXPOSURE_COMPENSATION, realEvValue);</div><div class="line">        &#125;</div><div class="line">        requests.add(captureBuilder.build());</div><div class="line">    &#125;</div><div class="line"><span class="keyword">return</span> requests;</div></pre></td></tr></table></figure>
-<p>这个是非 camx 架构设置 ev 的方式，即我们只设置每组 ev 第一张的 ev 值。还是上面的例子，我们在第一张 ev+1 的 request 中设置它的 ev 为 +1，后续三张 ev+1 不需要再设置 ev 值。接着我们在第一张 ev0 的 request 中设置它的 ev 为 0，后续三张 ev0 不需要再设置 ev 值。以此类推。原因是在非 camx 框架上，每一次设置 ev 值都会有收敛过程，所以我们只需要设置每组 ev 第一张的 ev 值。如果每张都设置它的 ev 值，拍出来的图会发现同一组 ev 亮度会不一样。</p>
-<p>在 camx 新架构的平台上，设置 ev 是直接就生效的，所以需要设置每一张的 ev 值，不再需要判断是否是每组 ev 的第一张：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">List&lt;CaptureRequest&gt; requests = <span class="keyword">new</span> ArrayList&lt;&gt;(EV_REQUIRED_SIZE);</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= EV_REQUIRED_SIZE; ++i) &#123;</div><div class="line">        <span class="keyword">int</span> realEvValue = calculateAECompensation(EV_INPUT_PARAMS[i<span class="number">-1</span>]);</div><div class="line">            captureBuilder.<span class="built_in">set</span>(CaptureRequest.CONTROL_AE_EXPOSURE_COMPENSATION, realEvValue);</div><div class="line">        requests.add(captureBuilder.build());</div><div class="line">    &#125;</div><div class="line"><span class="keyword">return</span> requests;</div></pre></td></tr></table></figure>
-<p>注意：经过项目上验证，camx 和非 camx 架构都需要上一节提到过的隔帧取。</p>
-<p><strong>全文完</strong></p>
-<p><strong>感谢阅读</strong></p>
-
-          
+          <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>YUV 夜景这类 HDR 效果的 SDK，需要不同 EV （Exposure Value）的输入。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/29/2020-02-29-How-app-get-exposure-value/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -925,394 +793,14 @@
 
       
         
-          
-            <h3 id="条款18：让接口容易被正确使用，不易被误用"><a href="#条款18：让接口容易被正确使用，不易被误用" class="headerlink" title="条款18：让接口容易被正确使用，不易被误用"></a>条款18：让接口容易被正确使用，不易被误用</h3><p>欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。</p>
-<p><strong>1. 明智而审慎地导入新类型对预防“接口被误用”有神奇疗效</strong></p>
-<p>每一个接口的参数传递必须被准确限制，不易被误用。例如：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Date(<span class="keyword">int</span> month, <span class="keyword">int</span> day, <span class="keyword">int</span> year);</div></pre></td></tr></table></figure>
-<p>可以改写为：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Date(<span class="keyword">const</span> Month&amp; month, <span class="keyword">const</span> Day&amp; day, <span class="keyword">const</span> Year&amp; year);</div></pre></td></tr></table></figure>
-<p>其中 class 或者 struct 的 Month 等抽象数据类型的构造函数必须是 explicit，阻止其进行隐式转换。</p>
-<p>这样修改后客户不需要去记住构造函数中年月日的顺序，并且如果参数传递错误，在编译期就会报错。</p>
-<p>再例如 Month，它的值只能从 1 到 12。我们可以将它的构造函数私有化，然后提供十二个月份的静态函数，函数内构造并返回当前月份的对象。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Month</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">  <span class="keyword">public</span>:</div><div class="line">    <span class="function"><span class="keyword">static</span> Month <span class="title">Jan</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Month(<span class="number">1</span>); &#125;</div><div class="line">    <span class="function"><span class="keyword">static</span> Month <span class="title">Feb</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Month(<span class="number">2</span>); &#125;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    <span class="function"><span class="keyword">static</span> Month <span class="title">Dec</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Month(<span class="number">12</span>); &#125;</div><div class="line"></div><div class="line">  <span class="keyword">private</span>:</div><div class="line">    <span class="function"><span class="keyword">explicit</span> <span class="title">Month</span><span class="params">(<span class="keyword">int</span> m)</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<p>这样可以限制客户传递错误的月份。</p>
-<p><strong>2. 预防客户错误的另一个办法是，限制类型内什么事可以做，什么事不能做。常见的限制是加上 const 关键字。</strong></p>
-<p>以 const 修饰 operator * 的返回类型，可阻止客户在使用自定义类型时犯错。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (a * b = c)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>考虑上面的 <code>if</code> 判断，如果我们以 <code>const</code> 修饰了该变量类型乘法操作符的返回值，那么上述语句在编译器就会报错，因为 <code>const</code> 常量不允许被赋值。如果没有使用 <code>const</code> 修饰，你可以想象的到会发生什么样的 bug。</p>
-<p><strong>3. 除非有好理由，否则应该尽量令你的 type 行为与内置 types 一致。</strong></p>
-<ul>
-<li>就像前面提到的，如果我们编写自己的数值类，那么它的行为应该和 int 等内置类型一样。如果像 <code>if (a * b = c)</code> 这样使用数值类型，在编译期就应该报错。</li>
-<li>每个 STL 容器都有 <code>size()</code> 函数，返回容器的大小。当我们自己的类型提供类似功能时也应该使用 <code>size()</code> 函数命名。</li>
-</ul>
-<p><strong>4. 任何接口如果要求客户必须记得做某些事，就是有着不正确使用的倾向。</strong></p>
-<p>因为客户可能会忘记做那件事情。考虑下面的这个函数，它返回一个指针。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">Investment* <span class="title">createInvestment</span><span class="params">()</span></span>;</div></pre></td></tr></table></figure>
-<p>该函数将释放资源的任务交给了接口的使用者，这可能会导致 bug，因为接口使用者可能会忘记释放资源。更好的做法是使用智能指针，将释放资源的任务交给智能智能，这样不仅可以预防使用接口的人犯错，也是比较良好的 API 设计。并且 <code>shared_ptr</code> 还有支持定制删除器等优点。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;Investment&gt; createInvestment();</div></pre></td></tr></table></figure>
-<h3 id="条款19：设计-class-犹如设计-type"><a href="#条款19：设计-class-犹如设计-type" class="headerlink" title="条款19：设计 class 犹如设计 type"></a>条款19：设计 class 犹如设计 type</h3><p>该条款主要是列举了一些我们在设计 class 时需要考虑的问题：</p>
-<p><strong>1. 新 type 的对象应该如何被创建与销毁？</strong></p>
-<p>这会影响到 class 的构造、析构、内存分配和释放等函数。</p>
-<p><strong>2. 对象的初始化和对象的赋值该有什么样的差别？</strong></p>
-<p>关键点是构造函数与赋值操作符的实现，初始化与赋值的区别。</p>
-<p><strong>3. 新 type 的对象如果被 pass-by-value，意味着什么？</strong></p>
-<p>拷贝构造函数用来定义一个 type 的 pass-by-value 实现。 </p>
-<p><strong>4. 什么是新 type 的合法值？</strong></p>
-<p>需要在构造函数、赋值操作符和 setter 函数中注意使用。</p>
-<p><strong>5. 你的新 type 需要配合某个继承体系吗？</strong></p>
-<p>需要注意基类函数的 virtual 或 non-virtual 函数。以及若自己是多态基类，需要令析构函数是 virtual。</p>
-<p><strong>6. 你的新 type 需要什么样的转换？</strong></p>
-<p>你是否需要支持或提供隐式、显式转换。</p>
-<p><strong>7. 什么样的操作符和函数对此新 type 而言是合理的？</strong></p>
-<p>你应该实现哪些操作符，其中哪些应该是 member，哪些是 non-member。</p>
-<p><strong>8. 什么样的标准函数应该被驳回？</strong></p>
-<p>不需要的自动生成函数应该禁用。</p>
-<p><strong>9. 谁该取用新 type 成员？</strong></p>
-<p>这关系到成员的 public、private、protected 属性以及 friend 函数的设置。</p>
-<p><strong>10. 什么是新 type 的未声明接口？</strong></p>
-<p><strong>11. 你的新 type 有多么一般化？</strong></p>
-<p>是否需要从 class 到 class template 的转变。</p>
-<p><strong>12. 你真的需要一个新 type 吗？</strong></p>
-<p>有时候其实仅仅是需要一个扩展功能的函数而已。</p>
-<p>当我们需要新增一个类型时，我们应该先考虑一下这些问题，当考虑清楚后，然后再着手编码。</p>
-<h3 id="条款20：宁以-pass-by-reference-to-const-替换-pass-by-value"><a href="#条款20：宁以-pass-by-reference-to-const-替换-pass-by-value" class="headerlink" title="条款20：宁以 pass-by-reference-to-const 替换 pass-by-value"></a>条款20：宁以 pass-by-reference-to-const 替换 pass-by-value</h3><p>C++ 默认的情况下是使用 pass-by-value，这种方式有一些缺点：</p>
-<ol>
-<li><p>开销大，可能涉及多个对象的构造和析构。</p>
-</li>
-<li><p>对象切割问题。</p>
-</li>
-</ol>
-<p>考虑到如上这两个问题，在大部分时候我们应该优先考虑是否能够以传引用的方式替换传值。传递引用效率很高，因为它不存在任何开销。同时也能避免对象切割问题。加上 const 关键字可以向函数调用者保证函数内不会修改该引用对象。</p>
-<p>当然，优先考虑传递引用并不代表着我们不再使用值传递。对什么类型选用 pass-by-value 比较好：</p>
-<ol>
-<li><p>内置类型</p>
-</li>
-<li><p>STL的迭代器与函数对象</p>
-</li>
-</ol>
-<p>最后，自定义的 type 不适宜 pass-by-value，原因如下：</p>
-<ol>
-<li><p>对象小并不意味其 copy 构造函数不昂贵，特别是涉及深拷贝的时候。</p>
-</li>
-<li><p>某些编译器对待内置类型和自定义类型的态度截然不同，即便两者的底层表述一致。如 double 和只有一个 double 成员的 class 是有区别的。</p>
-</li>
-<li><p>作为一个用户自定义的类型，它的大小很容易变化。</p>
-</li>
-</ol>
-<h3 id="条款21：必须返回对象时，别妄想返回其-reference"><a href="#条款21：必须返回对象时，别妄想返回其-reference" class="headerlink" title="条款21：必须返回对象时，别妄想返回其 reference"></a>条款21：必须返回对象时，别妄想返回其 reference</h3><p>上一个条款说了我们应该优先使用引用。在函数内若想返回引用，对象必须先存在，而该对象也应该在函数中声明出来，这样可能会陷入下面列举的问题中：</p>
-<p><strong>错误1：返回 reference 指向一个 local stack 对象。</strong></p>
-<p>函数返回在栈上声明的对象，当退出函数的时候该对象会被 delete。这导致了函数返回的引用指向一个不存在的对象。</p>
-<p><strong>错误2：返回 reference 指向一个 heap-allocated 对象</strong></p>
-<p>函数返回在堆上声明的对象，这样又将释放资源的责任交给了客户，客户可能会忘记做这件事。即使对变量进行了 delete，有时候还是会出现内存泄漏。考虑如下代码：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Retional w, x, y, z;</div><div class="line">w = x * y * z;</div></pre></td></tr></table></figure>
-<p>Retional 的乘法操作符的结果返回指向堆上分配的对象。在上面的这个例子中，即使 delete 了 w， x * y 分配的内存却没有办法 delete 掉。</p>
-<p><strong>错误3：返回 reference 指向一个 local static 对象</strong></p>
-<p>函数返回 local static 对象，存在两个问题。第一个是多线程安全问题，第二个是多次调用都是对同一个内存上的值作修改。当客户写下如下代码时，条件判断将会 always true。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Retional a, b, c, d;</div><div class="line"><span class="keyword">if</span> ((a * b) == (c * d))</div><div class="line">&#123;</div><div class="line">    <span class="comment">// always true</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">&#123;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>综上所述，一个必须返回新对象的函数的正确写法是：就让那个函数返回一个新对象。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">inline</span> <span class="keyword">const</span> Retional <span class="keyword">operator</span> * (<span class="keyword">const</span> Retional &amp;lhs, <span class="keyword">const</span> Retional &amp;rhs)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">return</span> Retional(lhs.n * rhs.n, lhs.d * rhs.d);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>总结：</p>
-<ul>
-<li><p>绝对不要返回 pointer 或 reference 指向一个 local stack 对象</p>
-</li>
-<li><p>绝对不要返回 reference 指向一个 heap-allocated 对象</p>
-</li>
-<li><p>绝对不要返回 pointer 或 reference 指向一个 local static 对象而有可能同时需要多个这样的对象。</p>
-</li>
-<li><p>一个必须返回新对象的函数的正确写法是：就让那个函数返回一个新对象。</p>
-</li>
-</ul>
-<h3 id="条款22：将成员变量声明为-private"><a href="#条款22：将成员变量声明为-private" class="headerlink" title="条款22：将成员变量声明为 private"></a>条款22：将成员变量声明为 private</h3><p>将成员变量声明为 private 的好处有：</p>
-<ol>
-<li><p>public 的接口全是函数，调用的时候都得在后面加()，可以保持接口的一致性。</p>
-</li>
-<li><p>使用函数才能对变量修改，这样可以让你对成员变量的处理有更加精确的控制。可以定义变量为只读、只写、可读可写或不可读写。</p>
-</li>
-<li><p>保护类的封装性。方便日后修改其实现，或者针对不同客户提供不同的实现。</p>
-</li>
-</ol>
-<p>另外：</p>
-<ul>
-<li>逻辑的可变性与封装性成正比，不封装意味着不可改变。</li>
-<li>public 与 protected 的封装性都是很差的，或者说根本不提供封装。因为在这两种情况下，如果成员变量被改变，都会有不可预知的大量代码受到破坏。</li>
-</ul>
-<h3 id="条款23：宁以-non-member、non-friend-替换-member"><a href="#条款23：宁以-non-member、non-friend-替换-member" class="headerlink" title="条款23：宁以 non-member、non-friend 替换 member"></a>条款23：宁以 non-member、non-friend 替换 member</h3><p>越多成员 / 友元函数可以访问类的数据，数据的封装性就越低。<br>因此非成员、非友元更能保护类的封装性。</p>
-<p>上面的论述有两点需要注意：<br><strong>1. 这个论述只适应于非成员且非友元的函数，友元函数和成员函数一样对类的封装性有同样的冲击力。</strong></p>
-<p><strong>2. 因为在意封装性而让某函数成为 class 的非成员函数并不意味着不能使其成为别的 class 的成员函数</strong></p>
-<p>在 C++ 中，比较自然的做法是让一个扩展类功能的便利函数成为非成员非友元函数并且位于类所在的同一个 namespace 内。而且多个便利函数还可以分离编译（根据功能放在不同头文件里，但都位于同一个命名空间），扩大类的机能扩充性。</p>
-<h3 id="条款24：若所有参数皆需类型转换，请为此采用-non-member-函数"><a href="#条款24：若所有参数皆需类型转换，请为此采用-non-member-函数" class="headerlink" title="条款24：若所有参数皆需类型转换，请为此采用 non-member 函数"></a>条款24：若所有参数皆需类型转换，请为此采用 non-member 函数</h3><p>虽然构造函数支持隐式类型转换不是好的主意，但有时候会有例外，最常见的是建立数据类型的时候，往往需要隐式转换。 </p>
-<p>例如存在一个有理数类，通常会让它支持隐式转换：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">  <span class="keyword">public</span>:    </div><div class="line">    Rational(<span class="keyword">int</span> numerator = <span class="number">0</span>, <span class="keyword">int</span> denominator = <span class="number">1</span>);</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numerator</span><span class="params">()</span> <span class="keyword">const</span></span>;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">denominator</span><span class="params">()</span> <span class="keyword">const</span></span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>当需要两有理数相乘的时候，可以将其实现为成员函数：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">  <span class="keyword">public</span>:</div><div class="line">    <span class="keyword">const</span> Rational <span class="keyword">operator</span>* (<span class="keyword">const</span> Rational&amp; rhs) <span class="keyword">const</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>这个函数大部分时候都能正常工作，不过它不能支持下面这样的语法：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Rational result = <span class="number">2</span> * oneself</div></pre></td></tr></table></figure>
-<p>因为对 int 型来说，没有 * 操作符可以与 Rational 类型相乘，并且在作用域内，也找不到合适的函数来让 int 型和 Rational 类型相乘。</p>
-<p>在这种情况下，我们可以使用非成员函数来替换成员函数：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span></span></div><div class="line"><span class="class">&#123;</span></div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">const</span> Rational <span class="keyword">operator</span>* (<span class="keyword">const</span> Rational&amp; lhs, <span class="keyword">const</span> Rational&amp; rhs)</div><div class="line">&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样前面提到的 <code>2 * oneself</code> 就能正常编译通过且以符合我们期望的方式运行。因为编译器能查找到适用于上述形式的乘法函数。</p>
-<p>综上所述，如果某个函数的所有参数都需要进行类型转换，那么这个函数应该是个非成员函数。特别适用于数值类型的运算符函数。</p>
-<h3 id="条款25：考虑写出一个不抛异常的-swap-函数"><a href="#条款25：考虑写出一个不抛异常的-swap-函数" class="headerlink" title="条款25：考虑写出一个不抛异常的 swap 函数"></a>条款25：考虑写出一个不抛异常的 swap 函数</h3><p>虽然该条款的名字是考虑写出一个不抛异常的 swap 函数，但内容其实主要讲的是如何编写和使用 swap 函数。</p>
-<p><strong>1. 缺省情况下 swap 动作可由标准程序库提供的 swap 函数完成。</strong></p>
-<p><strong>2. 何时应该编写自己的 swap 函数？</strong></p>
-<p>如果 swap 的缺省实现可以满足你的需求和效率，你不需要做任何事。<br>否则：</p>
-<ol>
-<li><p>为你的类型提供一个 public swap 函数，让它高效的置换类型的两个对象的值。</p>
-</li>
-<li><p>在你的 class 或 template 所在的命名空间内提供一个非成员 swap 函数，并让它调用上述 swap 成员函数。</p>
-</li>
-<li><p>如果你正编写一个 class，为你的 class 特化 std::swap。并令它调用你的 swap 成员函数。（防止用户直接调用 std::swap）</p>
-</li>
-</ol>
-<p><strong>3. 如果你调用 swap 函数，请确定包含一个 using std::swap 的声明。然后不加任何修饰符，赤裸裸的调用 swap 函数。</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">(T &amp;a, T &amp;b)</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::swap; <span class="comment">// 令 std::swap 在此函数内可用</span></div><div class="line">    swap(a, b); <span class="comment">// 为 T 类型对象调用最佳的 swap 版本</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当调用 swap 函数时，swap 函数的查找优先级如下：</p>
-<ol>
-<li>global 作用域或类型 T 的命令空间内</li>
-<li>std::swap 针对 T 的特化版本</li>
-<li>std::swap 一般版本</li>
-</ol>
-<p>使用 swap 函数的错误方式：<code>std::swap(obj1, obj2)</code>;</p>
-<p>总结：</p>
-<ul>
-<li><p>当 std::swap 对你的类型效率不高时，提供一个 swap 成员函数，并确定这个函数不抛出异常。</p>
-</li>
-<li><p>如果你提供一个成员 swap 函数，也应该提供一个非成员 swap 函数用来调用前者。对于 class，也请特化 std::swap。</p>
-</li>
-<li><p>调用 swap 时应对 std::swap 使用 using 声明。</p>
-</li>
-<li><p>为自定义类型进行 std template 全特化是好事，但千万不要尝试在 std 内加入某些对 std 而言全新的东西。</p>
-</li>
-</ul>
-<p><strong>全文完</strong></p>
-<p><strong>感谢阅读</strong></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://androidhot.github.io/2019/03/19/2019-03-19_Transitions_Everywhere/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhiwei Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/17120655?v=4&u=d17931ce5e11210e09e2caf8140a7cba9fe60a71&s=400">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="假装在香港">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/19/2019-03-19_Transitions_Everywhere/" itemprop="url">Transitions Everywhere</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-19T21:24:22+08:00">
-                2019-03-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文是 <a href="https://developer.android.com/training/transitions/overview.html" target="_blank" rel="external">Android Transition Framework</a> 的学习笔记，先来看一下官网的简介：</p>
-<blockquote>
-<p>Android’s transition framework allows you to animate all kinds of motion in your UI by simply providing the starting layout and the ending layout. You can select what type of animation you want (such to fade the views in/out or change the view sizes) and the transition framework figures out how to animate from the starting layout to the ending layout.</p>
-</blockquote>
-<p>Android Transition Framework 主要用来做下面这三件事情：</p>
-<ol>
-<li>从一个 Activity 跳转到另一个 Activity 的时候添加一个过渡动画。</li>
-<li>不同 Activity 间的分享元素过渡动画。</li>
-<li>给 Activity 内的 View 添加动画。</li>
-</ol>
-<p>下面会从这三个方面来介绍 Transition。</p>
-<h2 id="1-简单的-Activity-过渡动画"><a href="#1-简单的-Activity-过渡动画" class="headerlink" title="1. 简单的 Activity 过渡动画"></a>1. 简单的 Activity 过渡动画</h2><p>第一种使用场景是：在 Activity 跳转时，给 Activity 内的 View 添加动画。</p>
-<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g186gdpj0gj20mc0d3aa3.jpg" alt="transition A to B"></p>
-<p>Activity 间的过渡动画有三种，分别是：Explode，Slide，Fade。先来看下效果：</p>
-<p>Explode:</p>
-<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g18735vnf7g20a80i6nio.gif" alt="Explode"></p>
-<p>Slide:</p>
-<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g18746lwt1g20a80i6h7f.gif" alt="Slide"></p>
-<p>Fade:</p>
-<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g1874mylq2g20a80i64kl.gif" alt="Fade"></p>
-<p><strong>使用方式：</strong></p>
-<p>1.创建你想要使用的 Transition 效果并进行一些设置。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Slide slideTransition=<span class="keyword">new</span> Slide();</div><div class="line">slideTransition.setSlideEdge(Gravity.LEFT);</div><div class="line">slideTransition.setDuration(getResources().getInteger(R.integer.anim_duration_long));</div></pre></td></tr></table></figure>
-<p>2.设置使用动画的时机。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">getWindow().setEnterTransition(slideTransition); <span class="comment">// 设置进入动画</span></div><div class="line">getWindow().setExitTransition(slideTransition); <span class="comment">// 设置退出动画</span></div><div class="line">getWindow().setReturnTransition(slideTransition); <span class="comment">// 设置返回的动画</span></div><div class="line">getWindow().setReenterTransition(slideTransition); <span class="comment">// 设置重新进入的动画</span></div></pre></td></tr></table></figure>
-<ul>
-<li>当没有设置 <code>ReturnTransition</code> 时，此时退出当前的 Activity B 返回之前的 Activity A，当前的 Activity B 会使用 <code>EnterTransition</code> 来作为退出的过渡动画。</li>
-<li>当没有设置 <code>ReenterTransition</code> 时，此时重新进入之前的 Activity A 时，Activity A 会使用 <code>ExitTransition</code> 来作为进入的过渡动画。</li>
-</ul>
-<p>除了直接在 Java / Kotlin 代码中创建 Transition 外，还可以使用定义在 XML 中的 Transition：</p>
-<blockquote>
-<p>res/transition/activity_fade.xml</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">slide</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/"</span></span></div><div class="line"><span class="tag">    <span class="attr">android:duration</span>=<span class="string">"1000"</span>/&gt;</span></div></pre></td></tr></table></figure>
-<p>然后，在代码中使用 <code>TransitionInflater</code> 来加载 XML 中定义的 Transition：</p>
-<blockquote>
-<p>MainActivity.java</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</div><div class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_transition);</div><div class="line">    setupWindowAnimations();</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setupWindowAnimations</span><span class="params">()</span> </span>&#123;</div><div class="line">    Slide slide = TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.activity_slide);</div><div class="line">    getWindow().setExitTransition(slide);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="2-分享元素的过渡动画"><a href="#2-分享元素的过渡动画" class="headerlink" title="2. 分享元素的过渡动画"></a>2. 分享元素的过渡动画</h2><p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g1886gxvzgj20mc0d30t0.jpg" alt="shared element"></p>
-<p>第二种使用场景是：在两个 Activity 间有两个不同的 View，我们通过过渡动画来将两个 View 联系起来，从而可以告诉用户应用完成了从一个页面到另一个页面的跳转。Transition Framework 会执行任何必要的任何动画。视觉效果还是非常棒的：</p>
-<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g188bhmv2eg20a80i6h79.gif" alt="share element anim"></p>
-<p>当然，这只是一个动画，View 并没有从前一个 Layout 移动到后一个 Layout，他们是两个不同的 View。</p>
-<p>使用方式：</p>
-<p>1.启用 Window Content Transition</p>
-<p>在 <code>styles.xml</code> 中设置 <code>android:windowContentTransitions</code> 为 <code>ture</code>。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"BaseTheme"</span> <span class="attr">parent</span>=<span class="string">"@style/Theme.AppCompat.Light.NoActionBar"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    ...</span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowContentTransitions"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">item</span></span></span></div><div class="line"><span class="undefined">    ...</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>顺带一提，如果你愿意的话，可以在这里设置整个 App 默认的 enter, exit 和 shared element transitions 。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"BaseTheme"</span> <span class="attr">parent</span>=<span class="string">"@style/Theme.AppCompat.Light.NoActionBar"</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="undefined">    ...</span></div><div class="line"><span class="xml">    <span class="comment">&lt;!-- specify enter and exit transitions --&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowEnterTransition"</span>&gt;</span>@transition/explode<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowExitTransition"</span>&gt;</span>@transition/explode<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></div><div class="line"><span class="undefined"></span></div><div class="line"><span class="xml">    <span class="comment">&lt;!-- specify shared element transitions --&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowSharedElementEnterTransition"</span>&gt;</span>@transition/changebounds<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></div><div class="line"><span class="xml">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:windowSharedElementExitTransition"</span>&gt;</span>@transition/changebounds<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></div><div class="line"><span class="undefined">    ...</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>2.在两个 View 的布局属性中使用相同的 <code>android:transitionName</code>。</p>
-<blockquote>
-<p>layout/activity_a.xml</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/small_blue_icon"</span></span></div><div class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"@style/MaterialAnimations.Icon.Small"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">"@drawable/circle"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:transitionName</span>=<span class="string">"@string/blue_name"</span> /&gt;</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>layout/activity_b.xml</p>
-</blockquote>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ImageView</span></span></div><div class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/big_blue_icon"</span></span></div><div class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">"@style/MaterialAnimations.Icon.Big"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:src</span>=<span class="string">"@drawable/circle"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:transitionName</span>=<span class="string">"@string/blue_name"</span> /&gt;</span></div></pre></td></tr></table></figure>
-<p>3.使用 shared element 启动另一个 Activity</p>
-<p>使用 <code>ActivityOptions.makeSceneTransitionAnimation()</code> 并传入 origin view 以及步骤二中定义的 transition name。</p>
-<blockquote>
-<p>MainActivity.java</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">blueIconImageView.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">        Intent i = <span class="keyword">new</span> Intent(MainActivity.<span class="keyword">this</span>, SharedElementActivity.class);</div><div class="line"></div><div class="line">        View sharedView = blueIconImageView;</div><div class="line">        String transitionName = getString(R.string.blue_name);</div><div class="line"></div><div class="line">        ActivityOptions transitionActivityOptions = ActivityOptions.makeSceneTransitionAnimation(MainActivity.<span class="keyword">this</span>, sharedView, transitionName);</div><div class="line">        startActivity(i, transitionActivityOptions.toBundle());</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>正如我们在前面所看到的动画，Transition Framework 会执行必要的动画，给人一种 View 从 Activity A 移动到了 Activity B 的错觉。</p>
-<p>4.在 Fragment 间使用 shared element</p>
-<p>只需要在 <code>FragmentTransaction</code> 切换 Fragment 时调用 <code>addSharedElement</code> 并将 origin view 和 transition name 传进去。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">FragmentB fragmentB = FragmentB.newInstance(sample);</div><div class="line"></div><div class="line"><span class="comment">// Defines enter transition for all fragment views</span></div><div class="line">Slide slideTransition = <span class="keyword">new</span> Slide(Gravity.RIGHT);</div><div class="line">slideTransition.setDuration(<span class="number">1000</span>);</div><div class="line">sharedElementFragment2.setEnterTransition(slideTransition);</div><div class="line"></div><div class="line"><span class="comment">// Defines enter transition only for shared element</span></div><div class="line">ChangeBounds changeBoundsTransition = TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.change_bounds);</div><div class="line">fragmentB.setSharedElementEnterTransition(changeBoundsTransition);</div><div class="line"></div><div class="line">getFragmentManager().beginTransaction()</div><div class="line">        .replace(R.id.content, fragmentB)</div><div class="line">        .addSharedElement(blueView, getString(R.string.blue_name))</div><div class="line">        .commit();</div></pre></td></tr></table></figure>
-<h2 id="3-通过-Transition-实现-View-动画"><a href="#3-通过-Transition-实现-View-动画" class="headerlink" title="3. 通过 Transition 实现 View 动画"></a>3. 通过 Transition 实现 View 动画</h2><p>使用 Transition 给 View 添加动画有两种方式：一种是改变 Scene，另一种是改变 View 的布局。</p>
-<p>下面依次介绍</p>
-<h3 id="Scenes"><a href="#Scenes" class="headerlink" title="Scenes"></a>Scenes</h3><p>Transition 可以发生在不同的 Scene 间，一个 Scene 只是一个静态的布局。当你从一个 Scene 切换到另一个 Scene 时，Transition Framework 会根据你传入的 transition 在 View 间执行必要的动画。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一些不用的 Scene</span></div><div class="line">scene1 = Scene.getSceneForLayout(sceneRoot, R.layout.activity_animations_scene1, <span class="keyword">this</span>);</div><div class="line">scene2 = Scene.getSceneForLayout(sceneRoot, R.layout.activity_animations_scene2, <span class="keyword">this</span>);</div><div class="line">scene3 = Scene.getSceneForLayout(sceneRoot, R.layout.activity_animations_scene3, <span class="keyword">this</span>);</div><div class="line">scene4 = Scene.getSceneForLayout(sceneRoot, R.layout.activity_animations_scene4, <span class="keyword">this</span>);</div><div class="line"></div><div class="line">(...)</div><div class="line"></div><div class="line"><span class="comment">// 从一个 Scene transition 到另一个 Scene</span></div><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">    <span class="keyword">switch</span> (v.getId()) &#123;</div><div class="line">        <span class="keyword">case</span> R.id.button1:</div><div class="line">            TransitionManager.go(scene1, <span class="keyword">new</span> ChangeBounds());</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> R.id.button2:</div><div class="line">            TransitionManager.go(scene2, TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.slide_and_changebounds));</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> R.id.button3:</div><div class="line">            TransitionManager.go(scene3, TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.slide_and_changebounds_sequential));</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">        <span class="keyword">case</span> R.id.button4:</div><div class="line">            TransitionManager.go(scene4, TransitionInflater.from(<span class="keyword">this</span>).inflateTransition(R.transition.slide_and_changebounds_sequential_with_interpolators));</div><div class="line">            <span class="keyword">break</span>;  </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Transition Framework 将获取当前 Scene 中的所有可见视图，并计算和执行下一个 Scene 排列这些视图所需的任何必要动画。效果如下：</p>
-<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g18c5o0i4rg20a80i67k5.gif" alt="scenes anim"></p>
-<h3 id="Layout-changes"><a href="#Layout-changes" class="headerlink" title="Layout changes"></a>Layout changes</h3><p>除了运用在  Scene 间外，Transition Framework 还可以为 View 的布局属性更改设置动画。我们只需要对 View 的布局属性进行更改，它就会执行必要的动画。步骤如下：</p>
-<p>1.通知 Transition Framework</p>
-<p>只需要这一行代码，Transition Framework 就会知道我们将要对 <code>sceneRoot</code> 中的 View  布局属性进行修改，当我们修改后，它会执行相应的动画。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">TransitionManager.beginDelayedTransition(sceneRoot);</div></pre></td></tr></table></figure>
-<p>2.修改 View 的布局属性</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ViewGroup.LayoutParams params = greenIconView.getLayoutParams();</div><div class="line">params.width = <span class="number">200</span>;</div><div class="line">greenIconView.setLayoutParams(params);</div></pre></td></tr></table></figure>
-<p>在这一步我们修改了 <code>greenIconView</code> 的布局属性，这将会触发 <code>layoutMeasure</code>。Transition Framework 将会执行一个动画，让布局从初始状态转变到我们修改后的状态。效果如下：</p>
-<p><img src="http://ww1.sinaimg.cn/large/9db97af6gy1g18cj4r10qg20a80i6gvp.gif" alt="view layout anim"></p>
-<p><strong>全文完</strong></p>
-<p><strong>感谢阅读</strong></p>
-
-          
+          <h3 id="条款18：让接口容易被正确使用，不易被误用"><a href="#条款18：让接口容易被正确使用，不易被误用" class="headerlink" title="条款18：让接口容易被正确使用，不易被误用"></a>条款18：让接口容易被正确使用，不易被误用</h3><p>欲开发一个“容易被正确使用，不容易被误用”的接口，首先必须考虑客户可能做出什么样的错误。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/28/2019-05-28_Effective_C++_chapter4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1451,71 +939,14 @@
 
       
         
-          
-            <p>本文是对 2018 年读书的一个总结，写这篇文章的时候正读完「人类简史」这本书，「人类简史」非常棒，读的过程中和读完后都思绪万千，特别想写点东西。今天正值除夕的前一天，此刻我正在回家的动车上，趁着想写东西的这股劲，对去年读过的书做一个总结。</p>
-<p>2018 年后半年才开始读书。陆陆续续读了七本，按照先后顺序分别是：</p>
-<ul>
-<li>霍乱时期的爱情</li>
-<li>一九八四</li>
-<li>月亮与六便士</li>
-<li>嫌疑人 X 的献身</li>
-<li>东方快车谋杀案</li>
-<li>万历十五年</li>
-<li>人类简史</li>
-</ul>
-<p>这七本都是非常棒的书，在详细说每本书之前，我想先推荐一个节目：梁文道先生的「一千零一夜」。这是一个读书类的节目，内容是梁文道先生在北京夜晚的街道上给大家推荐经典书籍。内容做的非常的棒，梁文道先生也非常的棒。在现在这样一个浮躁的时代，能够静下心来做这样的一个节目，即便是有商业的成分在里面，也让人着实钦佩。</p>
-<p>广告结束，进入今天的正菜。</p>
-<h5 id="霍乱时期的爱情"><a href="#霍乱时期的爱情" class="headerlink" title="霍乱时期的爱情"></a>霍乱时期的爱情</h5><p>今年读的第一本非 CS 书是「霍乱时期的爱情」，这本书其实是以前买 CS 相关的书籍时凑满减买的，为啥买这本？当然是名字够文艺啦！🤣准备读这本书的时候已经在看「一千零一夜」这个节目了，当时在梁文道先生的熏陶下，觉得该利用闲暇时间多读读书了。就这样，我打开了「霍乱时期的爱情」。</p>
-<p>从名字可以看出这是一本讲爱情的书，<strong>加西亚·马尔克斯</strong>的作品。「百年孤独」是他最出名的作品，但他却说「霍乱时期的爱情」是他最好的作品，是他出自内心的创作。这本书包含了爱情的全部答案，能够看到作者对爱情的诠释，能够看到爱情大部分的样子。读这本书，对爱情观会有一定的影响。</p>
-<blockquote>
-<p>我对死亡感到唯一的痛苦，是没能为爱而死。</p>
-</blockquote>
-<h5 id="一九八四"><a href="#一九八四" class="headerlink" title="一九八四"></a>一九八四</h5><p>「一九八四」是著名的反乌托邦政治隐喻小说，<strong>乔治·奥威尔</strong>的作品。这本书非常的出名，即使没有读过这本书的人也听过其名。小说描写了在极权专制统治下的国家是什么样子，很多场景看得人后背发凉。最让人感到恐惧的是，这本书里所描写的大多内容，在后来的很多国家里面都发生了。当然，我说的是朝鲜、韩国等国家。这本书的影响力非常的大，在很多国家甚至一度被列为禁书。并且这本书在梁文道先生的节目「一千零一夜」里面也有介绍，也是我今年看的这几本书里面唯一一本有被介绍到的。😄总之，非常棒的一本书。最后以一句广为流传的话结尾：</p>
-<blockquote>
-<p>多一个人看奥威尔，就多了一份自由的保障。</p>
-</blockquote>
-<h5 id="月亮与六便士"><a href="#月亮与六便士" class="headerlink" title="月亮与六便士"></a>月亮与六便士</h5><p>买这本书是因为当时为朋友挑选生日礼物，恰逢朋友正在为了考研而奋斗，在畅销榜看到了这本书，所以买了两本。送朋友一本，我自己一本（毕竟送给朋友的书不能自己没有看过吧😂）。这是一本讲理想的书，但学到更多的是关于自由和勇气。无论怎样，我们每个人都有选择一生中最想为之努力的东西的自由。这种自由只取决于我们自己，和世俗无关，和其他任何东西都无关。</p>
-<blockquote>
-<p>大多数人所成为的，并非是他们想成为的人，而是不得不成为的人。</p>
-</blockquote>
-<h5 id="嫌疑人-X-的献身"><a href="#嫌疑人-X-的献身" class="headerlink" title="嫌疑人 X 的献身"></a>嫌疑人 X 的献身</h5><p><strong>东野圭吾</strong>应该是这几年最火的日本作家了吧。2017 年毕业答辩之前，在学校用 Kindle 读了他最火的那部「白夜行」，惊为天人，是迄今为止是我最喜欢的悬疑小说（当然，目前为止我也没有看过几部悬疑小说😊）。17年下半年工作的时候又读了他另一部非常火的「解忧杂货店」，非常的温馨非常的棒，甚至让人感觉不到它出自悬疑小说家东野圭吾之手。时间来到 2018 年，我翻开了他的「嫌疑人 X 的献身」。还是非常棒的一部悬疑推理小说，人物塑造丰满，剧情设计巧妙。但对我来说唯一的遗憾是，在 2017 年 4 月份的时候我看了苏有朋根据这本书翻牌电影，导致我看这本书的时候，脑海里总是会将演员的脸谱带入，并且提前知道了剧情的走向，两个因素加在一起影响了读书的感觉。所以，还是要先看原著啊。</p>
-<blockquote>
-<p>他们就像时钟里没用的齿轮，每天都重复无意义的生活。</p>
-</blockquote>
-<h5 id="东方快车谋杀案"><a href="#东方快车谋杀案" class="headerlink" title="东方快车谋杀案"></a>东方快车谋杀案</h5><p>2018年 11 月 19 日，我到深圳出差的第一天。第一次来深圳，所以每到周末便会在深圳到处走走，感受一下这座城市。在人山人海的市民广场看灯光秀的那一晚，对这座城市心动了；当沿着深圳湾公园走到深圳人才公园时，我喜欢上了这座城市；在喜欢了七八年却从来没有去过的香港游玩了一天回到深圳地铁上后，我彻底爱上了这座城市。深圳，真是个令人着迷的地方。</p>
-<p>在某个下雨的星期天，我在深圳图书馆旁边的深圳书城待了一天，找了一本短篇侦探小说「东方快车谋杀案」来读，英国著名的侦探小说家<strong>阿加莎·克里斯蒂</strong>的作品。虽然此前没有读过阿婆的作品，但是阿婆的名声却早有耳闻。15年的时候看过 BBC 根据她的同名小说改编的电视剧「无人生还」。<br>「东方快车谋杀案」，嗯，名字够吸引人，并且也非常有名气，经常能听到它的大名（最近在电视剧「大江大河」中就又出现了这本书）。读起来非常流畅，剧情不落俗套。美中不足的是个人感觉翻译的没有那么好。所以，还是要提高知识水平然后读原著啊。</p>
-<blockquote>
-<p>世界上没有绝对的正义，但人性本身总有转机。</p>
-</blockquote>
-<h5 id="万历十五年"><a href="#万历十五年" class="headerlink" title="万历十五年"></a>万历十五年</h5><p>「万历十五年」不同于其他历史书，读来非常有趣。黄仁宇先生文笔非常的好，透过万历执政时期的几个人物（万历皇帝、张居正、申时行、海瑞、戚继光、李贽）来讲历史。读此书我感想之一便是：时至今日我们国家的法律在某些方面还是非常不完善，依然依靠家庭、道德来处理一些本该依靠法律来解决的事。我文笔拙劣，无法用言语表达对此书对喜爱，选了一些豆瓣网友的书评贴在这：</p>
-<ul>
-<li>以古看今之极品。原来中国的那么多问题，五百年前未解决，五百年后依然未解决。谁说社会一定是进步的？</li>
-<li>用张居正申时行讲政治 用海瑞讲经济 用戚继光讲军事 用李贽讲思想界 线索一气呵成 事实充分 见解透彻清晰。看带学术性质的书会有点费劲 看的很慢 会想很多 但是收获很多 感觉这本书给 中国历代政治得失打了基础。</li>
-<li>纵观全书，每位人物都力图转变，却都陷入了一个怪圈——被文官集团钳制，以致整个王朝发展在万历十五年几近停滞。“以史为鉴，可以知兴替。”</li>
-<li>作为一名文科生，可叹在曾经的受教育过程中，名字和历史事件都只作为应试时选择和填空的关键词，丝毫不能体会读史的意义。更唏嘘的是，除了朝代更迭，根子里的东西千百年来没有变过。</li>
-<li>皇帝每天起床比现在的上班族还要早 北京又那么冷 被海瑞骂完把奏折摔在地上 过了一会又默默捡了起来 以前被电视剧灌输的那种皇帝就像“霸道总裁”一样屌炸天的印象终于破除了</li>
-</ul>
-<p>读历史还是不能只靠这教材这种东西啊。非常棒的一本书，以原书的结尾来做结尾：</p>
-<blockquote>
-<p>当一个人口众多的国家，各人行动全凭儒家简单粗浅而又无法固定的原则所限制，而法律又缺乏创造性，则其社会发展的程度，必然受到限制。即便是宗旨善良，也不能补助技术之不及。1587 年，是为万历十五年，丁亥次岁，表面上似乎是四海升平，无事可记，实际上我们的大明帝国却已经走到了它发展的尽头。在这个时候，皇帝的励精图治或者宴安耽乐，首辅的独裁或者调和，高级将领的富于创造或者习于苟安，文官的廉洁奉公或者贪污舞弊，思想家的极端进步或者绝对保守，最后的结果，都是无分善恶，统统不能在事业上取得有意义的发展，有的身败，有的名裂，还有的人则身败而兼名裂。</p>
-<p>因此我们的故事只好在这里作悲剧性的结束。万历丁亥年的年鉴，是为历史上一部失败的总记录。</p>
-</blockquote>
-<h5 id="人类简史"><a href="#人类简史" class="headerlink" title="人类简史"></a>人类简史</h5><p>和「万历十五年」一样，「人类简史」也是一部非常非常有趣的历史书。作者带我们以上帝视角看了一遍整个人类的发展史：从认知革命智人崛起到农业革命，接着从工业革命到科学革命。涉及面也非常广：从帝国到宗教，再到科学和经济。尤老师十分有才华，文风十分的好，读整本书都让人感觉十分轻松愉悦。并且提出的很多观点也非常的新奇，带我们以一种全新的角度来看人类的大历史。</p>
-<p>读这本书感触是非常多的。</p>
-<ul>
-<li>在整本书中都能感受到作者对天下大众（包括智人和所有在地球上<strong>生活过</strong>的动物）的“无边大爱”。</li>
-<li>这个宇宙中根本没有神、国家、钱、人权、法律，也没有正义。国家、民族、公司等我们耳熟能详的东西，都只是智人想象出来的。这些东西并不是<strong>客观</strong>存在的，但同时这些东西也不是仅仅存在于某个<strong>主体</strong>的主观认识中，而是存在于<strong>主体之间</strong>。是大家都相信存在，它就存在。所以即便这些东西只是人类想象出来的，但也只有全人类（或者大部分）都不再相信它，才会有所改变。</li>
-<li>欧洲在15世纪之后之所以能够崛起，在于当时的欧洲人愿意承认自己的无知。现代科学之所以能够蓬勃发展，仍然在于人类愿意承认自己的无知。</li>
-<li>荷兰、英国等欧洲国家在掌握了航海技术以及相关武器技术后，殖民地遍布全球，当上了真正的世界霸主。在荷兰英国称霸世界之前，明朝的郑和便已经能够乘船去往印度。但由于大明朝并不在乎航海技术，导致 1840 年大清朝被大英帝国打得鸡飞狗跳（这里让人联想到「万历十五年」，我们国家在近现代的悲剧，其实早在明朝就埋下了伏笔。）。曾经我一度怀疑像我们这样的发展中国家将那么多钱用于航天事业而不是改善民生是否合理。直到读此书，读到这让人伤感的一八四零年。我们曾失去大海，并付出了沉重的代价，我们不能再失去太空。</li>
-<li>……</li>
-</ul>
-<p>嗯，「人类简史」真的是非常棒的一本书。</p>
-<h5 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h5><p>今年看过的七本书都非常的好，最喜欢的三本是：一九八四、万历十五年、人类简史。（排名仅按阅读的先后顺序）经过这半年的阅读，发现读书不仅能够修身养性陶冶情操，还能拓宽人的视野和知识面，还可以对自己的思想进行自我改造和换血，以及培养自我思考的能力。总之，读书真的是很棒的一件事。</p>
-<p>咱们2019年年末再见。</p>
-<p><strong>全文完</strong></p>
-<p><strong>感谢阅读</strong></p>
-
-          
+          <p>本文是对 2018 年读书的一个总结，写这篇文章的时候正读完「人类简史」这本书，「人类简史」非常棒，读的过程中和读完后都思绪万千，特别想写点东西。今天正值除夕的前一天，此刻我正在回家的动车上，趁着想写东西的这股劲，对去年读过的书做一个总结。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/02/03/2019-02-03-2018_read_books/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1654,33 +1085,15 @@
 
       
         
-          
-            <p>在 build.gradle 的 defaultConfig - externalNativeBuild - cmake 下有一个 cppFlags 的配置项。它的作用是定义 C++ 编译时的 flags：</p>
+          <p>在 build.gradle 的 defaultConfig - externalNativeBuild - cmake 下有一个 cppFlags 的配置项。它的作用是定义 C++ 编译时的 flags：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    <span class="comment">// Similar to other properties in the defaultConfig block, you can override</span></div><div class="line">    <span class="comment">// these properties for each product flavor in your build configuration.</span></div><div class="line">    defaultConfig &#123;</div><div class="line">        externalNativeBuild &#123;</div><div class="line">            cmake &#123;</div><div class="line">                <span class="comment">// Sets optional flags for the C++ compiler.</span></div><div class="line">                cppFlags <span class="string">"-fexceptions"</span>, <span class="string">"-frtti"</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>除了可以像上述代码一样启用 RTTI 和 C++ 异常支持外，还可以加入一些自定义的宏，以方便在 C++ 代码中做不同的逻辑处理。例如我们在 C++ 中有如下代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ANDROID_SUPPORT_X_FEATURE</span></div><div class="line">    <span class="comment">// logic</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">    <span class="comment">// logic</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure></p>
-<p>此时，在 build.gradle 中我们可以根据逻辑需要来决定是否在 cppFlags 中加入自定义的宏”-DANDROID_SUPPORT_X_FEATURE”，从而让 C++ 层执行不同的代码。</p>
-<p>当然，这只是最基础的用法。还有一些场景除了需要知道是否定义了宏，还需要使用该宏的值。例如我们想使用数值型的值：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> ANDROID_BUILD_NUMBER</span></div><div class="line">    <span class="keyword">int</span> build_number = ANDROID_BUILD_NUMBER;</div><div class="line">    <span class="comment">// ...</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
-<p>此时，在 build.gradle 中我们可以加入带值的 Flag:</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">def</span> flags = <span class="string">""</span></div><div class="line"><span class="comment">// ...</span></div><div class="line">flags = <span class="string">" -DANDROID_BUILD_NUMBER="</span> + buildNumber</div><div class="line"><span class="comment">// ...</span></div><div class="line">cppFlags flags</div></pre></td></tr></table></figure>
-<p>带数值的 Flag 使用起来还是很简单的，写这篇文章的主要原因还是在使用字符串值的 Flag 时遇到了一些问题。</p>
-<p>假设我们想使用字符串型的宏：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> ANDROID_AUTH_API_SECRET</span></div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span>* api_secret = ANDROID_AUTH_API_SECRET;</div><div class="line">    <span class="comment">// ...</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure>
-<p>这时如果我们像上面定义数值型的 Flag 那样做，编译就通不过：<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">def</span> flags = <span class="string">""</span></div><div class="line"><span class="comment">// ...</span></div><div class="line">flags = <span class="string">" -DANDROID_AUTH_API_SECRET="</span> + authSecret</div><div class="line"><span class="comment">// ...</span></div><div class="line">cppFlags flags</div></pre></td></tr></table></figure></p>
-<p>因为这样生成出来的宏定义是下面这样的，没有双引号，显然是不正确的：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ANDROID_AUTH_API_SECRET auth_secret_value</span></div></pre></td></tr></table></figure>
-<p>所以理所当然的，我们在 gradle 中定义的时候通过转义符把双引号给它加上：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">def</span> flags = <span class="string">""</span></div><div class="line"><span class="comment">// ...</span></div><div class="line">flags = <span class="string">" -DANDROID_AUTH_API_SECRET=\"$&#123;authSecret&#125;\""</span></div><div class="line"><span class="comment">// ...</span></div><div class="line">cppFlags flags</div></pre></td></tr></table></figure>
-<p>此时问题…还是没有解决(微笑)，通过编译报的错来看，还是和上面一样的原因，生成出来的宏定义还是没有字符串引号：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ANDROID_AUTH_API_SECRET auth_secret_value</span></div></pre></td></tr></table></figure>
-<p>最终通过查资料和测试，发现在 gradle 中定义的时候还得给字符串的双引号添加一个转义符：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">def</span> flags = <span class="string">""</span></div><div class="line"><span class="comment">// ...</span></div><div class="line">flags = <span class="string">" -DANDROID_AUTH_API_SECRET=\\\"$&#123;authSecret&#125;\\\""</span></div><div class="line"><span class="comment">// ...</span></div><div class="line">cppFlags flags</div></pre></td></tr></table></figure>
-<p>这样最终生成出来的宏定义就是正确的了:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ANDROID_AUTH_API_SECRET <span class="meta-string">"auth_secret_value"</span></span></div></pre></td></tr></table></figure>
-<p><strong>全文完</strong></p>
-<p><strong>感谢阅读</strong></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/27/2019-01-27-Use_cppFlags_in_Gradle/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1819,28 +1232,14 @@
 
       
         
-          
-            <p>在做三摄算法集成项目的时候，因为手机有三个摄像头，所以存在两种不同的双摄人像模式，分别是 1 倍人像模式（以下简称 1x）和 2 倍光变人像模式（以下简称 2x）。我们没有在 App 层面使用同时打开两个 camera id 的方式来打开双摄，因为这样逻辑会稍微复杂，所以我们是在底层做了这件事，在上层我们只需要打开新增的 camera id，就可以同时打开两个摄像头。</p>
-<p>由于项目需要，我在高通的 SnapdragonCamera App 的 Preview 中添加了 1x 和 2x 的切换按钮，效果类似 iPhone（双摄） 中 1x 和 2x 的切换。查看 SnapdragonCamera 的代码后，找到了一个简单的切换 Camera 的方式，就是直接修改 SharedPreferences 中的一个关于当前 Camera id 配置。</p>
-<p>这么做之后，功能确实实现了，但是在切换的过程中，因为会释放资源再重新构建，所以预览会消失，在 UI 上看到的情况就是黑了一下。这种体验不怎么好，需要优化一下。经过和 PM 沟通后，最后决定的优化方案是在切换的过程中，在 UI 上展示上一次预览的最后一帧，并且加一个模糊效果。</p>
-<p>在高通的 SnapdragonCamera 中使用的是 <a href="https://developer.android.com/reference/android/view/SurfaceView" target="_blank" rel="external">SurfaceView</a> 进行 Preview，因为 SurfaceView 不像 <a href="https://developer.android.com/reference/android/view/TextureView" target="_blank" rel="external">TextureView</a> 一样有 getBitmap() 方法，所以获取最后一帧这一点得想想怎么做。</p>
-<p>一开我想的是在 Preview 的时候再加一个 ImageReader 或者 TextureView，但是这样会把问题搞的比较复杂，并且也不是很好的解决方案。所以还是想在现有的 SurfaceView 上做点文章。</p>
-<p>通过上网查阅资料（这里再次吐槽一下百度，不管是使用中文还是英文，查资料都不太好使。推荐使用 Google 用英文关键字查询），发现了 <a href="https://developer.android.com/reference/android/view/PixelCopy" target="_blank" rel="external">PixelCopy</a> 这个好东西。</p>
-<p>PixelCopy 是在 API level 24（Android 7.0 Nougat）中添加的，由于我们这个项目使用的是最新的 Android 9 Pie，所以使用这个 API 是没有问题的。下面是官网对它的介绍：</p>
-<blockquote>
-<p>Provides a mechanisms to issue pixel copy requests to allow for copy operations from Surface to Bitmap</p>
-</blockquote>
-<p>PixelCopy 提供了一种发出像素复制请求的机制，允许从 Surface 到 Bitmap 的复制操作。Perfect，我们要的就是这样的一种功能。</p>
-<p>下面是使用 PixelCopy 从 SurfaceView 获取 Bitmap 的示例代码。</p>
-<p>Java:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Bitmap <span class="title">getBitmap</span><span class="params">(SurfaceView surfaceView)</span> </span>&#123;</div><div class="line">    Bitmap bitmap = Bitmap.createBitmap(surfaceView.getWidth(), surfaceView.getHeight(), Bitmap.Config.ARGB_8888);</div><div class="line">    </div><div class="line">    PixelCopy.request(surfaceView, bitmap, <span class="keyword">new</span> PixelCopy.OnPixelCopyFinishedListener() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onPixelCopyFinished</span><span class="params">(<span class="keyword">int</span> copyResult)</span></span>&#123;</div><div class="line">            <span class="keyword">if</span> (PixelCopy.SUCCESS == copyResult) &#123;</div><div class="line">                <span class="comment">// onSuccessCallback(bitmap)</span></div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                <span class="comment">// onErrorCallback()</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;, surfaceView.getHandler());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>Kotlin：</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">getBitmap</span><span class="params">(surfaceView: <span class="type">SurfaceView</span>)</span></span> = Single.create&lt;Bitmap&gt; &#123;</div><div class="line">    <span class="keyword">val</span> bitmap = Bitmap.createBitmap(surfaceView.width, surfaceView.height, Bitmap.Config.ARGB_8888)</div><div class="line"></div><div class="line">    <span class="keyword">val</span> listener = PixelCopy.OnPixelCopyFinishedListener &#123; copyResult -&gt;</div><div class="line">        <span class="keyword">when</span> (copyResult) &#123;</div><div class="line">            PixelCopy.SUCCESS -&gt; &#123;</div><div class="line">                <span class="comment">// onSuccessCallback(bitmap)</span></div><div class="line">            &#125;</div><div class="line">            <span class="keyword">else</span> -&gt; &#123;</div><div class="line">                <span class="comment">// onErrorCallback()</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    PixelCopy.request(surfaceView, bitmap, listener, surfaceView.handler)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在 onPixelCopyFinished 回调中，我们的 Bitmap 已经从 SurfaceView 获取到了 Bitmap。</p>
-<p><strong>全文完</strong></p>
-<p><strong>感谢阅读</strong></p>
-
-          
+          <p>在做三摄算法集成项目的时候，因为手机有三个摄像头，所以存在两种不同的双摄人像模式，分别是 1 倍人像模式（以下简称 1x）和 2 倍光变人像模式（以下简称 2x）。我们没有在 App 层面使用同时打开两个 camera id 的方式来打开双摄，因为这样逻辑会稍微复杂，所以我们是在底层做了这件事，在上层我们只需要打开新增的 camera id，就可以同时打开两个摄像头。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/20/2018-12-20-Get-Bitmap-from-SurfaceView/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1979,8 +1378,7 @@
 
       
         
-          
-            <p>「阿里巴巴 Android 开发手册」中第 5.3 节对<strong>新建线程</strong>做了如下强制性要求：</p>
+          <p>「阿里巴巴 Android 开发手册」中第 5.3 节对<strong>新建线程</strong>做了如下强制性要求：</p>
 <blockquote>
 <p>新建线程时，必须通过线程池提供（AsyncTask 或者 ThreadPoolExecutor 或者其他形式自定义的线程池），不允许在应用中自行显式创建线程。</p>
 </blockquote>
@@ -1989,39 +1387,13 @@
 <p>使用线程池的好处是减少在创建和销毁线程上所花的时间以及系统资源的开销，解决资源不足的问题。如果不使用线程池，有可能造成系统创建大量同类线程而导致消耗完内存或者“过度切换”的问题。另外创建匿名线程不便于后续的资源使用分析，对性能分析等会造成困扰。</p>
 </blockquote>
 <p>嗯，有理有据，让人信服。接下来将介绍 Thread Pools, Thread Pool Executors 以及它们在 Android 中的使用。</p>
-<p>先欣赏一张美丽的图片：</p>
-<p><img src="https://ws1.sinaimg.cn/large/9db97af6gy1fpzp3le1nmj20m80dwtf8.jpg" alt="Thread Pool Executor"></p>
-<h3 id="Thread-Pool"><a href="#Thread-Pool" class="headerlink" title="Thread Pool"></a>Thread Pool</h3><p>一个线程池（Thread Pool）管理着一些工作线程（work threads）（具体的数字取决于它的实现方式）。</p>
-<p>任务队列（Task Queue）中存储着一些等待着被线程池中的空闲线程执行的任务，这些任务被生产者（producers）添加到队列中，线程池中的工作线程（work threads）充当消费者（consumers）。一旦线程池中有空闲线程准备好执行新的后台任务，它们便会执行（consuming）队列中的任务。</p>
-<h3 id="ThreadPoolExecutor"><a href="#ThreadPoolExecutor" class="headerlink" title="ThreadPoolExecutor"></a>ThreadPoolExecutor</h3><p><strong>ThreadPoolExecutor</strong> 使用线程池中的一个线程去执行给定的 task。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize, <span class="keyword">int</span> maximumPoolSize, <span class="keyword">long</span> keepAliveTime, TimeUnit unit, BlockingQueue&lt;Runnable&gt; workQueue)</span> </span>&#123;&#125;</div></pre></td></tr></table></figure></p>
-<p>上面是 ThreadPoolExecutor 构造函数中的几个重要参数， 这些参数有什么含义？</p>
-<ol>
-<li><strong>corePoolSize</strong>：保留在线程池中的最小线程数，最初在线程池中只有 0 个线程，随着任务被添加到队列中，新线程便会被创建。规则：假设线程池中存在空闲的线程，但是池中线程数小于 corePoolSize，那么将会继续创建新的线程。</li>
-<li><strong>maximumPoolSize</strong>：线程池中允许存在的最大线程数，如果 maximumPoolSize 大于 corePoolSize，并且当前池中的线程数大于等于 corePoolSize，那么只有当任务队列已满时才会创建新的线程。</li>
-<li><strong>keepAliveTime</strong>：当池中线程的数量大于 core 数时，多余的空闲线程如果在该参数指定的时间内没有等待到一个新的任务，那么它们将会死掉。</li>
-<li><strong>unit</strong>：参数 keepAliveTime 的单位。</li>
-<li><strong>workQueue</strong>：上面提到的任务队列（task queue），它必须是一个 <a href="http://developer.android.com/reference/java/util/concurrent/BlockingQueue.html" target="_blank" rel="external">BlockingQueue</a>，并且只能存储 runnable tasks。</li>
-</ol>
-<h3 id="为什么要在-Android-中使用-ThreadPoolExecutor"><a href="#为什么要在-Android-中使用-ThreadPoolExecutor" class="headerlink" title="为什么要在 Android 中使用 ThreadPoolExecutor"></a>为什么要在 Android 中使用 ThreadPoolExecutor</h3><ul>
-<li>ThreadPoolExecutor 是一个强大的任务执行框架，它支持任务添加、取消任务、给任务声明优先级等操作。</li>
-<li>ThreadPoolExecutor 减少了与线程创建相关的开销，因为它在其线程池中管理了一定数量的线程。</li>
-</ul>
-<h3 id="在-Android-中使用-ThreadPoolExecutor"><a href="#在-Android-中使用-ThreadPoolExecutor" class="headerlink" title="在 Android 中使用 ThreadPoolExecutor"></a>在 Android 中使用 ThreadPoolExecutor</h3><p>首先创建 PriorityThreadFactory（将作为 ThreadPoolExecutor 的一个参数）：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PriorityThreadFactory</span> <span class="keyword">implements</span> <span class="title">ThreadFactory</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> mThreadPriority;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PriorityThreadFactory</span><span class="params">(<span class="keyword">int</span> threadPriority)</span> </span>&#123;</div><div class="line">        mThreadPriority = threadPriority;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Thread <span class="title">newThread</span><span class="params">(@NonNull <span class="keyword">final</span> Runnable runnable)</span> </span>&#123;</div><div class="line">        Runnable wrapperRunnable = <span class="keyword">new</span> Runnable() &#123;</div><div class="line">            <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    Process.setThreadPriority(mThreadPriority);</div><div class="line">                &#125; <span class="keyword">catch</span> (Throwable t) &#123;</div><div class="line"></div><div class="line">                &#125;</div><div class="line">                runnable.run();</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Thread(wrapperRunnable);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>创建 MainThreadExecutor（用于执行主线程中的 tasks）：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainThreadExecutor</span> <span class="keyword">implements</span> <span class="title">Executor</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Handler mHandler = <span class="keyword">new</span> Handler(Looper.getMainLooper());</div><div class="line"></div><div class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(@NonNull Runnable runnable)</span> </span>&#123;</div><div class="line">        mHandler.post(runnable);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>创建 DefaultExecutorSupplier（构建、管理不同的 ThreadPoolExecutor ）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultExecutorSupplier</span> </span>&#123;</div><div class="line">    <span class="comment">// 决定池中线程的数量</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> NUMBER_OF_CORES = Runtime.getRuntime().availableProcessors();</div><div class="line"></div><div class="line">    <span class="comment">// 用于后台任务的 ThreadPoolExecutor</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ThreadPoolExecutor mForBackgroundTasks;</div><div class="line"></div><div class="line">    <span class="comment">// 用于轻量级后台任务的 ThreadPoolExecutor</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ThreadPoolExecutor mForLightWeightBackgroundTasks;</div><div class="line"></div><div class="line">    <span class="comment">// 用于执行主线程中的 tasks</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> MainThreadExecutor mMainThreadExecutor;</div><div class="line"></div><div class="line">    <span class="comment">// DefaultExecutorSupplier 的一个实例</span></div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> DefaultExecutorSupplier instance;</div><div class="line"></div><div class="line">    <span class="comment">// 利用单列模式返回 DefaultExecutorSupplier 的实例</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> DefaultExecutorSupplier <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">synchronized</span> (DefaultExecutorSupplier.class) &#123;</div><div class="line">                <span class="keyword">if</span> (instance == <span class="keyword">null</span>) &#123;</div><div class="line">                    instance = <span class="keyword">new</span> DefaultExecutorSupplier();</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// DefaultExecutorSupplier 的私有构造函数</span></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="title">DefaultExecutorSupplier</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="comment">// 设置 thread factory</span></div><div class="line">        ThreadFactory priorityThreadFactory = <span class="keyword">new</span> PriorityThreadFactory(Process.THREAD_PRIORITY_BACKGROUND);</div><div class="line"></div><div class="line">        <span class="comment">// 构建用于后台任务的 mForBackgroundTasks</span></div><div class="line">        mForBackgroundTasks = <span class="keyword">new</span> ThreadPoolExecutor(NUMBER_OF_CORES * <span class="number">2</span>,</div><div class="line">                NUMBER_OF_CORES * <span class="number">2</span>,</div><div class="line">                <span class="number">60L</span>,</div><div class="line">                TimeUnit.SECONDS,</div><div class="line">                <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(),</div><div class="line">                priorityThreadFactory);</div><div class="line"></div><div class="line">        <span class="comment">// 构建用于轻量级后台任务的 mForLightWeightBackgroundTasks</span></div><div class="line">        mForLightWeightBackgroundTasks = <span class="keyword">new</span> ThreadPoolExecutor(NUMBER_OF_CORES,</div><div class="line">                NUMBER_OF_CORES * <span class="number">2</span>,</div><div class="line">                <span class="number">60L</span>,</div><div class="line">                TimeUnit.SECONDS,</div><div class="line">                <span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(),</div><div class="line">                priorityThreadFactory);</div><div class="line"></div><div class="line">        <span class="comment">// 构建 mMainThreadExecutor</span></div><div class="line">        mMainThreadExecutor = <span class="keyword">new</span> MainThreadExecutor();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ThreadPoolExecutor <span class="title">forBackgroundTasks</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mForBackgroundTasks;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> ThreadPoolExecutor <span class="title">forLightWeightBackgroundTasks</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mForLightWeightBackgroundTasks;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> Executor <span class="title">forMainThreadTasks</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> mMainThreadExecutor;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>PS：corePoolSize 和 maximumPoolSize 请根据自己的时间需求进行设置。</p>
-<p><strong>现在，在你的代码中使用它吧！</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 将它用于后台任务</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomeBackgroundWork</span><span class="params">()</span></span>&#123;</div><div class="line">  DefaultExecutorSupplier.getInstance().forBackgroundTasks()</div><div class="line">    .execute(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="comment">// do some background work here.</span></div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 将它用于轻量级后台任务</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomeLightWeightBackgroundWork</span><span class="params">()</span></span>&#123;</div><div class="line">  DefaultExecutorSupplier.getInstance().forLightWeightBackgroundTasks()</div><div class="line">    .execute(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="comment">// do some light-weight background work here.</span></div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 将它用于主线程的任务</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomeMainThreadWork</span><span class="params">()</span></span>&#123;</div><div class="line">  DefaultExecutorSupplier.getInstance().forMainThreadTasks()</div><div class="line">    .execute(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">       <span class="comment">// do some Main Thread work here.</span></div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>通过这种方式，我们可以为网络任务， I/O 操作，耗时的后台任务等创建不同的线程池。enjoy it.</p>
-<h3 id="如何取消一个任务"><a href="#如何取消一个任务" class="headerlink" title="如何取消一个任务"></a>如何取消一个任务</h3><p>为了取消一个任务，应该使用 submit 方法而不是 execute，它将返回一个 future 对象，使用该返回值可以取消任务。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 通过将任务 submitting 到线程池中来得到 future</span></div><div class="line">Future future = DefaultExecutorSupplier.getInstance().forBackgroundTasks()</div><div class="line">    .submit(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">      <span class="comment">// do some background work here.</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 取消这个 task</span></div><div class="line">future.cancel(<span class="keyword">true</span>);</div></pre></td></tr></table></figure>
-<p><strong>全文完</strong></p>
-<p><strong>感谢阅读</strong></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/03/2018-04-03-ThreadPoolExecutor/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2160,57 +1532,164 @@
 
       
         
-          
-            <p>之前面试的时候被面试官问到一道算法题：如何用两个栈实现一个队列。我的回答是，把所有元素：入第一个栈 -&gt; 从第一个栈出栈并入第二个栈 -&gt; 从第二个栈出栈。当时无知，以为自己的回答是正确的，但是面试官接下来的问题便把我给打回原形了：如果想要队列是可以同时入队列和出队列的呢。</p>
+          <p>之前面试的时候被面试官问到一道算法题：如何用两个栈实现一个队列。我的回答是，把所有元素：入第一个栈 -&gt; 从第一个栈出栈并入第二个栈 -&gt; 从第二个栈出栈。当时无知，以为自己的回答是正确的，但是面试官接下来的问题便把我给打回原形了：如果想要队列是可以同时入队列和出队列的呢。</p>
 <p>最近在学习《算法导论》，学习到了栈和队列这一章，又想起了上面的问题，便重新思考和 Coding 了一番，顺便记录一下。</p>
-<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><blockquote>
-<p>栈（stack）又名堆栈，它是一种运算受限的线性表。其限制是仅允许在表的一端进行插入和删除运算。这一端被称为栈顶，相对地，把另一端称为栈底。向一个栈插入新元素又称作进栈、入栈或压栈，它是把新元素放到栈顶元素的上面，使之成为新的栈顶元素；从一个栈删除元素又称作出栈或退栈，它是把栈顶元素删除掉，使其相邻的元素成为新的栈顶元素。</p>
-</blockquote>
-<p>从上面这段关于栈的介绍我们可以知道栈的基本特点：<strong>先入后出，后入先出（LIFO, Last In First Out）。</strong> </p>
-<p><img src="https://ws1.sinaimg.cn/large/9db97af6gy1fpbc1tkxumj20av07tq2r.jpg" alt="stack 图示"></p>
-<p>下面是用 Python 中的 list 实现的一个 Stack，主要依靠 <em>self.top</em> 这个变量来定位栈顶元素以及判断是否 stack overflow, stack underflow。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, length)</span>:</span></div><div class="line">        self.S = [<span class="keyword">None</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(length)]</div><div class="line">        self.top = <span class="number">-1</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">stack_empty</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.top == <span class="number">-1</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">True</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> <span class="keyword">False</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, element)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.top + <span class="number">1</span> == len(self.S):</div><div class="line">            <span class="keyword">raise</span> IndexError(<span class="string">'stack overflow'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.top = self.top + <span class="number">1</span></div><div class="line">            self.S[self.top] = element</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self.stack_empty():</div><div class="line">            <span class="keyword">raise</span> IndexError(<span class="string">'stack underflow'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.top = self.top - <span class="number">1</span></div><div class="line">            <span class="keyword">return</span> self.S[self.top + <span class="number">1</span>]</div></pre></td></tr></table></figure>
-<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><blockquote>
-<p>队列（queue）是一种特殊的线性表，特殊之处在于它只允许在表的前端（Front）进行删除操作，而在表的后端（Back）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。</p>
-</blockquote>
-<p>从上面这段关于队列的介绍我们可以知道队列的基本特点：<strong>先入先出（First-In-First-Out），后入后出。</strong></p>
-<p><img src="https://ws1.sinaimg.cn/large/9db97af6gy1fpbc3vszajj217q0tnabf.jpg" alt="queue 图示"></p>
-<p>下面是用 Python 中的 list 实现的一个 Queue，主要依靠 <em>self.head, self.tail</em> 这两个变量来定位的队列的队头（head），队尾（tail）以及判断是否 queue overflow, queue underflow。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, length)</span>:</span></div><div class="line">        self.Q = [<span class="keyword">None</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(length)]</div><div class="line">        self.head = <span class="number">0</span></div><div class="line">        self.tail = <span class="number">0</span></div><div class="line">        self.maxIndex = length - <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enqueue</span><span class="params">(self, element)</span>:</span></div><div class="line">        <span class="keyword">if</span> self._isOverFlow():</div><div class="line">            <span class="keyword">raise</span> IndexError(<span class="string">'queue overflow.'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            self.Q[self.tail] = element</div><div class="line">            <span class="keyword">if</span> self.tail == self.maxIndex:</div><div class="line">                self.tail = <span class="number">0</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                self.tail += <span class="number">1</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dequeue</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">if</span> self._isUnderFlow():</div><div class="line">            <span class="keyword">raise</span> IndexError(<span class="string">'queue underflow.'</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            result = self.Q[self.head]</div><div class="line">            self.Q[self.head] = <span class="keyword">None</span></div><div class="line">            <span class="keyword">if</span> self.head == self.maxIndex:</div><div class="line">                self.head = <span class="number">0</span></div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                self.head += <span class="number">1</span></div><div class="line">            <span class="keyword">return</span> result</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_isOverFlow</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> (self.head == self.tail) <span class="keyword">and</span> self.Q[self.head]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_isUnderFlow</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> (self.head == self.tail) <span class="keyword">and</span> (<span class="keyword">not</span> self.Q[self.head])</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">onlyOneElement</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">return</span> (self.tail - self.head == <span class="number">1</span>) <span class="keyword">or</span> (self.tail == <span class="number">0</span> <span class="keyword">and</span> self.head == self.maxIndex)</div></pre></td></tr></table></figure>
-<h3 id="利用两个栈实现一个队列"><a href="#利用两个栈实现一个队列" class="headerlink" title="利用两个栈实现一个队列"></a>利用两个栈实现一个队列</h3><p>介绍完基础知识终于可以开始进入主题了：如何利用两个栈实现一个队列？</p>
-<p>只要利用好上面提到的栈和队列的基本特点就可以很轻松的想出解决方案：</p>
-<ul>
-<li><p><strong>队列的入队</strong>：直接利用第一个栈的入栈操作来实现队列的入队。</p>
-</li>
-<li><p><strong>队列的出队</strong>：因为入队使用了非常简单的方式来实现，所以出队就需要稍微花点功夫了。</p>
-<ol>
-<li>出队的时候，因为想要的是将第一个栈中的栈底元素出队，所以首先我们需要将第一个栈中除了栈底元素外的其他元素弹出栈并且进入第二个栈中。</li>
-<li>然后将第一个栈的栈底元素返回即可。</li>
-<li>当然，为了保证后续的入栈出栈操作都正确，所以在上一步拿到栈底元素返回之前，需要将第二个栈中的元素全部弹出栈并且进入第一个栈中。这样第一个栈前后的变化仅仅是失去了原来的栈底元素，队列也顺利的完成了出队操作。</li>
-</ol>
-</li>
-</ul>
-<p>下面是利用两个 Stack （具体实现在上面的第一片代码中） 实现 Queue 的代码。基本上就是按照上面提到的步骤实现的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> stack <span class="keyword">import</span> Stack</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Queue</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, length)</span>:</span></div><div class="line">        self.stack1 = Stack(length)</div><div class="line">        self.stack2 = Stack(length)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">enqueue</span><span class="params">(self, element)</span>:</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            self.stack1.push(element)</div><div class="line">        <span class="keyword">except</span> IndexError:</div><div class="line">            <span class="keyword">raise</span> IndexError(<span class="string">'queue overflow.'</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dequeue</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">while</span> self.stack1.top &gt; <span class="number">0</span>:</div><div class="line">            self.stack2.push(self.stack1.pop())</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            result = self.stack1.pop()</div><div class="line">        <span class="keyword">except</span> IndexError:</div><div class="line">            <span class="keyword">raise</span> IndexError(<span class="string">'queue underflow.'</span>)</div><div class="line">        <span class="keyword">while</span> <span class="keyword">not</span> self.stack2.stack_empty():</div><div class="line">            self.stack1.push(self.stack2.pop())</div><div class="line">        <span class="keyword">return</span> result</div></pre></td></tr></table></figure>
-<h3 id="利用两个队列实现一个栈"><a href="#利用两个队列实现一个栈" class="headerlink" title="利用两个队列实现一个栈"></a>利用两个队列实现一个栈</h3><p>延伸一下，既然已经有了利用两个栈实现一个队列的思路，那么同样的按照这个思路走就能利用两个队列实现一个栈啦。</p>
-<ul>
-<li><p><strong>入栈</strong>：利用两个队列中不为空的那一个队列的入队操作来实现栈的入栈。（如果两个都为空的话就随便哪一个）</p>
-</li>
-<li><p><strong>出栈</strong>：同样的，因为入栈使用了非常简单的方式来实现，所以出栈就需要稍微花点功夫了。（好像在哪里见过这句话？？？）</p>
-<ol>
-<li>出栈的时候，因为想要的是不为空的那一个队列中的队尾元素出队，所以首先我们需要将该队列中除了队尾元素外的其他元素出队并且进入另一个为空的队列中。</li>
-<li>然后将该队列的队尾元素返回即可。</li>
-<li><del>嗯，利用两个队列实现一个栈没有第三步，不信你重复上面两步试试对不对。</del></li>
-</ol>
-</li>
-</ul>
-<p>下面是利用两个 Queue （具体实现在上面的第二片代码中） 实现 Stack 的代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> queue <span class="keyword">import</span> Queue</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, length)</span>:</span></div><div class="line">        self.queue1 = Queue(length)</div><div class="line">        self.queue2 = Queue(length)</div><div class="line">        self.usingQueue1Push = <span class="keyword">True</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">push</span><span class="params">(self, element)</span>:</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">if</span> self.usingQueue1Push:</div><div class="line">                self.queue1.enqueue(element)</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                self.queue2.enqueue(element)</div><div class="line">        <span class="keyword">except</span> IndexError:</div><div class="line">            <span class="keyword">raise</span> IndexError(<span class="string">'stack overflow.'</span>)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">pop</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            <span class="keyword">if</span> self.usingQueue1Push:</div><div class="line">                <span class="keyword">while</span> <span class="keyword">not</span> self.queue1.onlyOneElement():</div><div class="line">                    self.queue2.enqueue(self.queue1.dequeue())</div><div class="line">                result = self.queue1.dequeue()</div><div class="line">            <span class="keyword">else</span>:</div><div class="line">                <span class="keyword">while</span> <span class="keyword">not</span> self.queue2.onlyOneElement():</div><div class="line">                    self.queue1.enqueue(self.queue2.dequeue())</div><div class="line">                result = self.queue2.dequeue()</div><div class="line">        <span class="keyword">except</span> IndexError:</div><div class="line">            <span class="keyword">raise</span> IndexError(<span class="string">'stack underflow.'</span>)</div><div class="line">        self.usingQueue1Push = <span class="keyword">not</span> self.usingQueue1Push</div><div class="line">        <span class="keyword">return</span> result</div></pre></td></tr></table></figure>
-<p>源码地址：<a href="https://github.com/AndroidHot/Introduction-to-Algorithms/blob/master/chapter10/section1/stack_implements_queue.py" target="_blank" rel="external">Two stacks implement the queue.</a></p>
-<p><strong>全文完</strong></p>
-<p><strong>感谢阅读</strong></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/13/2018-03-13-Stack-implement-Queue/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://androidhot.github.io/2017/10/12/2017-10-12-Backpropagation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhiwei Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars3.githubusercontent.com/u/17120655?v=4&u=d17931ce5e11210e09e2caf8140a7cba9fe60a71&s=400">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="假装在香港">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/12/2017-10-12-Backpropagation/" itemprop="url">反向传播算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T21:20:16+08:00">
+                2017-10-12
+              </time>
+            
+
+            
+
+            
+          </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithms/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithms</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="为什么要使用反向传播"><a href="#为什么要使用反向传播" class="headerlink" title="为什么要使用反向传播"></a>为什么要使用反向传播</h2><p>在监督学习中，比如线性回归、逻辑回归等问题中，在训练模型的过程中有很重要的一步就是对输入的权重（theta，又叫 W）不断的更新，以降低 Cost function 的输出值。在之前，我们都是通过是手动计算的方式去计算权重参数的偏导数。</p>
+<p>在神经网络中，由于神经元的数目比较多，导致权重参数（theta）也会非常的多，在这样的情况下，手动计算权重参数的偏导数的方式已经不太适用了，并且由于函数的复杂性也很可能会导致计算出错。</p>
+<p>那我们该怎么去计算所有权重参数的偏导数呢？</p>
+<p>当然是利用我们今天要讲的「反向传播算法」啦！</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/12/2017-10-12-Backpropagation/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2293,8 +1772,8 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2311,6 +1790,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -2399,7 +1887,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -2478,6 +1966,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
     <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

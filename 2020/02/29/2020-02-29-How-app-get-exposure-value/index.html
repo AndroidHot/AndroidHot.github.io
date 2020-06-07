@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="需求YUV 夜景这类 HDR 效果的 SDK，需要不同 EV （Exposure Value）的输入。 踩坑之前经验不够，获取不同 EV 是通过设置 iso 和 曝光时间来做的。ev0 的 iso 和曝光时间直接从预览拿到，然后在此基础上计算出 ev+ 和 ev- 的 iso 和曝光时间。计算方式是将 iso 和曝光时间乘以（或除以） 2。代码如下： 12345678910111213141516">
+<meta name="description" content="需求YUV 夜景这类 HDR 效果的 SDK，需要不同 EV （Exposure Value）的输入。">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="App 如何获取不同 ev 输入">
 <meta property="og:url" content="https://androidhot.github.io/2020/02/29/2020-02-29-How-app-get-exposure-value/index.html">
 <meta property="og:site_name" content="假装在香港">
-<meta property="og:description" content="需求YUV 夜景这类 HDR 效果的 SDK，需要不同 EV （Exposure Value）的输入。 踩坑之前经验不够，获取不同 EV 是通过设置 iso 和 曝光时间来做的。ev0 的 iso 和曝光时间直接从预览拿到，然后在此基础上计算出 ev+ 和 ev- 的 iso 和曝光时间。计算方式是将 iso 和曝光时间乘以（或除以） 2。代码如下： 12345678910111213141516">
+<meta property="og:description" content="需求YUV 夜景这类 HDR 效果的 SDK，需要不同 EV （Exposure Value）的输入。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-04-06T01:27:11.716Z">
+<meta property="og:updated_time" content="2020-06-07T13:23:51.252Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App 如何获取不同 ev 输入">
-<meta name="twitter:description" content="需求YUV 夜景这类 HDR 效果的 SDK，需要不同 EV （Exposure Value）的输入。 踩坑之前经验不够，获取不同 EV 是通过设置 iso 和 曝光时间来做的。ev0 的 iso 和曝光时间直接从预览拿到，然后在此基础上计算出 ev+ 和 ev- 的 iso 和曝光时间。计算方式是将 iso 和曝光时间乘以（或除以） 2。代码如下： 12345678910111213141516">
+<meta name="twitter:description" content="需求YUV 夜景这类 HDR 效果的 SDK，需要不同 EV （Exposure Value）的输入。">
 
 
 
@@ -112,7 +113,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -210,18 +211,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -230,22 +221,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-book">
-          <a href="/book/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            书单
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
+            标签
           </a>
         </li>
       
@@ -372,6 +353,7 @@
 
       
         <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>YUV 夜景这类 HDR 效果的 SDK，需要不同 EV （Exposure Value）的输入。</p>
+<a id="more"></a>
 <h2 id="踩坑"><a href="#踩坑" class="headerlink" title="踩坑"></a>踩坑</h2><p>之前经验不够，获取不同 EV 是通过设置 iso 和 曝光时间来做的。ev0 的 iso 和曝光时间直接从预览拿到，然后在此基础上计算出 ev+ 和 ev- 的 iso 和曝光时间。计算方式是将 iso 和曝光时间乘以（或除以） 2。代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> List&lt;CaptureRequest&gt; <span class="title">getCaptureRequestBuilder</span><span class="params">(String id, Surface surface)</span> </span>&#123;</div><div class="line">    List&lt;CaptureRequest&gt; requests = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">    CaptureRequest.Builder stillBuilder = createBuilder(id, CameraDevice.TEMPLATE_STILL_CAPTURE, surface);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> != stillBuilder) &#123;</div><div class="line">        stillBuilder.set(CaptureRequest.CONTROL_CAPTURE_INTENT, CaptureRequest.CONTROL_CAPTURE_INTENT_STILL_CAPTURE);</div><div class="line">        stillBuilder.set(CaptureRequest.CONTROL_AE_MODE, CameraMetadata.CONTROL_AE_MODE_OFF);</div><div class="line">        stillBuilder.set(CaptureRequest.FLASH_MODE, CameraMetadata.FLASH_MODE_OFF);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">int</span> ev0CaptureIso = mBaseIso;</div><div class="line">    <span class="keyword">long</span> ev0CaptureExposureTime = mBaseExpoTime;</div><div class="line">    <span class="keyword">int</span> evP1CaptureIso = ev0CaptureIso * <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> evP1CaptureExposureTime = ev0CaptureExposureTime * <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> evN1CaptureIso = ev0CaptureIso / <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> evN1CaptureExposureTime = ev0CaptureExposureTime / <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> evN2CaptureIso = evN1CaptureIso / <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> evN2CaptureExposureTime = evN1CaptureExposureTime / <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> evN3CaptureIso = evN2CaptureIso / <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> evN3CaptureExposureTime = evN2CaptureExposureTime / <span class="number">2</span>;</div><div class="line">    <span class="keyword">int</span> evN4CaptureIso = evN3CaptureIso / <span class="number">2</span>;</div><div class="line">    <span class="keyword">long</span> evN4CaptureExposureTime = evN3CaptureExposureTime / <span class="number">2</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (stillBuilder != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EVP1_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, evP1CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, evP1CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EV0_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, ev0CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, ev0CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EVN1_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, evN1CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, evN1CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EVN2_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, evN2CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, evN2CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EVN3_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, evN3CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, evN3CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; EVN4_SIZE; ++i) &#123;</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_SENSITIVITY, evN4CaptureIso);</div><div class="line">            stillBuilder.set(CaptureRequest.SENSOR_EXPOSURE_TIME, evN4CaptureExposureTime);</div><div class="line">            requests.add(stillBuilder.build());</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> requests;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这种方式的缺点：</p>
@@ -419,6 +401,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
       
 
       
@@ -517,8 +505,8 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -535,6 +523,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -639,7 +636,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -718,6 +715,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Android," />
 
 
 
@@ -95,13 +95,14 @@
 
 
 <meta name="description" content="在 build.gradle 的 defaultConfig - externalNativeBuild - cmake 下有一个 cppFlags 的配置项。它的作用是定义 C++ 编译时的 flags： 123456789101112android &amp;#123;    // Similar to other properties in the defaultConfig block, you">
+<meta name="keywords" content="Android">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 Gradle 中使用 cppFlags">
 <meta property="og:url" content="https://androidhot.github.io/2019/01/27/2019-01-27-Use_cppFlags_in_Gradle/index.html">
 <meta property="og:site_name" content="假装在香港">
 <meta property="og:description" content="在 build.gradle 的 defaultConfig - externalNativeBuild - cmake 下有一个 cppFlags 的配置项。它的作用是定义 C++ 编译时的 flags： 123456789101112android &amp;#123;    // Similar to other properties in the defaultConfig block, you">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-27T14:14:18.400Z">
+<meta property="og:updated_time" content="2020-06-07T13:24:11.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Gradle 中使用 cppFlags">
 <meta name="twitter:description" content="在 build.gradle 的 defaultConfig - externalNativeBuild - cmake 下有一个 cppFlags 的配置项。它的作用是定义 C++ 编译时的 flags： 123456789101112android &amp;#123;    // Similar to other properties in the defaultConfig block, you">
@@ -112,7 +113,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -210,18 +211,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -230,22 +221,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-book">
-          <a href="/book/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            书单
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
+            标签
           </a>
         </li>
       
@@ -373,6 +354,7 @@
       
         <p>在 build.gradle 的 defaultConfig - externalNativeBuild - cmake 下有一个 cppFlags 的配置项。它的作用是定义 C++ 编译时的 flags：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    <span class="comment">// Similar to other properties in the defaultConfig block, you can override</span></div><div class="line">    <span class="comment">// these properties for each product flavor in your build configuration.</span></div><div class="line">    defaultConfig &#123;</div><div class="line">        externalNativeBuild &#123;</div><div class="line">            cmake &#123;</div><div class="line">                <span class="comment">// Sets optional flags for the C++ compiler.</span></div><div class="line">                cppFlags <span class="string">"-fexceptions"</span>, <span class="string">"-frtti"</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>除了可以像上述代码一样启用 RTTI 和 C++ 异常支持外，还可以加入一些自定义的宏，以方便在 C++ 代码中做不同的逻辑处理。例如我们在 C++ 中有如下代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ANDROID_SUPPORT_X_FEATURE</span></div><div class="line">    <span class="comment">// logic</span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">    <span class="comment">// logic</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div></pre></td></tr></table></figure></p>
 <p>此时，在 build.gradle 中我们可以根据逻辑需要来决定是否在 cppFlags 中加入自定义的宏”-DANDROID_SUPPORT_X_FEATURE”，从而让 C++ 层执行不同的代码。</p>
 <p>当然，这只是最基础的用法。还有一些场景除了需要知道是否定义了宏，还需要使用该宏的值。例如我们想使用数值型的值：</p>
@@ -409,6 +391,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
       
 
       
@@ -498,8 +486,8 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -516,6 +504,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -604,7 +601,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -683,6 +680,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>

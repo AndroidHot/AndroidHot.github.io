@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Algorithms," />
 
 
 
@@ -95,6 +95,7 @@
 
 
 <meta name="description" content="为什么要使用反向传播在监督学习中，比如线性回归、逻辑回归等问题中，在训练模型的过程中有很重要的一步就是对输入的权重（theta，又叫 W）不断的更新，以降低 Cost function 的输出值。在之前，我们都是通过是手动计算的方式去计算权重参数的偏导数。 在神经网络中，由于神经元的数目比较多，导致权重参数（theta）也会非常的多，在这样的情况下，手动计算权重参数的偏导数的方式已经不太适用了，并">
+<meta name="keywords" content="Algorithms">
 <meta property="og:type" content="article">
 <meta property="og:title" content="反向传播算法">
 <meta property="og:url" content="https://androidhot.github.io/2017/10/12/2017-10-12-Backpropagation/index.html">
@@ -107,7 +108,7 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fkfj8e61mrj20lx066mx7.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fkfj52hqt9j20go06amxp.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/9db97af6gy1fkfj9b9yxej214v0mz797.jpg">
-<meta property="og:updated_time" content="2019-02-15T08:02:41.643Z">
+<meta property="og:updated_time" content="2020-06-07T13:24:24.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="反向传播算法">
 <meta name="twitter:description" content="为什么要使用反向传播在监督学习中，比如线性回归、逻辑回归等问题中，在训练模型的过程中有很重要的一步就是对输入的权重（theta，又叫 W）不断的更新，以降低 Cost function 的输出值。在之前，我们都是通过是手动计算的方式去计算权重参数的偏导数。 在神经网络中，由于神经元的数目比较多，导致权重参数（theta）也会非常的多，在这样的情况下，手动计算权重参数的偏导数的方式已经不太适用了，并">
@@ -119,7 +120,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
@@ -217,18 +218,8 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -237,22 +228,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-book">
-          <a href="/book/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            书单
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
+            标签
           </a>
         </li>
       
@@ -382,6 +363,7 @@
 <p>在神经网络中，由于神经元的数目比较多，导致权重参数（theta）也会非常的多，在这样的情况下，手动计算权重参数的偏导数的方式已经不太适用了，并且由于函数的复杂性也很可能会导致计算出错。</p>
 <p>那我们该怎么去计算所有权重参数的偏导数呢？</p>
 <p>当然是利用我们今天要讲的「反向传播算法」啦！</p>
+<a id="more"></a>
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>反向传播是利用<strong>链式法则</strong>递归计算表达式的梯度的方法。理解反向传播过程及其精妙之处，对于理解、实现、设计和调试神经网络非常关键。</p>
 <h2 id="详解"><a href="#详解" class="headerlink" title="详解"></a>详解</h2><blockquote>
 <p>牢记导数的意义：函数变量在某个点周围的极小区域内变化，而导数就是变量变化导致的函数在该方向上的变化率。换句话说，函数关于每个变量的导数指明了整个表达式对于该变量的敏感程度。</p>
@@ -435,6 +417,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Algorithms/" rel="tag"># Algorithms</a>
+          
+        </div>
       
 
       
@@ -533,8 +521,8 @@
 
           
             <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">12</span>
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -551,6 +539,15 @@
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
           
 
         </nav>
@@ -655,7 +652,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -734,6 +731,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
