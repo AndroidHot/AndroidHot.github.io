@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="假装在香港">
 <meta property="og:description" content="需求我们的 YUV 超级夜景算法的输出是 YUV 数据，客户由于要在结果图上绘制水印，需要我们给他们输出 ARGB_8888 的数据。 分析YUV 数据在 Java 中可以直接通过公式计算转换为 ARGB 数据，但是由于用了多个循环，效率会比较低，在客户的平台 Qualcomm MSM6125 上 12M 的图大概需要用 400ms。400ms 对于 2.5s 的算法耗时来说算得上庞然大物了。所以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-30T13:54:54.132Z">
+<meta property="og:updated_time" content="2020-06-30T13:57:30.295Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态库中使用 C++ 直接将 ARGB 数据写入 App 的 Java int 数组中">
 <meta name="twitter:description" content="需求我们的 YUV 超级夜景算法的输出是 YUV 数据，客户由于要在结果图上绘制水印，需要我们给他们输出 ARGB_8888 的数据。 分析YUV 数据在 Java 中可以直接通过公式计算转换为 ARGB 数据，但是由于用了多个循环，效率会比较低，在客户的平台 Qualcomm MSM6125 上 12M 的图大概需要用 400ms。400ms 对于 2.5s 的算法耗时来说算得上庞然大物了。所以">
@@ -403,7 +403,7 @@
 <li><p>在 JNI 代码中将 int 数组转换为 char 数组，由于在 Java 中分配的数组内存地址是连续的，所以我们这里直接将 int 数组转换为 char 数组来使用，即 char 数组中每 4 个值组成了 int 数组中的 1 个值。这样就做到了直接将每一个 ARGB 数据都放在 int 中。</p>
  <figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">jint *image_data_int = env-&gt;GetIntArrayElements(outARGBData, <span class="number">0</span>);</div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> *image_data = (<span class="keyword">unsigned</span> <span class="keyword">char</span> *) image_data_int;</div></pre></td></tr></table></figure>
 </li>
-<li><p>SDK 中将输出图的 YUV 数据利用 NEON 代码转换为 <strong>BGRA</strong> 数据，并写入到 char 数组中。</p>
+<li><p>SDK 中将输出图的 YUV 数据利用 Neon 代码转换为 <strong>BGRA</strong> 数据，并写入到 char 数组中。</p>
 </li>
 <li><p>客户在 Java 代码中处理格式为 int[] 的 ARGB_8888 数据，比如直接用来创建 Bitmap。</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Bitmap bitmap = Bitmap.createBitmap(argbData, <span class="number">0</span>, width, width, height,</div><div class="line">                Bitmap.Config.ARGB_8888);</div></pre></td></tr></table></figure>
@@ -412,7 +412,7 @@
 <p>整个过程和前面直接写入到保存 YUV 的 byte[] 中差不太多，关键点是：</p>
 <ul>
 <li>根据数据在地址中的表现来将 Java int[] 和 C++ char * 进行转换。</li>
-<li>利用速度更快的 NEON 代码来做到更快的速度。</li>
+<li>利用速度更快的 Neon 代码来做到更快的速度。</li>
 </ul>
 <p>上面的过程有一点需要单独讲一讲，Java 中需要的是 ARGB 格式的数据，但我们在 SDK 中是将 YUV 转换为 BGRA 格式并写入到 buffer 中，而不是转换为 ARGB，这是为什么呢？</p>
 <p>这一点同样和数据在地址中的表现有关，这里我们只看输出图的前 4 个字节（即一个 ARGB 像素），分别在 C++ 和 Java 中将前 4 个字节打印出来。</p>
@@ -422,7 +422,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">image_data[0~3] c++ hexadecimal: 7c8080ff</div><div class="line">outData[0]      java hexadecimal ff80807c</div></pre></td></tr></table></figure>
 <p>可以看到前四个字节的数据在 C++ 中和 Java 中的十六进制表示反过来了， 7c8080ff 变成了 ff80807c，这是为什么呢？这是因为在客户的平台上（或者说在 Android 中，未考证） Java 中 int 型的字节顺序为小端法。（关于大端法和小端法可以参考网上的相关资料：<a href="https://zh.wikipedia.org/wiki/%E5%AD%97%E8%8A%82%E5%BA%8F" target="_blank" rel="external">https://zh.wikipedia.org/wiki/字节序</a>）</p>
 <p>所以这也就是为什么 Java 中需要的是 ARGB，但我们在 C++ 中往内存中写入的是 BGRA 数据，因为到了 Java 中数据自然就变成了 ARGB。</p>
-<h1 id="性能节省"><a href="#性能节省" class="headerlink" title="性能节省"></a>性能节省</h1><p>通过使用 NEON 代码将 YUV 转换为 ARGB，在客户平台上耗时仅为 20ms~30ms，相比在 Java 上用 for 循环来做节省了 400ms，满足客户需求的同时对性能的影响几乎可以忽略。</p>
+<h1 id="性能节省"><a href="#性能节省" class="headerlink" title="性能节省"></a>性能节省</h1><p>通过使用 Neon 代码将 YUV 转换为 ARGB，在客户平台上耗时仅为 20ms~30ms，相比在 Java 上用 for 循环来做节省了 400ms，满足客户需求的同时对性能的影响几乎可以忽略。</p>
 
       
     </div>
