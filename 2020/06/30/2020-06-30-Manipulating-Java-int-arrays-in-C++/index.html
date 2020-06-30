@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="假装在香港">
 <meta property="og:description" content="需求我们的 YUV 超级夜景算法的输出是 YUV 数据，客户由于要在结果图上绘制水印，需要我们给他们输出 ARGB_8888 的数据。 分析YUV 数据在 Java 中可以直接通过公式计算转换为 ARGB 数据，但是由于用了多个循环，效率会比较低，在客户的平台 Qualcomm MSM6125 上 12M 的图大概需要用 400ms。400ms 对于 2.5s 的算法耗时来说算得上庞然大物了。所以">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-30T14:04:35.696Z">
+<meta property="og:updated_time" content="2020-06-30T14:08:21.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态库中使用 C++ 直接将 ARGB 数据写入 App 的 Java int 数组中">
 <meta name="twitter:description" content="需求我们的 YUV 超级夜景算法的输出是 YUV 数据，客户由于要在结果图上绘制水印，需要我们给他们输出 ARGB_8888 的数据。 分析YUV 数据在 Java 中可以直接通过公式计算转换为 ARGB 数据，但是由于用了多个循环，效率会比较低，在客户的平台 Qualcomm MSM6125 上 12M 的图大概需要用 400ms。400ms 对于 2.5s 的算法耗时来说算得上庞然大物了。所以">
@@ -392,12 +392,12 @@
 <p>当输出图为 ARGB 格式时，首先想到的是分配如下大小的 byte 数组来存储 ARGB 格式的输出图数据。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> dataSize = width * height * <span class="number">4</span>;</div><div class="line"><span class="keyword">byte</span>[] outData = <span class="keyword">new</span> <span class="keyword">byte</span>[dataSize];</div></pre></td></tr></table></figure>
 <p>但是 Bitmap 需要 int[] 的数据来创建，客户现有接口也是直接操作 int[]。</p>
-<p>虽然有了 byte[width <em> height </em> 4] 的输出图数据后，可以把 4（ARGB） 个 8 位的 byte 放在 1 个 32 位的 int 里，把他们转换为 int[width * height]。但是这样又多了一些操作和一部分 Java 内存的使用。</p>
+<p>虽然有了 <code>byte[width * height * 4]</code> 的输出图数据后，可以把 4（ARGB） 个 8 位的 byte 放在 1 个 32 位的 int 里，把他们转换为 <code>int[width * height]</code>。但是这样又多了一些操作和一部分 Java 内存的使用。</p>
 <p>那么能不能直接在 C++ 中就把我们的 ARGB 数据放在 Java 的 int 数组里呢？</p>
 <p>答案是可以的。</p>
 <p>来看一下当输出数据格式为 ARGB 时的流程：</p>
 <ol>
-<li><p>客户在 Java 代码中分配 int 数组给我们写入输出图。由于 int 是 32 位的，所以这里数组的大小只需要为 width <em> height，内存大小等价于 new byte[width </em> height * 4];</p>
+<li><p>客户在 Java 代码中分配 int 数组给我们写入输出图。由于 int 是 32 位的，所以这里数组的大小只需要为 <code>width * height</code>，内存大小等价于 <code>new byte[width * height * 4]</code>;</p>
  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> dataSize = width * height;</div><div class="line"><span class="keyword">int</span>[] outData = <span class="keyword">new</span> <span class="keyword">int</span>[dataSize];</div></pre></td></tr></table></figure>
 </li>
 <li><p>在 JNI 代码中将 int 数组转换为 char 数组，由于在 Java 中分配的数组内存地址是连续的，所以我们这里直接将 int 数组转换为 char 数组来使用，即 char 数组中每 4 个值组成了 int 数组中的 1 个值。这样就做到了直接将每一个 ARGB 数据都放在 int 中。</p>
